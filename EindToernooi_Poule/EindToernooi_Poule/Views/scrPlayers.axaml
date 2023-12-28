@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="EindToernooi_Poule.Views.scrPlayers">
+	
+	<UserControl.Styles>
+		<Style Selector="Button">
+			<Setter Property="Width" Value="200"/>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="Black"/>
+			<Setter Property="Margin" Value="1"/>
+		</Style>	
+	</UserControl.Styles>
+	
+	<Grid RowDefinitions="*,*,*" ColumnDefinitions="auto,auto" Margin="10">
+		<StackPanel Orientation="Vertical" Margin="5">
+			<Button Content="New Player" Grid.Row="0" Grid.Column="0" Command="{Binding NewPlayerCommand}"/>
+			<Button Content="Load Player" Grid.Row="1" Grid.Column="0" Command="{Binding LoadPlayerCommand}"/>
+			<Button Content="Remove Player" Grid.Row="2" Grid.Column="0" Command="{Binding RemovePlayerCommand}"/>
+		</StackPanel>
+		<ListBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}" Width="500" Margin="5">
+			<ListBox.Styles>
+				<!-- Give the ListBoxItems a fixed with of 100 and right-align them -->
+				<Style Selector="ListBoxItem">
+          <Setter Property="Height" Value="20"/>
+					<Setter Property="VerticalContentAlignment" Value="Top"/>
+				</Style>
+			</ListBox.Styles>
+		</ListBox>
+	</Grid>
+</UserControl>

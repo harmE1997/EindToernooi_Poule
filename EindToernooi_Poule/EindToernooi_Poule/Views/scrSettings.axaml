@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:views="clr-namespace:EindToernooi_Poule.Views;assembly=EindToernooi_Poule"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="480"
+             x:Class="EindToernooi_Poule.Views.scrSettings">
+	<UserControl.Styles>
+		<Style Selector="Button">
+			<Setter Property="Width" Value="400"/>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="Black"/>
+			<Setter Property="Margin" Value="1"/>
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+
+		<Style Selector="TextBox">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="5"/>
+			
+		</Style>
+	</UserControl.Styles>
+	<Grid ColumnDefinitions="auto,auto" RowDefinitions="*,auto">
+		<Grid RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10" Grid.Column="0" HorizontalAlignment="Center">
+			<TextBlock Text="Algemene instellingen" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" HorizontalAlignment="Center"/>
+			<TextBlock Text="Admin location" Grid.Column="0" Grid.Row="1"/>
+			<views:isoFileBrowser BrowserResult="{Binding AdminFileLocation}" Grid.Column="1" Grid.Row="1"/>
+			<TextBlock Text="Save file directory" Grid.Column="0" Grid.Row="2"/>
+			<views:isoFileBrowser BrowserResult="{Binding SaveFileFolder}" Grid.Column="1" Grid.Row="2" BrowseForDirectory="True"/>
+			<TextBlock Text="Save file name" Grid.Column="0" Grid.Row="3"/>
+			<TextBox Text="{Binding SaveFileName}" Grid.Column="1" Grid.Row="3" />
+		</Grid>
+
+		<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto,auto,auto" Margin="10" Grid.Column="1" HorizontalAlignment="Center">
+			<TextBlock Text="Excel instellingen" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" HorizontalAlignment="Center"/>
+			<TextBlock Text="Startrij" Grid.Column="0" Grid.Row="1"/>
+			<TextBox Text="{Binding StartRow}" Grid.Column="1" Grid.Row="1" Width="50"/>
+			<TextBlock Text="First half size" Grid.Column="0" Grid.Row="2" />
+			<TextBox Text="{Binding FirstHalfSize}" Grid.Column="1" Grid.Row="2"/>
+			<TextBlock Text="Thuiskolom" Grid.Column="0" Grid.Row="3"/>
+			<TextBox Text="{Binding HomeColumn}" Grid.Column="1" Grid.Row="3" Width="50"/>
+			<TextBlock Text="Uitkolom" Grid.Column="0" Grid.Row="4" />
+			<TextBox Text="{Binding OutColumn}" Grid.Column="1" Grid.Row="4"/>
+			<TextBlock Text="Uitstelkolom" Grid.Column="0" Grid.Row="5" />
+			<TextBox Text="{Binding PostponementColumn}" Grid.Column="1" Grid.Row="5"/>
+			<TextBlock Text="Halfway jump" Grid.Column="0" Grid.Row="6"/>
+			<TextBox Text="{Binding HalfWayJump}" Grid.Column="1" Grid.Row="6" Width="50"/>
+			
+			<TextBlock Text="Hostsheet" Grid.Column="2" Grid.Row="1" />
+			<TextBox Text="{Binding HostSheet}" Grid.Column="3" Grid.Row="1"/>
+			<TextBlock Text="Rankingsheet" Grid.Column="2" Grid.Row="2" />
+			<TextBox Text="{Binding RankingSheet}" Grid.Column="3" Grid.Row="2"/>
+			<TextBlock Text="Topscorers sheet" Grid.Column="2" Grid.Row="3" />
+			<TextBox Text="{Binding TopscorersSheet}" Grid.Column="3" Grid.Row="3"/>
+			<TextBlock Text="Bonus - AnswerColumn" Grid.Column="2" Grid.Row="4" />
+			<TextBox Text="{Binding BonusAnswerColumn}" Grid.Column="3" Grid.Row="4"/>
+			<TextBlock Text="Bonus - WeeksColumn" Grid.Column="2" Grid.Row="5" />
+			<TextBox Text="{Binding BonusWeeksColumn}" Grid.Column="3" Grid.Row="5"/>
+			<TextBlock Text="Bonus - StartRow" Grid.Column="2" Grid.Row="6" />
+			<TextBox Text="{Binding BonusStartRow}" Grid.Column="3" Grid.Row="6"/>	
+		</Grid>
+		<Button Content="Save Settings" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Grid.Row="1" Grid.ColumnSpan="2" Command="{Binding SaveSettingsCommand}" IsEnabled="{Binding SaveCommandEnabled}"/>
+	</Grid>
+</UserControl>

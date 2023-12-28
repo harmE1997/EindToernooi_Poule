@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="560"
+             x:Class="EindToernooi_Poule.Views.scrStats">
+	<UserControl.Styles>
+    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Simple.xaml"/>
+    
+		<Style Selector="Button">
+			<Setter Property="Width" Value="200"/>
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="Black"/>
+			<Setter Property="Margin" Value="1"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid RowDefinitions="*,*,*" ColumnDefinitions="auto,auto,auto" Margin="10">
+		<StackPanel Orientation="Vertical" Margin="10" Grid.Row="0" Grid.Column="0">
+			<Button Content="Champions" Command="{Binding ChampionsCommand}"/>
+			<Button Content="Degradanten" Command="{Binding DegradantenCommand}"/>
+			<Button Content="Ronde kampioenschap" Command="{Binding RondeCommand}"/>
+			<Button Content="Promovendi" Command="{Binding PromovendiCommand}"/>
+			<Button Content="Meeste rode kaarten" Command="{Binding RodekaartenCommand}"/>
+			<Button Content="Winterkampioenen" Command="{Binding WinterkampioenCommand}"/>
+			<Button Content="Ontslagen trainers" Command="{Binding TrainersCommand}"/>
+			<Button Content="Bekerfinalisten" Command="{Binding BekerfinalistenCommand}"/>
+			<Button Content="Topscorers" Command="{Binding TopscorersCommand}"/>
+			<Button Content="Nacompetitieteams" Command="{Binding NacompetitieCommand}"/>
+		</StackPanel>
+		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}"/>
+	</Grid>
+</UserControl>
