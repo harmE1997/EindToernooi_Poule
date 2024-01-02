@@ -36,7 +36,7 @@ namespace EindToernooi_Poule.Code
             if (!HostSet)
             {
                 Topscorers = new Dictionary<string, Topscorer>();
-                Weeks = excelManager.ReadPredictions(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, 0);
+                Poules = excelManager.ReadPredictions(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, 0);
                 Questions = excelManager.ReadBonus();
                 setTopscorers();
                 HostSet = true;

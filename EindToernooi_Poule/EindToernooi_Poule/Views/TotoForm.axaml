@@ -93,23 +93,8 @@
 							<TextBox Width="50" Text="{Binding Score6A}"/>
 							<TextBox Width="50" Text="{Binding Score6B}"/>
 						</StackPanel>
-							<TextBlock Text="Match 7" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score7A}"/>
-							<TextBox Width="50" Text="{Binding Score7B}"/>
-						</StackPanel>
-							<TextBlock Text="Match 8" VerticalAlignment="Center" Grid.Row="8" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score8A}"/>
-							<TextBox Width="50" Text="{Binding Score8B}"/>
-						</StackPanel>
-							<TextBlock Text="MOTW" VerticalAlignment="Center" Grid.Row="9" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score9A}"/>
-							<TextBox Width="50" Text="{Binding Score9B}"/>
-						</StackPanel>
-						<Button Content="Previous Week" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="0" Command="{Binding PreviousWeekCommand}"/>
-						<Button Content="Next Week" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="1" Command="{Binding NextWeekCommand}"/>
+						<Button Content="Previous Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="0" Command="{Binding PreviousWeekCommand}"/>
+						<Button Content="Next Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="1" Command="{Binding NextWeekCommand}"/>
 				</Grid>
 			</TabItem>
 			<TabItem>
@@ -118,30 +103,15 @@
 						<TextBlock Text="Bonus Questions"/>
 					</StackPanel>
 				</TabItem.Header>
-				<Grid Grid.Column="1" Grid.Row="1" RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="*,auto,auto" Margin="10">
+				<Grid Grid.Column="1" Grid.Row="1" RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="*,auto,auto" Margin="10">
 					<TextBlock Text="Kampioen" VerticalAlignment="Center" Margin="5" Grid.Row="0" Grid.Column="0"/>
 					<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Champion}"/>
-					<TextBlock Text="Nummer 16" VerticalAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0"/>
-					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Nr16}"/>
+					<TextBlock Text="Nederland" VerticalAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0"/>
+					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Nederland}"/>
 					<TextBlock Text="Topscorer" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="0"/>
 					<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Topscorer}"/>
-					<TextBlock Text="Ontslagen trainer" VerticalAlignment="Center" Margin="5" Grid.Row="3" Grid.Column="0"/>
-					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Trainer}"/>
-					<TextBlock Text="Winterkampioen" VerticalAlignment="Center" Margin="5" Grid.Row="4" Grid.Column="0"/>
-					<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding WinterChampion}"/>
-					<TextBlock Text="Speelronde kampioenschap" VerticalAlignment="Center" Margin="5" Grid.Row="5" Grid.Column="0"/>
-					<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Ronde}"/>
-					<TextBlock Text="Rode kaarten" VerticalAlignment="Center" Margin="5" Grid.Row="6" Grid.Column="0"/>
-					<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding TeamRood}"/>
-					<TextBlock Text="Bekerfinalisten" VerticalAlignment="Center" Margin="5" Grid.Row="7" Grid.Column="0"/>
-					<TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Bekerfinalisten[0]}"/>
-					<TextBox Grid.Row="7" Grid.Column="2" Text="{Binding Bekerfinalisten[1]}"/>
-					<TextBlock Text="Degradanten" VerticalAlignment="Center" Margin="5" Grid.Row="8" Grid.Column="0"/>
-					<TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Degradanten[0]}"/>
-					<TextBox Grid.Row="8" Grid.Column="2" Text="{Binding Degradanten[1]}"/>
-					<TextBlock Text="Promovendi" VerticalAlignment="Center" Margin="5" Grid.Row="9" Grid.Column="0"/>
-					<TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Promovendi[0]}"/>
-					<TextBox Grid.Row="9" Grid.Column="2" Text="{Binding Promovendi[1]}"/>
+					<TextBlock Text="Bronze" VerticalAlignment="Center" Margin="5" Grid.Row="3" Grid.Column="0"/>
+					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Bronze}"/>
 				</Grid>
 			</TabItem>
 	</TabControl>

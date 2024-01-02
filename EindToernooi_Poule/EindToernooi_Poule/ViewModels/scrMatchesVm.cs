@@ -58,14 +58,14 @@ namespace EindToernooi_Poule.ViewModels
 
             foreach (Player p in scrPlayersVm.PlayerManager.Players)
             {
-                if (p.Weeks[week] == null)
+                if (p.Poules[week] == null)
                     continue;
 
                 int matchID = 8;
                 if (SelectedMatch != "MOTW")
                     matchID = Convert.ToInt16(SelectedMatch) - 1;
 
-                var match = p.Weeks[week].Matches[matchID];
+                var match = p.Poules[week].Matches[matchID];
                 if (results.ContainsKey(match.Winner))
                     results[match.Winner].NrPredictions++;
                 else

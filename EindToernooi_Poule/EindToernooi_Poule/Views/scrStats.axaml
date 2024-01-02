@@ -22,16 +22,10 @@
 	<Grid RowDefinitions="*,*,*" ColumnDefinitions="auto,auto,auto" Margin="10">
 		<StackPanel Orientation="Vertical" Margin="10" Grid.Row="0" Grid.Column="0">
 			<Button Content="Champions" Command="{Binding ChampionsCommand}"/>
-			<Button Content="Degradanten" Command="{Binding DegradantenCommand}"/>
-			<Button Content="Ronde kampioenschap" Command="{Binding RondeCommand}"/>
-			<Button Content="Promovendi" Command="{Binding PromovendiCommand}"/>
-			<Button Content="Meeste rode kaarten" Command="{Binding RodekaartenCommand}"/>
-			<Button Content="Winterkampioenen" Command="{Binding WinterkampioenCommand}"/>
-			<Button Content="Ontslagen trainers" Command="{Binding TrainersCommand}"/>
-			<Button Content="Bekerfinalisten" Command="{Binding BekerfinalistenCommand}"/>
+			<Button Content="Nederland" Command="{Binding NederlandCommand}"/>
 			<Button Content="Topscorers" Command="{Binding TopscorersCommand}"/>
-			<Button Content="Nacompetitieteams" Command="{Binding NacompetitieCommand}"/>
+			<Button Content="Bronze" Command="{Binding BronzeCommand}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}"/>
+		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" Background="White"/>
 	</Grid>
 </UserControl>

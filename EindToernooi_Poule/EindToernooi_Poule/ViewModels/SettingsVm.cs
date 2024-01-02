@@ -16,16 +16,16 @@ namespace EindToernooi_Poule.ViewModels
     {
         public string SaveFileLocation = "";
         public string AdminFileLocation = "";
+        public int NrPoules;
+        public bool Bronze;
+        public bool Last32;
         public int StartRow;
-        public int FirstHalfSize;
         public int HomeColumn;
         public int OutColumn;
         public int PostponementColumn;
-        public int HalfWayJump;
         public int HostSheet;
         public int RankingSheet;
         public int TopscorersSheet;
-        public int BonusWeeksColumn;
         public int BonusAnswerColumn;
         public int BonusStartRow;
     }
@@ -39,21 +39,22 @@ namespace EindToernooi_Poule.ViewModels
         private Configurables configurables;
         private JsonSerializerOptions jsonSerializerOptions;
 
+        public List<string> PoulesOptions { get; set; }
 
         public string AdminFileLocation { get => configurables.AdminFileLocation; set { this.RaiseAndSetIfChanged(ref configurables.AdminFileLocation, value); SaveCommandEnabled = true; } }
         public string SaveFileFolder { get => Path.GetDirectoryName(configurables.SaveFileLocation); set { this.RaiseAndSetIfChanged(ref configurables.SaveFileLocation, Path.Combine(value, SaveFileName)); SaveCommandEnabled = true; } }
         public string SaveFileName { get => Path.GetFileName(configurables.SaveFileLocation); set { this.RaiseAndSetIfChanged(ref configurables.SaveFileLocation, Path.Combine(SaveFileFolder, value)); ; SaveCommandEnabled = true; } }
+        public string NrPoules { get => configurables.NrPoules.ToString(); set { this.RaiseAndSetIfChanged(ref configurables.NrPoules, Convert.ToInt32(value)); SaveCommandEnabled = true; } }
+        public bool Bronze { get => configurables.Bronze; set { this.RaiseAndSetIfChanged(ref configurables.Bronze, value); SaveCommandEnabled = true; } }
+        public bool Last32 { get => configurables.Bronze; set { this.RaiseAndSetIfChanged(ref configurables.Bronze, value); SaveCommandEnabled = true; } }
 
         public int StartRow { get => configurables.StartRow; set { this.RaiseAndSetIfChanged(ref configurables.StartRow, value); SaveCommandEnabled = true; } }
-        public int FirstHalfSize { get => configurables.FirstHalfSize; set { this.RaiseAndSetIfChanged(ref configurables.FirstHalfSize, value); SaveCommandEnabled = true; } }
         public int HomeColumn { get => configurables.HomeColumn; set { this.RaiseAndSetIfChanged(ref configurables.HomeColumn, value); SaveCommandEnabled = true; } }
         public int OutColumn { get => configurables.OutColumn; set { this.RaiseAndSetIfChanged(ref configurables.OutColumn, value); SaveCommandEnabled = true; } }
         public int PostponementColumn { get => configurables.PostponementColumn; set { this.RaiseAndSetIfChanged(ref configurables.PostponementColumn, value); SaveCommandEnabled = true; } }
-        public int HalfWayJump { get => configurables.HalfWayJump; set { this.RaiseAndSetIfChanged(ref configurables.HalfWayJump, value); SaveCommandEnabled = true; } }
         public int HostSheet { get => configurables.HostSheet; set { this.RaiseAndSetIfChanged(ref configurables.HostSheet, value); SaveCommandEnabled = true; } }
         public int RankingSheet { get => configurables.RankingSheet; set { this.RaiseAndSetIfChanged(ref configurables.RankingSheet, value); SaveCommandEnabled = true; } }
         public int TopscorersSheet { get => configurables.TopscorersSheet; set { this.RaiseAndSetIfChanged (ref configurables.TopscorersSheet, value); SaveCommandEnabled = true; } }
-        public int BonusWeeksColumn { get => configurables.BonusWeeksColumn; set { this.RaiseAndSetIfChanged(ref configurables.BonusWeeksColumn, value); SaveCommandEnabled = true; } }
         public int BonusAnswerColumn { get => configurables.BonusAnswerColumn; set { this.RaiseAndSetIfChanged(ref configurables.BonusAnswerColumn, value); SaveCommandEnabled = true; } }
         public int BonusStartRow { get => configurables.BonusStartRow; set { this.RaiseAndSetIfChanged (ref configurables.BonusStartRow, value); SaveCommandEnabled = true; } }
 
@@ -65,22 +66,23 @@ namespace EindToernooi_Poule.ViewModels
             var savefilelocation = "Eindtoernooi24.json";
             var adminloc = "Eindtoernooi 2024.xlsx";
             jsonSerializerOptions = new JsonSerializerOptions { WriteIndented = true, IncludeFields = true, };
+            PoulesOptions = new List<string> { "6", "8", "12" };
             defaults = new Configurables()
             {
                 SaveFileLocation = savefilelocation,
                 AdminFileLocation = adminloc,
-                StartRow = 12,
-                FirstHalfSize = 17,          
+                NrPoules = 6,
+                Last32 = true,
+                Bronze = false,
+                StartRow = 12,         
                 HomeColumn = 7,
                 OutColumn = 8,
                 PostponementColumn = 6,
-                HalfWayJump = 10,
                 HostSheet = 6,
                 RankingSheet = 2,
                 TopscorersSheet = 8,
                 BonusStartRow = 365,
-                BonusAnswerColumn = 7,
-                BonusWeeksColumn = 10
+                BonusAnswerColumn = 7
             };
             configurables = new();
             ReadConfigFromXml();
@@ -119,9 +121,10 @@ namespace EindToernooi_Poule.ViewModels
         {
             GeneralConfiguration.AdminFileLocation = configurables.AdminFileLocation;
             GeneralConfiguration.SaveFileLocation = configurables.SaveFileLocation;
+            GeneralConfiguration.NrPoules = configurables.NrPoules;
+            GeneralConfiguration.Last32 = configurables.Last32;
+            GeneralConfiguration.Bronze = configurables.Bronze;
 
-            ExcelConfiguration.FirstHalfSize = configurables.FirstHalfSize;
-            ExcelConfiguration.HalfWayJump = configurables.HalfWayJump;
             ExcelConfiguration.HomeColumn = configurables.HomeColumn;
             ExcelConfiguration.HostSheet = configurables.HostSheet;
             ExcelConfiguration.OutColumn = configurables.OutColumn;
@@ -130,8 +133,7 @@ namespace EindToernooi_Poule.ViewModels
             ExcelConfiguration.StartRow = configurables.StartRow;
             ExcelConfiguration.TopscorersSheet = configurables.TopscorersSheet;
             ExcelConfiguration.BonusStartRow = configurables.BonusStartRow;
-            ExcelConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
-            ExcelConfiguration.BonusWeeksColumn = configurables.BonusWeeksColumn;           
+            ExcelConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;          
         }
     }
 }

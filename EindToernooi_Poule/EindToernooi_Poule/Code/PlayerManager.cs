@@ -142,7 +142,7 @@ namespace EindToernooi_Poule.Code
             int total = 0;
             foreach (var p in Players)
             {
-                total += p.Weeks[weeknr].WeekMatchesScore;
+                total += p.Poules[weeknr].WeekMatchesScore;
             }
             return total / Players.Count;
         }

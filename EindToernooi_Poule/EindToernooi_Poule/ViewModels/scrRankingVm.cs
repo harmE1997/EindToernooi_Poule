@@ -98,7 +98,7 @@ namespace EindToernooi_Poule.ViewModels
             List<RankingField> rank = new List<RankingField>();
             foreach (Player player in scrPlayersVm.PlayerManager.Players)
             {
-                var playerweek = player.Weeks[SelectedWeek];
+                var playerweek = player.Poules[SelectedWeek];
                 rank.Add(new RankingField() { Rank = player.Ranking, PreviousRank = player.PreviousRanking, RankingDifference = player.RankingDifference, Name = player.Name, Total = player.TotalScore, 
                     WeekTotal=playerweek.WeekTotalScore, Matches = playerweek.WeekMatchesScore, 
                     Bonus=playerweek.WeekBonusScore, Postponement=playerweek.WeekPostponementScore }) ;

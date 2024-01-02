@@ -25,7 +25,7 @@ namespace EindToernooi_Poule.Excel
             int y = 3;
             foreach (Player player in Players)
             {
-                var playerweek = player.Weeks[weeknr];
+                var playerweek = player.Poules[weeknr];
                 xlRange.Cells[y, 1].value2 = player.Ranking;
                 xlRange.Cells[y, 2].value2 = player.PreviousRanking;
                 xlRange.Cells[y, 3].value2 = player.RankingDifference;
@@ -41,18 +41,14 @@ namespace EindToernooi_Poule.Excel
             CleanWorkbook();
         }
 
-        public Dictionary<int, Week> ReadPredictions(string filename, int sheet, int miss, bool firsthalf = false, bool secondhalf = false, Dictionary<int, Week> Weeks = null)
+        public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Weeks = null)
         {
-            var weeks = new Dictionary<int, Week>();
+            var weeks = new Dictionary<int, Poule>();
             if (Weeks != null)
                 weeks = Weeks;
 
             var StartWeek = 0;
             var Endweek = ExcelConfiguration.NrBlocks;
-            if (firsthalf)
-                Endweek -= (ExcelConfiguration.NrBlocks - ExcelConfiguration.FirstHalfSize);
-            else if (secondhalf)
-                StartWeek += ExcelConfiguration.FirstHalfSize;
             
             try
             {
@@ -67,9 +63,9 @@ namespace EindToernooi_Poule.Excel
                 {
                     var matches = ReadSingleWeek(i, miss);
                     if (weeks.ContainsKey(i + 1))
-                        weeks[i + 1] = new Week(i + 1, matches);
+                        weeks[i + 1] = new Poule(i + 1, matches);
                     else
-                    weeks.Add(i + 1, new Week((i + 1), matches));
+                    weeks.Add(i + 1, new Poule((i + 1), matches));
                 }
                 CleanWorkbook();
                 return weeks;

@@ -15,16 +15,16 @@ namespace EindToernooi_Poule.Code
         public int Ranking { get; set; }
         public int PreviousRanking { get; set; }
         public int RankingDifference { get; set; }
-        public Dictionary<int, Week> Weeks{ get; set; }
+        public Dictionary<int, Poule> Poules{ get; set; }
         public BonusQuestions Questions { get; set; }
 
         public Player()
         { 
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
-        public Player(string name, string woonplaats, Dictionary<int, Week> weeks, BonusQuestions questions)
+        public Player(string name, string woonplaats, Dictionary<int, Poule> weeks, BonusQuestions questions)
         {
-            Weeks = weeks;
+            Poules = weeks;
             Name = name;
             Town = woonplaats;
             TotalScore = 0;
@@ -39,12 +39,12 @@ namespace EindToernooi_Poule.Code
         {
             TotalScore = 0;
             //reset postponement scores
-            foreach (var week in Weeks)
+            foreach (var week in Poules)
             {
                 week.Value.WeekPostponementScore = 0;
             }
             
-            foreach (var week in Weeks)
+            foreach (var week in Poules)
             {
                 if (week.Value == null)
                 {
@@ -68,7 +68,7 @@ namespace EindToernooi_Poule.Code
         { 
             foreach(var score in scores)
             {
-                Weeks[score.Key].WeekPostponementScore += score.Value;
+                Poules[score.Key].WeekPostponementScore += score.Value;
             }
         }
     }

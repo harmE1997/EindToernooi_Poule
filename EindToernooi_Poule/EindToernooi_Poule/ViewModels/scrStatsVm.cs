@@ -26,30 +26,18 @@ namespace EindToernooi_Poule.ViewModels
         public List<StatsField> StatsFields { get => statsFields; set => this.RaiseAndSetIfChanged(ref statsFields, value); }
 
         public ReactiveCommand<Unit, Unit> ChampionsCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> DegradantenCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> PromovendiCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> NacompetitieCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> WinterkampioenCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> RondeCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> NederlandCommand { get; set; }
         public ReactiveCommand<Unit, Unit> TopscorersCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> RodekaartenCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> TrainersCommand { get; set; }
-        public ReactiveCommand<Unit, Unit> BekerfinalistenCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> BronzeCommand { get; set; }
 
         public scrStatsVm()
         {
             stats = new List<Stat>();
             StatsFields = new List<StatsField>();
             ChampionsCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Kampioen); });
-            DegradantenCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Degradanten); });
-            PromovendiCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Promovendi); });
-            NacompetitieCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Prodeg); });
-            WinterkampioenCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Winterkampioen); });
-            RondeCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Ronde); });
+            NederlandCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Nederland); });
             TopscorersCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Topscorer); });
-            RodekaartenCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Teamrood); });
-            TrainersCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Trainer); });
-            BekerfinalistenCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Finalisten); });
+            BronzeCommand = ReactiveCommand.Create(() => { this.ActionBonusQuestion(BonusKeys.Bronze); });
         }
 
         public void ActionBonusQuestion(BonusKeys Key)

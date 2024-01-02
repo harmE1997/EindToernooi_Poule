@@ -7,6 +7,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EindToernooi_Poule.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EindToernooi_Poule">
+        Title="EindToernooi_Poule"
+        Background="Blue"
+        Foreground="White">
         <views:MainView />
 </Window>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.Code
 {
-    public class Week
+    public class Poule
     {
         public int Weeknr { get; set; }
         public int WeekMatchesScore { get; set; }
@@ -15,12 +15,12 @@ namespace EindToernooi_Poule.Code
         public int WeekTotalScore { get; set; }
         public Match[] Matches { get; set; }
 
-        public Week()
+        public Poule()
         {
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
 
-        public Week(int nr, Match[] matches)
+        public Poule(int nr, Match[] matches)
         {
             Matches = matches;
             Weeknr = nr;
@@ -35,7 +35,7 @@ namespace EindToernooi_Poule.Code
 
         public Dictionary<int,int> Checkweek(Player host, BonusQuestions questions, Dictionary<string, Topscorer> topscorers, int currentcheckingweek)
         {
-            Week hostweek = host.Weeks[Weeknr];
+            Poule hostweek = host.Poules[Weeknr];
             WeekMatchesScore = 0;            
             Dictionary<int, int> postponementscores = new Dictionary<int, int>();
             for(int counter = 0; counter < Matches.Length; counter++)

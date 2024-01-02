@@ -11,17 +11,9 @@ namespace EindToernooi_Poule.Code
     public enum BonusKeys
     {
         Kampioen,
-        Degradanten,
+        Nederland,
         Topscorer,
-        Trainer,
-        Winterkampioen,
-        Ronde,
-        Promovendi,
-        Finalisten,
-        Teamrood,
-        Assists,
-        Defensie,
-        Prodeg
+        Bronze,
     }
 
     public class Question
@@ -55,16 +47,10 @@ namespace EindToernooi_Poule.Code
         {
             Answers = new Dictionary<BonusKeys, Question>()
             {
-                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 140, WeeksAnswered = new int[] {weeks[0] } } },
-                {BonusKeys.Prodeg, new Question(){Answer = new string[] {answers[1] }, Points = 70, WeeksAnswered = new int[] {weeks[1] } } },
-                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[2] }, Points = 0, WeeksAnswered = new int[] {weeks[2] } } },
-                {BonusKeys.Trainer, new Question(){Answer = new string[] {answers[3] }, Points = 120, WeeksAnswered = new int[] {weeks[3] } } },
-                {BonusKeys.Winterkampioen, new Question(){Answer = new string[] {answers[4] }, Points = 90, WeeksAnswered = new int[] {weeks[4] } } },
-                {BonusKeys.Ronde, new Question(){Answer = new string[] {answers[5] }, Points = 40, WeeksAnswered = new int[] { weeks[5] } } },
-                {BonusKeys.Teamrood, new Question(){Answer = new string[] {answers[6] }, Points = 90, WeeksAnswered = new int[] {weeks[6]} } },
-                {BonusKeys.Finalisten, new Question(){Answer = new string[]{answers[7], answers[8] }, Points = 50, WeeksAnswered = new int[]{ weeks[7], weeks[8] } } },
-                {BonusKeys.Degradanten, new Question(){Answer = new string[]{answers[9], answers[10] }, Points = 50, WeeksAnswered = new int[]{ weeks[9], weeks[10] } } },
-                {BonusKeys.Promovendi, new Question(){Answer = new string[]{answers[11], answers[12] }, Points = 50, WeeksAnswered = new int[]{ weeks[11], weeks[12] } } },
+                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 25, WeeksAnswered = new int[] {weeks[0] } } },
+                {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[1] }, Points = 25, WeeksAnswered = new int[] {weeks[1] } } },
+                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[2] }, Points = 5, WeeksAnswered = new int[] {weeks[2] } } },
+                {BonusKeys.Bronze, new Question(){Answer = new string[] {answers[3] }, Points = 25, WeeksAnswered = new int[] {weeks[3] } } },
             };
         }
 
