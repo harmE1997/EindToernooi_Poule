@@ -137,7 +137,7 @@ namespace EindToernooi_Poule.ViewModels
                 var matches = new Match[6];
                 for(int x = 0; x < 6; x++)
                 {
-                    matches[x] = new Match(99, 99, x==8);             
+                    matches[x] = new Match(99, 99);             
                 }
 
                 weeks.Add(i,new Poule(i, matches));

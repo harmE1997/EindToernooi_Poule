@@ -126,12 +126,12 @@ namespace EindToernooi_Poule.Code
 
         }
 
-        public void CheckAllPlayers(Host host, int currentWeek)
+        public void CheckAllPlayers(Host host)
         {
 
             foreach (Player player in Players)
             {
-                player.CheckPlayer(host, currentWeek, host.getTopscorers());
+                player.CheckPlayer(host, host.getTopscorers());
             }
 
             SavePlayers();
@@ -142,7 +142,7 @@ namespace EindToernooi_Poule.Code
             int total = 0;
             foreach (var p in Players)
             {
-                total += p.Poules[weeknr].WeekMatchesScore;
+                total += p.Poules[weeknr].PouleMatchesScore;
             }
             return total / Players.Count;
         }

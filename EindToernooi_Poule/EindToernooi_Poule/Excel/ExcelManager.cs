@@ -32,10 +32,8 @@ namespace EindToernooi_Poule.Excel
                 xlRange.Cells[y, 4].value2 = player.Name;
                 xlRange.Cells[y, 5].value2 = player.Town;
                 xlRange.Cells[y, 6].value2 = player.TotalScore;
-                xlRange.Cells[y, 7].value2 = playerweek.WeekTotalScore;
-                xlRange.Cells[y, 8].value2 = playerweek.WeekMatchesScore;
-                xlRange.Cells[y, 9].value2 = playerweek.WeekBonusScore;
-                xlRange.Cells[y, 10].value2 = playerweek.WeekPostponementScore;
+                xlRange.Cells[y, 7].value2 = playerweek.PouleMatchesScore;
+                xlRange.Cells[y, 8].value2 = player.BonusScore;
                 y++;
             }
             CleanWorkbook();
@@ -94,26 +92,20 @@ namespace EindToernooi_Poule.Excel
             finally { CleanWorkbook(); }
         }
 
-        public Dictionary<string, Topscorer> readtopscorers()
+        public Dictionary<string, int> readtopscorers()
         {
-            Dictionary<string, Topscorer> scorers = new Dictionary<string, Topscorer>();
+            Dictionary<string, int> scorers = new Dictionary<string, int>();
             InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.TopscorersSheet);
             try
             {
                 int i = 2;
                 while (true)
                 {
-                    Topscorer ts = new Topscorer() { Total = 0, Rounds = new List<int>() };
                     string name = Convert.ToString(xlRange.Cells[i, 1].value2);
                     if (string.IsNullOrEmpty(name))
                         break;
-                    ts.Total = Convert.ToInt32(xlRange.Cells[i, 3].value2);
-                    for (int x = 0; x < 34; x++)
-                    {
-                        var round = Convert.ToInt32(xlRange.Cells[i, x + 4].value2);
-                        ts.Rounds.Add(round);
-                    }
-                    scorers.Add(name, ts);
+                    var total = Convert.ToInt32(xlRange.Cells[i, 3].value2);
+                    scorers.Add(name, total);
                     i++;
                 }
                 return scorers;
@@ -157,13 +149,7 @@ namespace EindToernooi_Poule.Excel
                     if (pt != null)
                         p = pt;
 
-                    bool motw = false;
-                    if (rowschecked == ExcelConfiguration.BlockSize - 1)
-                    {
-                        motw = true;
-                    }
-
-                    Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), motw, Convert.ToInt16(p));
+                    Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), Convert.ToInt16(p));
                     Week[rowschecked] = match;
                 }
                 return Week;

@@ -10,7 +10,7 @@ namespace EindToernooi_Poule.Code
 {
     public class Host : Player
     {
-        private Dictionary<string, Topscorer> Topscorers;
+        private Dictionary<string, int> Topscorers;
         public ExcelManager excelManager;
         public bool HostSet = false;
 
@@ -19,7 +19,7 @@ namespace EindToernooi_Poule.Code
             excelManager = new ExcelManager();
         }
 
-        public Dictionary<string, Topscorer> getTopscorers()
+        public Dictionary<string, int> getTopscorers()
         {
             if (Topscorers.Count == 0)
                 setTopscorers();
@@ -35,7 +35,7 @@ namespace EindToernooi_Poule.Code
         {
             if (!HostSet)
             {
-                Topscorers = new Dictionary<string, Topscorer>();
+                Topscorers = new Dictionary<string, int>();
                 Poules = excelManager.ReadPredictions(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, 0);
                 Questions = excelManager.ReadBonus();
                 setTopscorers();

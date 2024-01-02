@@ -28,12 +28,6 @@ namespace EindToernooi_Poule.Code
         }
     }
 
-    public class Topscorer
-    {
-        public int Total { get; set; }
-        public List<int> Rounds { get; set; }
-    }
-
     public class BonusQuestions
     {
         public Dictionary<BonusKeys, Question> Answers { get; set; }
@@ -54,7 +48,7 @@ namespace EindToernooi_Poule.Code
             };
         }
 
-        public int CheckBonus(BonusQuestions HostQuestions, int currentweek, Dictionary<string, Topscorer> topscorers)
+        public int CheckBonus(BonusQuestions HostQuestions, Dictionary<string, int> topscorers)
         {
             if (HostQuestions == null)
             {
@@ -70,7 +64,7 @@ namespace EindToernooi_Poule.Code
                 {
                     for (int i = 0; i < ans.Answer.Length; i++)
                     {
-                        if (a.Value.Answer.Contains(ans.Answer[i]) && ans.WeeksAnswered[i] == currentweek)
+                        if (a.Value.Answer.Contains(ans.Answer[i]))
                         {
                             WeekScore += a.Value.Points;
                         }
@@ -80,7 +74,7 @@ namespace EindToernooi_Poule.Code
 
             //check the topscorers
             var ansscorer = topscorers[Answers[BonusKeys.Topscorer].Answer[0]];
-            WeekScore += ansscorer.Rounds[currentweek - 1] * 5;
+            WeekScore += ansscorer * 5;
             return WeekScore;
         }
     }

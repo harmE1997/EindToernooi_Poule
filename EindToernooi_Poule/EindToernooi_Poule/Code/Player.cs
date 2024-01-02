@@ -15,6 +15,7 @@ namespace EindToernooi_Poule.Code
         public int Ranking { get; set; }
         public int PreviousRanking { get; set; }
         public int RankingDifference { get; set; }
+        public int BonusScore { get; set; }
         public Dictionary<int, Poule> Poules{ get; set; }
         public BonusQuestions Questions { get; set; }
 
@@ -35,41 +36,25 @@ namespace EindToernooi_Poule.Code
             Ranking = 0;
         }
 
-        public void CheckPlayer(Player Host, int currentWeek, Dictionary<string, Topscorer> topscorers)
+        public void CheckPlayer(Player Host, Dictionary<string, int> topscorers)
         {
             TotalScore = 0;
             //reset postponement scores
-            foreach (var week in Poules)
-            {
-                week.Value.WeekPostponementScore = 0;
-            }
             
-            foreach (var week in Poules)
+            foreach (var poule in Poules)
             {
-                if (week.Value == null)
+                if (poule.Value == null)
                 {
-                    week.Value.WeekMatchesScore = 0;
+                    poule.Value.PouleMatchesScore = 0;
                     break;
                 }
 
-                if (week.Value.Weeknr > currentWeek)
-                    break;
-
-                var posts = week.Value.Checkweek(Host, Questions, topscorers, currentWeek);
-                MovePostponementScoresToCorrectWeeks(posts);
-                week.Value.SetTotalScore();
-                TotalScore += week.Value.WeekTotalScore;
-                if (week.Key <= currentWeek)
-                    PreviousScore = TotalScore - week.Value.WeekTotalScore;                   
+                poule.Value.CheckPoule(Host);
+                TotalScore += poule.Value.PouleMatchesScore;                
             }
-        }
 
-        private void MovePostponementScoresToCorrectWeeks(Dictionary<int,int> scores) 
-        { 
-            foreach(var score in scores)
-            {
-                Poules[score.Key].WeekPostponementScore += score.Value;
-            }
+            BonusScore = Questions.CheckBonus(Host.Questions, topscorers);
+            TotalScore += BonusScore;
         }
     }
 }

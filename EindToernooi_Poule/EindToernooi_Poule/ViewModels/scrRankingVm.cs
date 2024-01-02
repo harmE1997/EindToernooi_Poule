@@ -17,10 +17,8 @@ namespace EindToernooi_Poule.ViewModels
         public int RankingDifference { get; set; }
         public string Name { get; set; }
         public int Total { get; set; }
-        public int WeekTotal { get; set; }
         public int Matches { get; set; }
         public int Bonus { get; set; }
-        public int Postponement { get; set; }
         
     }
     public class scrRankingVm : ViewModelBase
@@ -58,7 +56,7 @@ namespace EindToernooi_Poule.ViewModels
             try
             {
                 host.setHost();
-                scrPlayersVm.PlayerManager.CheckAllPlayers(host, SelectedWeek);
+                scrPlayersVm.PlayerManager.CheckAllPlayers(host);
                 string output = JsonSerializer.Serialize(SelectedWeek, new JsonSerializerOptions { WriteIndented = false });
                 File.WriteAllText(lastWeekCheckedFileName, output);
                 RefreshRanking();
@@ -100,8 +98,7 @@ namespace EindToernooi_Poule.ViewModels
             {
                 var playerweek = player.Poules[SelectedWeek];
                 rank.Add(new RankingField() { Rank = player.Ranking, PreviousRank = player.PreviousRanking, RankingDifference = player.RankingDifference, Name = player.Name, Total = player.TotalScore, 
-                    WeekTotal=playerweek.WeekTotalScore, Matches = playerweek.WeekMatchesScore, 
-                    Bonus=playerweek.WeekBonusScore, Postponement=playerweek.WeekPostponementScore }) ;
+                    Matches = playerweek.PouleMatchesScore, Bonus=player.BonusScore }) ;
             }
 
             Ranking = rank;

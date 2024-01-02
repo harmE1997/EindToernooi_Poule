@@ -14,7 +14,6 @@ namespace EindToernooi_Poule.Code
         private int resultb;
         public int ResultB { get { return resultb; } set { resultb = value; SetWinner(); } }
         public string Winner { get; set; }
-        public bool MOTW { get; set; }
         public int Postponement { get; set; }
 
         public Match()
@@ -22,11 +21,10 @@ namespace EindToernooi_Poule.Code
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
 
-        public Match(int resA, int resB, bool motw = false, int postponement=0)
+        public Match(int resA, int resB, int postponement=0)
         {
             ResultA = resA;
             ResultB = resB;
-            MOTW = motw;
             Postponement = postponement;
         }
 
@@ -67,11 +65,6 @@ namespace EindToernooi_Poule.Code
                 if (ResultB == hostmatch.ResultB)
                 {
                     matchScore += 5;
-                }
-
-                if (hostmatch.MOTW)
-                {
-                    matchScore *= 2;
                 }
             }
             return matchScore;
