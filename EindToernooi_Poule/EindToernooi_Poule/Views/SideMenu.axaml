@@ -9,7 +9,7 @@
 		<Style Selector="TabItem">
 			<Setter Property="Width" Value="150"/>
 			<Setter Property="Height" Value="90"/>
-			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>

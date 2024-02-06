@@ -13,7 +13,7 @@
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Background" Value="Green"/>
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Margin" Value="1"/>
@@ -40,6 +40,7 @@
 			
 		</StackPanel>
 		<Button Content="Reset host" Grid.Column="0" Grid.Row="2" Margin="10" Command="{Binding ResetHost}"/>
-    <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" AutoGenerateColumns="True" ItemsSource="{Binding Ranking}" Background="White"/>
+    <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" AutoGenerateColumns="True" ItemsSource="{Binding Ranking}" 
+			  IsReadOnly="True" Background="Transparent" Foreground="White"/>
 	</Grid>
 </UserControl>

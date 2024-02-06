@@ -22,7 +22,7 @@
 			<Setter Property="Height" Value="35"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Background" Value="Green"/>
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 		</Style>
@@ -40,6 +40,7 @@
 		<StackPanel Orientation="Horizontal" Grid.Column="2">
 			<Button Content="Get Predictions" Command="{Binding GetPredictionsCommand}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="1" Grid.Column="0" Height="700" Width="530" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding Outputs}" Background="White" />
+		<DataGrid Grid.Row="1" Grid.Column="0" Height="700" Width="530" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10" 
+				  AutoGenerateColumns="True" ItemsSource="{Binding Outputs}" Background="Transparent" Foreground="White"/>
 	</Grid>
 </UserControl>

@@ -12,7 +12,7 @@
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="Blue"/>
+			<Setter Property="Background" Value="Green"/>
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Margin" Value="1"/>
@@ -26,6 +26,7 @@
 			<Button Content="Topscorers" Command="{Binding TopscorersCommand}"/>
 			<Button Content="Bronze" Command="{Binding BronzeCommand}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" Background="White"/>
+		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" 
+				  Background="Transparent" Foreground="White"/>
 	</Grid>
 </UserControl>

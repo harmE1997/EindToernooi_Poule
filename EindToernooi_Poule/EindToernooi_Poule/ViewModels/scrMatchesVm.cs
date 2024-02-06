@@ -42,11 +42,9 @@ namespace EindToernooi_Poule.ViewModels
 
         public scrMatchesVm()
         {
-            Matches = new List<string>() {"1","2","3","4","5","6","7","8", "MOTW" };
+            Matches = new List<string>() {"1","2","3","4","5","6" };
             SelectedMatch = Matches[0];
-            Weeks = new List<string>() {"1", "2", "3", "4", "5", "6", "7", "8", "9","10",
-                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", 
-                "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34"};
+            Weeks = new List<string>() {"1", "2", "3", "4", "5", "6"};
             SelectedWeek = Weeks[0];
             Outputs = new List<MatchField>();
         }
