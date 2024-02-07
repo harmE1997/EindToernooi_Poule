@@ -37,14 +37,14 @@ namespace EindToernooi_Poule.Code
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
 
-        public BonusQuestions(string[] answers, int[] weeks)
+        public BonusQuestions(string[] answers)
         {
             Answers = new Dictionary<BonusKeys, Question>()
             {
-                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 25, WeeksAnswered = new int[] {weeks[0] } } },
-                {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[1] }, Points = 25, WeeksAnswered = new int[] {weeks[1] } } },
-                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[2] }, Points = 5, WeeksAnswered = new int[] {weeks[2] } } },
-                {BonusKeys.Bronze, new Question(){Answer = new string[] {answers[3] }, Points = 25, WeeksAnswered = new int[] {weeks[3] } } },
+                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 25 } },
+                {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[1] }, Points = 25 } },
+                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[2] }, Points = 5} },
+                {BonusKeys.Bronze, new Question(){Answer = new string[] {answers[3] }, Points = 25 } },
             };
         }
 

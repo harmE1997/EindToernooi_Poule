@@ -26,7 +26,6 @@
 			<Button Content="Topscorers" Command="{Binding TopscorersCommand}"/>
 			<Button Content="Bronze" Command="{Binding BronzeCommand}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" 
-				  Background="Transparent" Foreground="White"/>
+		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Width="500" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}"/>
 	</Grid>
 </UserControl>

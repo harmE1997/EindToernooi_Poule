@@ -27,13 +27,13 @@ namespace EindToernooi_Poule.Excel
             {
                 var playerweek = player.Poules[weeknr];
                 xlRange.Cells[y, 1].value2 = player.Ranking;
-                xlRange.Cells[y, 2].value2 = player.PreviousRanking;
-                xlRange.Cells[y, 3].value2 = player.RankingDifference;
-                xlRange.Cells[y, 4].value2 = player.Name;
-                xlRange.Cells[y, 5].value2 = player.Town;
-                xlRange.Cells[y, 6].value2 = player.TotalScore;
-                xlRange.Cells[y, 7].value2 = playerweek.PouleMatchesScore;
-                xlRange.Cells[y, 8].value2 = player.BonusScore;
+                xlRange.Cells[y, 2].value2 = player.Name;
+                xlRange.Cells[y, 3].value2 = player.Town;
+                xlRange.Cells[y, 8].value2 = player.TotalScore - xlRange.Cells[y, 4].value2;
+                xlRange.Cells[y, 4].value2 = player.TotalScore;
+                xlRange.Cells[y, 5].value2 = player.PoulesScore;
+                xlRange.Cells[y, 6].value2 = player.KnockoutScore;
+                xlRange.Cells[y, 7].value2 = player.BonusScore;
                 y++;
             }
             CleanWorkbook();
@@ -41,51 +41,77 @@ namespace EindToernooi_Poule.Excel
 
         public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Weeks = null)
         {
-            var weeks = new Dictionary<int, Poule>();
+            var poules = new Dictionary<int, Poule>();
             if (Weeks != null)
-                weeks = Weeks;
-
-            var StartWeek = 0;
-            var Endweek = ExcelConfiguration.NrBlocks;
+                poules = Weeks;
             
             try
             {
                 if (!File.Exists(filename))
                 {
                     PopupManager.ShowMessage("Cannot read host. Admin cannot be found");
-                    return weeks;
+                    return poules;
                 }
 
                 InitialiseWorkbook(filename, sheet);
-                for (int i = StartWeek; i < Endweek; i++)
+                for (int i = 0; i < GeneralConfiguration.NrPoules; i++)
                 {
                     var matches = ReadSingleWeek(i, miss);
-                    if (weeks.ContainsKey(i + 1))
-                        weeks[i + 1] = new Poule(i + 1, matches);
+                    if (poules.ContainsKey(i + 1))
+                        poules[i + 1] = new Poule(i + 1, matches);
                     else
-                    weeks.Add(i + 1, new Poule((i + 1), matches));
+                    poules.Add(i + 1, new Poule((i + 1), matches));
                 }
                 CleanWorkbook();
-                return weeks;
+                return poules;
             }
 
-            catch (Exception e) { CleanWorkbook(); return weeks; }
+            catch (Exception e) { CleanWorkbook(); return poules; }
         }
+
+        public KnockoutPhase readKnockout(string filename, int sheet)
+        {
+            InitialiseWorkbook(filename, sheet);
+            try
+            {
+                KnockoutPhase ko = new KnockoutPhase();
+                foreach (var phase in ExcelConfiguration.KoSettings)
+                {
+                    if (!GeneralConfiguration.Last32 && phase.PhaseKey == KOKeys.LAST32)
+                        continue;
+                    ko.Stages[phase.PhaseKey].teams.Clear();
+                    for (int i = 0; i < phase.Size; i++)
+                    {
+                        int row = phase.StartRow + (phase.GapSize * i);
+                        if (i >= phase.Size / 2)
+                            row++;
+                        string team = xlRange.Cells[row, phase.Column].value2;
+                        if (team == null)
+                        {
+                            team = "";
+                        }
+                        ko.Stages[phase.PhaseKey].teams.Add(team.ToLower());
+                    }
+                }
+                return ko;
+            }
+            catch (Exception e) { return null; }
+            finally { CleanWorkbook(); }            
+        }
+
 
         public BonusQuestions ReadBonus()
         {
             InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet);
             try
             {
-                int[] weeks = new int[13];
                 string[] answers = new string[13];
-                for (int i = ExcelConfiguration.BonusStartRow; i < (ExcelConfiguration.BonusStartRow + weeks.Length); i++)
+                for (int i = ExcelConfiguration.BonusStartRow; i < ExcelConfiguration.BonusStartRow; i++)
                 {
-                    weeks[i - ExcelConfiguration.BonusStartRow] = Convert.ToInt32(xlRange.Cells[i, ExcelConfiguration.BonusWeeksColumn].value2);
                     answers[i - ExcelConfiguration.BonusStartRow] = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;
                 }
 
-                BonusQuestions bonus = new BonusQuestions(answers, weeks);
+                BonusQuestions bonus = new BonusQuestions(answers);
                 return bonus;
             }
             catch (Exception e) { return null; }
@@ -118,24 +144,21 @@ namespace EindToernooi_Poule.Excel
             finally { CleanWorkbook(); }
         }
 
-        private Match[] ReadSingleWeek(int week, int miss)
+        private Match[] ReadSingleWeek(int poule, int miss)
         {
-            Match[] Week = new Match[9];
+            Match[] Poule = new Match[GeneralConfiguration.PouleSize];
 
-            int startrow = ExcelConfiguration.StartRow + (ExcelConfiguration.BlockSize + 1) * (week) + miss;
-            if (week >= ExcelConfiguration.FirstHalfSize)
-                startrow += ExcelConfiguration.HalfWayJump;
+            int startrow = ExcelConfiguration.StartRow + (GeneralConfiguration.PouleSize + 1) * (poule) + miss;
 
             try
             {
-                for (int rowschecked = 0; rowschecked < ExcelConfiguration.BlockSize; rowschecked++)
+                for (int rowschecked = 0; rowschecked <GeneralConfiguration.PouleSize; rowschecked++)
                 {
                     double a = 99;
                     double b = 99;
                     double p = 0; 
                     int currentRow = startrow + rowschecked;
                 
-                    var pt = xlRange.Cells[currentRow, ExcelConfiguration.PostponementColumn].Value2;
                     var at = xlRange.Cells[currentRow, ExcelConfiguration.HomeColumn].Value2;
                     var bt = xlRange.Cells[currentRow, ExcelConfiguration.OutColumn].Value2;
                     
@@ -146,15 +169,12 @@ namespace EindToernooi_Poule.Excel
                         b = bt;
                     }
 
-                    if (pt != null)
-                        p = pt;
-
                     Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), Convert.ToInt16(p));
-                    Week[rowschecked] = match;
+                    Poule[rowschecked] = match;
                 }
-                return Week;
+                return Poule;
             }
-            catch (Exception e) { return Week; }
+            catch (Exception e) { return Poule; }
         }
 
         private void InitialiseWorkbook(string filename, int sheet)

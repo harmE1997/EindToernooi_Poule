@@ -14,7 +14,7 @@ namespace EindToernooi_Poule.Code
         public ExcelManager excelManager;
         public bool HostSet = false;
 
-        public Host() : base("", "", null, null)
+        public Host() : base("", "", null, null, null)
         { 
             excelManager = new ExcelManager();
         }

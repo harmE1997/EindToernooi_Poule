@@ -10,8 +10,9 @@ namespace EindToernooi_Poule.Code
     { 
         public static string SaveFileLocation = "";
         public static string AdminFileLocation = "";
-        public static int NrPoules = 6;
-        public static bool Bronze = false;
-        public static bool Last32 = false;
+        public static int PouleSize = 6;
+        public static int NrPoules;
+        public static bool Bronze;
+        public static bool Last32;
     }
 }

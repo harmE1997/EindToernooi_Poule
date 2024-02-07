@@ -9,7 +9,4 @@
         Icon="/Assets/Icons/EK2024.ico"
         Title="EindToernooi_Poule">
 	<views:MainView />
-	<Window.Background>
-		<ImageBrush Source="/Assets/EK2024_Logo.jpg" Stretch="Fill"/>
-	</Window.Background>
 </Window>

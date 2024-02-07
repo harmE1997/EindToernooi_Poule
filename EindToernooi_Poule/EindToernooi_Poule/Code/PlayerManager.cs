@@ -55,44 +55,22 @@ namespace EindToernooi_Poule.Code
             Players = JsonSerializer.Deserialize<List<Player>>(input, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        public void RankPlayers(bool previous)
+        public void RankPlayers()
         {
-            if (previous)
-            {
-                Players = Players.OrderBy(p => p.PreviousScore).ToList();
-            }
-            else
-            {
-                Players = Players.OrderBy(p => p.TotalScore).ToList();
-            }
-
+            Players.Sort();
             Players.Reverse();
-            int index = 1;
             int ranking = 1;
-            int previousScore = 10000;
-
+            int counter = 1;
+            int lastplayerscore = -1;
             foreach (Player player in Players)
             {
-                if (previous)
+                if (player.TotalScore != lastplayerscore)
                 {
-                    if (player.PreviousScore < previousScore)
-                        ranking = index;
-
-                    player.PreviousRanking = ranking;
-                    previousScore = player.PreviousScore;
+                    ranking = counter;
                 }
-
-                else
-                {
-                    if (player.TotalScore < previousScore)
-                        ranking = index;
-
-                    player.Ranking = ranking;
-                    previousScore = player.TotalScore;
-                }
-
-                player.RankingDifference = (player.Ranking - player.PreviousRanking) * -1;
-                index++;
+                player.Ranking = ranking;
+                lastplayerscore = player.TotalScore;
+                counter++;
             }
         }
 

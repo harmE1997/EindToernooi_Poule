@@ -13,11 +13,10 @@ namespace EindToernooi_Poule.ViewModels
     public class RankingField
     {
         public int Rank { get; set; }
-        public int PreviousRank { get; set; }
-        public int RankingDifference { get; set; }
         public string Name { get; set; }
         public int Total { get; set; }
         public int Matches { get; set; }
+        public int Knockout { get; set; }
         public int Bonus { get; set; }
         
     }
@@ -91,14 +90,13 @@ namespace EindToernooi_Poule.ViewModels
         private void RefreshRanking()
         {
             //sort players by score
-            scrPlayersVm.PlayerManager.RankPlayers(true);
-            scrPlayersVm.PlayerManager.RankPlayers(false);
+            scrPlayersVm.PlayerManager.RankPlayers();
             List<RankingField> rank = new List<RankingField>();
             foreach (Player player in scrPlayersVm.PlayerManager.Players)
             {
                 var playerweek = player.Poules[SelectedWeek];
-                rank.Add(new RankingField() { Rank = player.Ranking, PreviousRank = player.PreviousRanking, RankingDifference = player.RankingDifference, Name = player.Name, Total = player.TotalScore, 
-                    Matches = playerweek.PouleMatchesScore, Bonus=player.BonusScore }) ;
+                rank.Add(new RankingField() { Rank = player.Ranking, Name = player.Name, Total = player.TotalScore, 
+                    Matches = player.PoulesScore, Knockout=player.KnockoutScore, Bonus=player.BonusScore }) ;
             }
 
             Ranking = rank;
