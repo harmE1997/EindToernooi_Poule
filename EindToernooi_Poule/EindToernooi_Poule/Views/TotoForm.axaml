@@ -103,48 +103,51 @@
 					</StackPanel>
 				</TabItem.Header>
 				<Grid Margin="10" RowDefinitions="auto,auto">
-					<StackPanel Orientation="Horizontal" Margin="5" IsVisible="{Binding Last32Active}">
-						<StackPanel Orientation="Vertical">
-							<TextBox Text="{Binding Last32[0]}"/>
-							<TextBox Text="{Binding Last32[1]}"/>
-							<TextBox Text="{Binding Last32[2]}"/>
-							<TextBox Text="{Binding Last32[3]}"/>
-							<TextBox Text="{Binding Last32[4]}"/>
-							<TextBox Text="{Binding Last32[5]}"/>
-							<TextBox Text="{Binding Last32[6]}"/>
-							<TextBox Text="{Binding Last32[7]}"/>
+          <StackPanel Orientation="Vertical" Margin="5" IsVisible="{Binding Last32Active}">
+            <TextBlock Text="Last 32"/>
+						<StackPanel Orientation="Horizontal" >
+							<StackPanel Orientation="Vertical">
+								<TextBox Text="{Binding Last32[0]}"/>
+								<TextBox Text="{Binding Last32[1]}"/>
+								<TextBox Text="{Binding Last32[2]}"/>
+								<TextBox Text="{Binding Last32[3]}"/>
+								<TextBox Text="{Binding Last32[4]}"/>
+								<TextBox Text="{Binding Last32[5]}"/>
+								<TextBox Text="{Binding Last32[6]}"/>
+								<TextBox Text="{Binding Last32[7]}"/>
+							</StackPanel>
+							<StackPanel Orientation="Vertical">
+								<TextBox Text="{Binding Last32[8]}"/>
+								<TextBox Text="{Binding Last32[9]}"/>
+								<TextBox Text="{Binding Last32[10]}"/>
+								<TextBox Text="{Binding Last32[11]}"/>
+								<TextBox Text="{Binding Last32[12]}"/>
+								<TextBox Text="{Binding Last32[13]}"/>
+								<TextBox Text="{Binding Last32[14]}"/>
+								<TextBox Text="{Binding Last32[15]}"/>
+							</StackPanel>
+							<StackPanel Orientation="Vertical">
+								<TextBox Text="{Binding Last32[16]}"/>
+								<TextBox Text="{Binding Last32[17]}"/>
+								<TextBox Text="{Binding Last32[18]}"/>
+								<TextBox Text="{Binding Last32[19]}"/>
+								<TextBox Text="{Binding Last32[20]}"/>
+								<TextBox Text="{Binding Last32[21]}"/>
+								<TextBox Text="{Binding Last32[22]}"/>
+								<TextBox Text="{Binding Last32[23]}"/>
+							</StackPanel>
+							<StackPanel Orientation="Vertical">
+								<TextBox Text="{Binding Last32[24]}"/>
+								<TextBox Text="{Binding Last32[25]}"/>
+								<TextBox Text="{Binding Last32[26]}"/>
+								<TextBox Text="{Binding Last32[27]}"/>
+								<TextBox Text="{Binding Last32[28]}"/>
+								<TextBox Text="{Binding Last32[29]}"/>
+								<TextBox Text="{Binding Last32[30]}"/>
+								<TextBox Text="{Binding Last32[31]}"/>
+							</StackPanel>
 						</StackPanel>
-						<StackPanel Orientation="Vertical">
-							<TextBox Text="{Binding Last32[8]}"/>
-							<TextBox Text="{Binding Last32[9]}"/>
-							<TextBox Text="{Binding Last32[10]}"/>
-							<TextBox Text="{Binding Last32[11]}"/>
-							<TextBox Text="{Binding Last32[12]}"/>
-							<TextBox Text="{Binding Last32[13]}"/>
-							<TextBox Text="{Binding Last32[14]}"/>
-							<TextBox Text="{Binding Last32[15]}"/>
-						</StackPanel>
-						<StackPanel Orientation="Vertical">
-							<TextBox Text="{Binding Last32[16]}"/>
-							<TextBox Text="{Binding Last32[17]}"/>
-							<TextBox Text="{Binding Last32[18]}"/>
-							<TextBox Text="{Binding Last32[19]}"/>
-							<TextBox Text="{Binding Last32[20]}"/>
-							<TextBox Text="{Binding Last32[21]}"/>
-							<TextBox Text="{Binding Last32[22]}"/>
-							<TextBox Text="{Binding Last32[23]}"/>
-						</StackPanel>
-						<StackPanel Orientation="Vertical">
-							<TextBox Text="{Binding Last32[24]}"/>
-							<TextBox Text="{Binding Last32[25]}"/>
-							<TextBox Text="{Binding Last32[26]}"/>
-							<TextBox Text="{Binding Last32[27]}"/>
-							<TextBox Text="{Binding Last32[28]}"/>
-							<TextBox Text="{Binding Last32[29]}"/>
-							<TextBox Text="{Binding Last32[30]}"/>
-							<TextBox Text="{Binding Last32[31]}"/>
-						</StackPanel>
-					</StackPanel>
+          </StackPanel>
 					<Grid ColumnDefinitions="auto,auto,auto,auto" RowDefinitions="auto,auto" IsVisible="{Binding !Last32Active}" Grid.Row="0">
 						<StackPanel Orientation="Vertical" Grid.Column="0" Grid.RowSpan="2" Margin="5">
 							<TextBlock Text="Last 16"/>

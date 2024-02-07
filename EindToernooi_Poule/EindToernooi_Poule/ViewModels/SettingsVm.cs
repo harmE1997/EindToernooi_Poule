@@ -140,10 +140,10 @@ namespace EindToernooi_Poule.ViewModels
             {
                 configurables = defaults;
                 WriteConfigToXml();
-                return;
             }
             string input = File.ReadAllText(configeFileName);
             configurables = JsonSerializer.Deserialize<Configurables>(input,jsonSerializerOptions);
+
             var kosettings = new Dictionary<KOKeys, KoPhaseSettings>();
             foreach (var kosetting in configurables.KoPhaseSettingsList)
                 kosettings.Add(kosetting.PhaseKey, kosetting);
