@@ -6,23 +6,28 @@
         mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
         x:Class="EindToernooi_Poule.Views.TotoForm"
         Title="TotoForm"
-        Width="875">
+        Width="875"
+		Background="#153DDD">
 	<Window.Styles>
 		<Style Selector="TextBox">
 			<Setter Property="Width" Value="150"/>
 		</Style>
 
+		<Style Selector="TextBlock">
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		
 		<Style Selector="TabItem">
 			<Setter Property="Height" Value="45"/>
 			<Setter Property="FontSize" Value="20"/>
-			<Setter Property="Background" Value="Green"/>
+			<Setter Property="Background" Value="#019F4B"/>
 			<Setter Property="Foreground" Value="White"/>
 		</Style>
 
 		<Style Selector="Button">
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="Green"/>
+			<Setter Property="Background" Value="#019F4B"/>
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 		</Style>
@@ -60,7 +65,7 @@
 					</StackPanel>
 				</TabItem.Header>				
 				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto,auto" Margin="10">
-					<TextBlock Text="{Binding CurrentWeekText}" Grid.Row="0" Grid.ColumnSpan="3"/>
+					<TextBlock Text="{Binding CurrentPouleText}" Grid.Row="0" Grid.ColumnSpan="3"/>
 						<TextBlock Text="Match 1" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
 						<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
 							<TextBox Width="50" Text="{Binding Score1A}"/>
@@ -91,8 +96,8 @@
 							<TextBox Width="50" Text="{Binding Score6A}"/>
 							<TextBox Width="50" Text="{Binding Score6B}"/>
 						</StackPanel>
-						<Button Content="Previous Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="0" Command="{Binding PreviousWeekCommand}"/>
-						<Button Content="Next Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="1" Command="{Binding NextWeekCommand}"/>
+						<Button Content="Previous Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="0" Command="{Binding PreviousPouleCommand}"/>
+						<Button Content="Next Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="1" Command="{Binding NextPouleCommand}"/>
 				</Grid>
 			</TabItem>
 
@@ -198,7 +203,7 @@
 							<TextBox Text="{Binding Final[1]}"/>
 						</StackPanel>
 					</Grid>
-					<Button Content="Toggle Last32" Command="{Binding ToggleLast32Command}" Grid.Row="1"/>
+					<Button Content="Toggle Last32" Command="{Binding ToggleLast32Command}" Grid.Row="1" IsVisible="{Binding Last32InPlay}"/>
 				</Grid>
 			</TabItem>
 						
@@ -215,8 +220,8 @@
 					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Nederland}"/>
 					<TextBlock Text="Topscorer" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="0"/>
 					<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Topscorer}"/>
-					<TextBlock Text="Bronze" VerticalAlignment="Center" Margin="5" Grid.Row="3" Grid.Column="0"/>
-					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Bronze}"/>
+					<TextBlock Text="Bronze" VerticalAlignment="Center" Margin="5" Grid.Row="3" Grid.Column="0" IsVisible="{Binding BronzeInPlay}"/>
+					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Bronze}" IsVisible="{Binding BronzeInPlay}"/>
 				</Grid>
 			</TabItem>
 	</TabControl>

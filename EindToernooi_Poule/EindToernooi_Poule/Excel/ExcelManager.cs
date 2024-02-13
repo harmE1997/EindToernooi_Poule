@@ -22,7 +22,7 @@ namespace EindToernooi_Poule.Excel
         public void ExportPlayersToExcel(List<Player> Players, int weeknr)
         {
             InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.RankingSheet);
-            int y = 3;
+            int y = 2;
             foreach (Player player in Players)
             {
                 var playerweek = player.Poules[weeknr];

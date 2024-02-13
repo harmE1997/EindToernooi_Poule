@@ -44,10 +44,10 @@ namespace EindToernooi_Poule.Code
             foreach (var poule in Poules)
             {
                 if (poule.Value == null)
-                {
-                    poule.Value.PouleMatchesScore = 0;
                     break;
-                }
+
+                if (poule.Value.Poulenr > GeneralConfiguration.NrPoules)
+                    break;
 
                 poule.Value.CheckPoule(Host);
                 PoulesScore += poule.Value.PouleMatchesScore;                

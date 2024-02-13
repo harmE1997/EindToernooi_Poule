@@ -9,8 +9,8 @@
 		<Style Selector="TabItem">
 			<Setter Property="Width" Value="150"/>
 			<Setter Property="Height" Value="90"/>
-			<Setter Property="Background" Value="Green"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="#019F4B"/>
+			<Setter Property="Foreground" Value="Black"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
 			<Setter Property="FontSize" Value="20"/>
@@ -23,7 +23,7 @@
 	</UserControl.Styles>
 
 	<Grid>
-		<TabControl TabStripPlacement="Left">		
+		<TabControl TabStripPlacement="Bottom">		
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Vertical">					

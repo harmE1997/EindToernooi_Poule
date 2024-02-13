@@ -6,8 +6,7 @@
              x:Class="EindToernooi_Poule.Views.scrMatches">
 
 	<UserControl.Styles>
-    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Simple.xaml"/>
-    
+    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
 		<Style Selector="StackPanel">
 			<Setter Property="Margin" Value="10"/>
 			<Setter Property="VerticalAlignment" Value="Center"/>
@@ -22,7 +21,7 @@
 			<Setter Property="Height" Value="35"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="Green"/>
+			<Setter Property="Background" Value="#019F4B"/>
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 		</Style>
@@ -30,17 +29,17 @@
 	
 	<Grid RowDefinitions="auto,auto" ColumnDefinitions="auto,auto,auto" Margin="10">
 		<StackPanel Orientation="Horizontal" Grid.Column="0">
-			<TextBlock Text="Week" Margin="10"/>
+			<TextBlock Text="Week" Margin="10" Foreground="White"/>
 			<ComboBox ItemsSource="{Binding Weeks}" SelectedItem="{Binding SelectedWeek}"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Grid.Column="1">
-			<TextBlock Text="Match" Margin="10"/>
+			<TextBlock Text="Match" Margin="10" Foreground="White"/>
 			<ComboBox ItemsSource="{Binding Matches}" SelectedItem="{Binding SelectedMatch}"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Grid.Column="2">
 			<Button Content="Get Predictions" Command="{Binding GetPredictionsCommand}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="1" Grid.Column="0" Height="700" Width="530" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10" 
-				  AutoGenerateColumns="True" ItemsSource="{Binding Outputs}"/>
+		<DataGrid Grid.Row="1" Grid.Column="0" Height="700" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10" 
+				  AutoGenerateColumns="True" ItemsSource="{Binding Outputs}" Background="Transparent" Foreground="White" IsReadOnly="True"/>
 	</Grid>
 </UserControl>

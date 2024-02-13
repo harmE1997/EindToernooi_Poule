@@ -14,12 +14,12 @@ namespace EindToernooi_Poule.Code
         Nederland,
         Topscorer,
         Bronze,
+        Default
     }
 
     public class Question
     {
         public string[] Answer { get; set; }
-        public int[] WeeksAnswered { get; set; }
         public int Points { get; set; }
 
         public Question()
@@ -54,28 +54,30 @@ namespace EindToernooi_Poule.Code
             {
                 throw new ArgumentNullException("hostquestions");
             }
-            int WeekScore = 0;
+            int Score = 0;
 
             //check all questions except topscorers
             foreach (var a in Answers)
             {
                 var ans = HostQuestions.Answers[a.Key];
-                if (ans.WeeksAnswered[0] > 0)
+                if (a.Key == BonusKeys.Bronze && !GeneralConfiguration.Bronze)
+                    continue;
+                for (int i = 0; i < ans.Answer.Length; i++)
                 {
-                    for (int i = 0; i < ans.Answer.Length; i++)
+                    if (a.Value.Answer.Contains(ans.Answer[i]))
                     {
-                        if (a.Value.Answer.Contains(ans.Answer[i]))
-                        {
-                            WeekScore += a.Value.Points;
-                        }
+                        Score += a.Value.Points;
                     }
                 }
             }
 
             //check the topscorers
-            var ansscorer = topscorers[Answers[BonusKeys.Topscorer].Answer[0]];
-            WeekScore += ansscorer * 5;
-            return WeekScore;
+            var topscorerkey = Answers[BonusKeys.Topscorer].Answer[0];
+            if(!topscorers.ContainsKey(topscorerkey))
+                throw new KeyNotFoundException("Topscorer " + topscorerkey + " does not exist.");
+            
+            Score += topscorers[topscorerkey] * 5;
+            return Score;
         }
     }
 }

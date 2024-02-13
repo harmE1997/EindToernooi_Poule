@@ -8,7 +8,7 @@ namespace EindToernooi_Poule.Code
 {
     public class Poule
     {
-        public int Weeknr { get; set; }
+        public int Poulenr { get; set; }
         public int PouleMatchesScore { get; set; }
         public int PouleTotalScore { get; set; }
         public Match[] Matches { get; set; }
@@ -21,13 +21,13 @@ namespace EindToernooi_Poule.Code
         public Poule(int nr, Match[] matches)
         {
             Matches = matches;
-            Weeknr = nr;
+            Poulenr = nr;
             PouleMatchesScore = 0;
         }
 
         public void CheckPoule(Player host)
         {
-            Poule hostweek = host.Poules[Weeknr];
+            Poule hostweek = host.Poules[Poulenr];
             PouleMatchesScore = 0;            
             Dictionary<int, int> postponementscores = new Dictionary<int, int>();
             for(int counter = 0; counter < Matches.Length; counter++)

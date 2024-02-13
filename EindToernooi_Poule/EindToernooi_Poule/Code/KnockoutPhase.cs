@@ -12,7 +12,8 @@ namespace EindToernooi_Poule.Code
         LAST16,
         QUARTER,
         SEMI,
-        FINAL
+        FINAL,
+        DEFAULT
     }
 
     [Serializable]
@@ -43,7 +44,7 @@ namespace EindToernooi_Poule.Code
         {
             if (KO == null)
             {
-                return -1;
+                return 0;
             }
 
             int Score = 0;
