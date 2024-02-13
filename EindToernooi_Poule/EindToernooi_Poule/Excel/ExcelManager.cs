@@ -83,8 +83,6 @@ namespace EindToernooi_Poule.Excel
                     for (int i = 0; i < phase.Size; i++)
                     {
                         int row = phase.StartRow + (phase.GapSize * i);
-                        if (i >= phase.Size / 2)
-                            row++;
                         string team = xlRange.Cells[row, phase.Column].value2;
                         if (team == null)
                         {
