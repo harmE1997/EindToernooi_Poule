@@ -60,6 +60,7 @@ namespace EindToernooi_Poule.Excel
                     if (matches == null)
                     {
                         PopupManager.ShowMessage("Cannot read predictions. Problem at week " + (i + 1));
+                        CleanWorkbook();
                         return null;
                     }
 
@@ -93,6 +94,7 @@ namespace EindToernooi_Poule.Excel
                         if (team == null)
                         {
                             PopupManager.ShowMessage("Cannot read predictions. Problem at stage " + phase.PhaseKey);
+                            CleanWorkbook();
                             return null;
                         }
                         ko.Stages[phase.PhaseKey].teams.Add(team.ToLower());

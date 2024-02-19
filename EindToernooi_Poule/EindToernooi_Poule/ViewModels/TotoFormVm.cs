@@ -137,7 +137,7 @@ namespace EindToernooi_Poule.ViewModels
             }
 
             if (invalidpredictions)
-                PopupManager.ShowMessage("cannot submit predictions. One or more bonusquestions have not been filled in.");
+                PopupManager.ShowMessage("cannot submit predictions. Knockoutphase teams and/or bonusquestions have not been filled in properly.");
 
             else
             {
