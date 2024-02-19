@@ -154,14 +154,22 @@ namespace EindToernooi_Poule.ViewModels
         public void ReadPredictionsFromExcel()
         {
             Excel.ExcelManager em = new Excel.ExcelManager();
-            ActivePlayer.Poules = em.ReadPredictions(PredictionsFileName, 1, Miss, ActivePlayer.Poules);
-            ActivePlayer.KnockoutPhase = em.readKnockout(PredictionsFileName, 1);
+            var poulephase = em.ReadPredictions(PredictionsFileName, 1, Miss, ActivePlayer.Poules);
+            if (poulephase == null)
+                return;
+            ActivePlayer.Poules = poulephase;
+            CurrentPoule = 1;
+
+            var kophase = em.readKnockout(PredictionsFileName, 1);
+            if(kophase == null) 
+                return;
+            ActivePlayer.KnockoutPhase = kophase;
             this.RaisePropertyChanged(nameof(Last32));
             this.RaisePropertyChanged(nameof(Last16));
             this.RaisePropertyChanged(nameof(Quarter));
             this.RaisePropertyChanged(nameof(Semi));
             this.RaisePropertyChanged(nameof(Final));
-            CurrentPoule = 1;
+
             PopupManager.ShowMessage("Predictions read");
         }
 

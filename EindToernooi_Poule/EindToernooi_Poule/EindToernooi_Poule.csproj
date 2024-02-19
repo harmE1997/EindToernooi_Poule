@@ -3,10 +3,16 @@
     <OutputType>WinExe</OutputType>
     <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
     One for Windows with net7.0-windows TFM, one for MacOS with net7.0-macos and one with net7.0 TFM for Linux.-->
-    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+	<Nullable>enable</Nullable>
+	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+	  <AssemblyVersion>1.0.0</AssemblyVersion>
+	  <FileVersion>1.0.0</FileVersion>
+	  <InformationalVersion>1.0.0</InformationalVersion>
+	  <Company>Harm Elfring VoetbalPoules</Company>
+	  <Product>EindToernooi_Poule</Product>
+	  <Copyright>© Harm Elfring VoetbalPoules. All rights reserved.</Copyright>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 

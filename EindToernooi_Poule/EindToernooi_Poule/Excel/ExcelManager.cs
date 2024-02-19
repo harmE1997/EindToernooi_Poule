@@ -39,11 +39,11 @@ namespace EindToernooi_Poule.Excel
             CleanWorkbook();
         }
 
-        public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Weeks = null)
+        public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Poules = null)
         {
             var poules = new Dictionary<int, Poule>();
-            if (Weeks != null)
-                poules = Weeks;
+            if (Poules != null)
+                poules = Poules;
             
             try
             {
@@ -57,6 +57,12 @@ namespace EindToernooi_Poule.Excel
                 for (int i = 0; i < GeneralConfiguration.NrPoules; i++)
                 {
                     var matches = ReadSingleWeek(i, miss);
+                    if (matches == null)
+                    {
+                        PopupManager.ShowMessage("Cannot read predictions. Problem at week " + (i + 1));
+                        return null;
+                    }
+
                     if (poules.ContainsKey(i + 1))
                         poules[i + 1] = new Poule(i + 1, matches);
                     else
@@ -86,7 +92,8 @@ namespace EindToernooi_Poule.Excel
                         string team = xlRange.Cells[row, phase.Column].value2;
                         if (team == null)
                         {
-                            team = "";
+                            PopupManager.ShowMessage("Cannot read predictions. Problem at stage " + phase.PhaseKey);
+                            return null;
                         }
                         ko.Stages[phase.PhaseKey].teams.Add(team.ToLower());
                     }
@@ -154,25 +161,23 @@ namespace EindToernooi_Poule.Excel
                 {
                     double a = 99;
                     double b = 99;
-                    double p = 0; 
                     int currentRow = startrow + rowschecked;
                 
                     var at = xlRange.Cells[currentRow, ExcelConfiguration.HomeColumn].Value2;
                     var bt = xlRange.Cells[currentRow, ExcelConfiguration.OutColumn].Value2;
-                    
 
-                    if (at != null && bt != null)
-                    {
-                        a = at;
-                        b = bt;
-                    }
+                    if (at == null || bt == null)
+                        return null;
 
-                    Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), Convert.ToInt16(p));
+                    a = at;
+                    b = bt;
+
+                    Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), 0);
                     Poule[rowschecked] = match;
                 }
                 return Poule;
             }
-            catch (Exception e) { return Poule; }
+            catch (Exception e) { return null; }
         }
 
         private void InitialiseWorkbook(string filename, int sheet)
