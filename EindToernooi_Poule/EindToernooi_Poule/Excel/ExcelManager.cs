@@ -39,7 +39,7 @@ namespace EindToernooi_Poule.Excel
             CleanWorkbook();
         }
 
-        public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Poules = null)
+        public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Poules = null, bool host = false)
         {
             var poules = new Dictionary<int, Poule>();
             if (Poules != null)
@@ -56,7 +56,7 @@ namespace EindToernooi_Poule.Excel
                 InitialiseWorkbook(filename, sheet);
                 for (int i = 0; i < GeneralConfiguration.NrPoules; i++)
                 {
-                    var matches = ReadSingleWeek(i, miss);
+                    var matches = ReadSinglePoule(i, miss, host);
                     if (matches == null)
                     {
                         PopupManager.ShowMessage("Cannot read predictions. Problem at week " + (i + 1));
@@ -151,7 +151,7 @@ namespace EindToernooi_Poule.Excel
             finally { CleanWorkbook(); }
         }
 
-        private Match[] ReadSingleWeek(int poule, int miss)
+        private Match[] ReadSinglePoule(int poule, int miss, bool host = false)
         {
             Match[] Poule = new Match[GeneralConfiguration.PouleSize];
 
@@ -169,7 +169,16 @@ namespace EindToernooi_Poule.Excel
                     var bt = xlRange.Cells[currentRow, ExcelConfiguration.OutColumn].Value2;
 
                     if (at == null || bt == null)
-                        return null;
+                    {
+                        if (!host)
+                            return null;
+                    }
+
+                    else
+                    {
+                        a = at;
+                        b = bt;
+                    }
 
                     a = at;
                     b = bt;
