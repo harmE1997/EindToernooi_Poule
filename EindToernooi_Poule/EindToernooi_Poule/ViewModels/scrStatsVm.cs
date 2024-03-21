@@ -47,8 +47,8 @@ namespace EindToernooi_Poule.ViewModels
             stats = new List<Stat>();
             StatsFields = new List<StatsField>();
             ChampionsCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Kampioen); });
-            NederlandCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Nederland); });
             TopscorersCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Topscorer); });
+            NederlandCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Nederland); });          
             BronzeCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Bronze); });
 
             Last32Command = ReactiveCommand.Create(() => { this.ActionStats(koKey: KOKeys.LAST32); });
