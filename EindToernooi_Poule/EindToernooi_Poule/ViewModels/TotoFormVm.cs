@@ -52,6 +52,9 @@ namespace EindToernooi_Poule.ViewModels
         private bool bronzeinplay;
         public bool BronzeInPlay { get => bronzeinplay; set => this.RaiseAndSetIfChanged(ref  bronzeinplay, value); }
 
+        private bool nlpresent;
+        public bool NlPresent { get => nlpresent; set => this.RaiseAndSetIfChanged(ref nlpresent, value); }
+
         public int Score1A { get => activePoule.Matches[0].ResultA; set { activePoule.Matches[0].ResultA = value; this.RaisePropertyChanged(); } }
         public int Score1B { get => activePoule.Matches[0].ResultB; set { activePoule.Matches[0].ResultB = value; this.RaisePropertyChanged(); } }
         public int Score2A { get => activePoule.Matches[1].ResultA; set { activePoule.Matches[1].ResultA = value; this.RaisePropertyChanged(); } }
@@ -71,9 +74,9 @@ namespace EindToernooi_Poule.ViewModels
         public List<string> Semi { get => ActivePlayer.KnockoutPhase.Stages[KOKeys.SEMI].teams; set { ActivePlayer.KnockoutPhase.Stages[KOKeys.SEMI].teams = value; this.RaisePropertyChanged(); } }
         public List<string> Final { get => ActivePlayer.KnockoutPhase.Stages[KOKeys.FINAL].teams; set { ActivePlayer.KnockoutPhase.Stages[KOKeys.FINAL].teams = value; this.RaisePropertyChanged(); } }
 
-        public string Champion { get => ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0]; set {ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
-        public string Nederland { get => ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string Champion { get => ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0]; set {ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }     
         public string Topscorer { get => ActivePlayer.Questions.Answers[BonusKeys.Topscorer].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Topscorer].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string Nederland { get => ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Bronze { get => ActivePlayer.Questions.Answers[BonusKeys.Bronze].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Bronze].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
 
         public ReactiveCommand<Unit,Unit> NextPouleCommand { get; set; }
@@ -110,6 +113,7 @@ namespace EindToernooi_Poule.ViewModels
             Last32Active = GeneralConfiguration.Last32;
             Last32InPlay = GeneralConfiguration.Last32;
             BronzeInPlay = GeneralConfiguration.Bronze;
+            NlPresent = GeneralConfiguration.NlPresent;
             SettingsVm.SettingsEvent += ImplementNewSettings;
         }
 
@@ -132,6 +136,8 @@ namespace EindToernooi_Poule.ViewModels
                 foreach (var ansfield in ans.Value.Answer)
                 {
                     if (ansfield == "" && !(ans.Key == BonusKeys.Bronze && !BronzeInPlay))
+                        invalidpredictions = true;
+                    if (ansfield == "" && !(ans.Key == BonusKeys.Nederland && !NlPresent))
                         invalidpredictions = true;
                 }
             }
@@ -179,6 +185,7 @@ namespace EindToernooi_Poule.ViewModels
             Last32InPlay = GeneralConfiguration.Last32;
             Last32Active = GeneralConfiguration.Last32;
             BronzeInPlay = GeneralConfiguration.Bronze;
+            NlPresent = GeneralConfiguration.NlPresent;
         }
 
         private void ChangeWeek(int change)

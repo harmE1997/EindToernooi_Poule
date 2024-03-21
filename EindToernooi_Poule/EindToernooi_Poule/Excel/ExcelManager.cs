@@ -112,7 +112,7 @@ namespace EindToernooi_Poule.Excel
             InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet);
             try
             {
-                string[] answers = new string[13];
+                string[] answers = new string[4];
                 for (int i = ExcelConfiguration.BonusStartRow; i < ExcelConfiguration.BonusStartRow; i++)
                 {
                     answers[i - ExcelConfiguration.BonusStartRow] = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;

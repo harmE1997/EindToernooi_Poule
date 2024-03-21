@@ -216,10 +216,10 @@
 				<Grid Grid.Column="1" Grid.Row="1" RowDefinitions="auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10">
 					<TextBlock Text="Kampioen" VerticalAlignment="Center" Margin="5" Grid.Row="0" Grid.Column="0"/>
 					<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Champion}"/>
-					<TextBlock Text="Nederland" VerticalAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0"/>
-					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Nederland}"/>
-					<TextBlock Text="Topscorer" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="0"/>
-					<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Topscorer}"/>
+          <TextBlock Text="Topscorer" VerticalAlignment="Center" Margin="5" Grid.Row="1" Grid.Column="0"/>
+					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Topscorer}"/>
+					<TextBlock Text="Nederland" VerticalAlignment="Center" Margin="5" Grid.Row="2" Grid.Column="0" IsVisible="{Binding NlPresent}"/>
+					<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Nederland}" IsVisible="{Binding NlPresent}"/>
 					<TextBlock Text="Bronze" VerticalAlignment="Center" Margin="5" Grid.Row="3" Grid.Column="0" IsVisible="{Binding BronzeInPlay}"/>
 					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Bronze}" IsVisible="{Binding BronzeInPlay}"/>
 				</Grid>

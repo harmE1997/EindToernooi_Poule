@@ -39,7 +39,7 @@
 						<TextBlock Text="Algemene instellingen"/>
 				</TabItem.Header>
 
-				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="100,auto,auto" Margin="10" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent">
+				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="100,auto,auto" Margin="10" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent">
 					<TextBlock Text="Admin location" Grid.Column="1" Grid.Row="1" Margin="5"/>
 					<views:isoFileBrowser BrowserResult="{Binding AdminFileLocation}" Grid.Column="2" Grid.Row="1"/>
 					<TextBlock Text="Save file directory" Grid.Column="1" Grid.Row="2" Margin="5"/>
@@ -50,8 +50,10 @@
 					<ComboBox Grid.Column="2" Grid.Row="4" ItemsSource="{Binding PoulesOptions}" SelectedItem="{Binding NrPoules}"/>
 					<TextBlock Text="Last 32 in play" Grid.Column="1" Grid.Row="5" Margin="5"/>
 					<ToggleSwitch Grid.Column="2" Grid.Row="5" IsChecked="{Binding Last32}" Foreground="White"/>
-					<TextBlock Text="Bronze in play" Grid.Column="1" Grid.Row="6" Margin="5"/>
-					<ToggleSwitch Grid.Column="2" Grid.Row="6" IsChecked="{Binding Bronze}" Foreground="White"/>
+          <TextBlock Text="Netherlands Present" Grid.Column="1" Grid.Row="6" Margin="5"/>
+          <ToggleSwitch Grid.Column="2" Grid.Row="6" IsChecked="{Binding NlPresent}" Foreground="White"/>
+          <TextBlock Text="Bronze in play" Grid.Column="1" Grid.Row="7" Margin="5"/>
+					<ToggleSwitch Grid.Column="2" Grid.Row="7" IsChecked="{Binding Bronze}" Foreground="White"/>
 				</Grid>
 			</TabItem>
 

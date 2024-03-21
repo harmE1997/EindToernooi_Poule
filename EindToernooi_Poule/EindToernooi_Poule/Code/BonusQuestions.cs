@@ -42,8 +42,8 @@ namespace EindToernooi_Poule.Code
             Answers = new Dictionary<BonusKeys, Question>()
             {
                 {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 25 } },
-                {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[1] }, Points = 25 } },
-                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[2] }, Points = 5} },
+                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[1] }, Points = 5} },
+                {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[2] }, Points = 25 } },
                 {BonusKeys.Bronze, new Question(){Answer = new string[] {answers[3] }, Points = 25 } },
             };
         }
@@ -61,6 +61,8 @@ namespace EindToernooi_Poule.Code
             {
                 var ans = HostQuestions.Answers[a.Key];
                 if (a.Key == BonusKeys.Bronze && !GeneralConfiguration.Bronze)
+                    continue;
+                if (a.Key == BonusKeys.Nederland && !GeneralConfiguration.NlPresent)
                     continue;
                 for (int i = 0; i < ans.Answer.Length; i++)
                 {

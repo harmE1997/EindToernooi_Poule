@@ -14,5 +14,6 @@ namespace EindToernooi_Poule.Code
         public static int NrPoules;
         public static bool Bronze;
         public static bool Last32;
+        public static bool NlPresent;
     }
 }

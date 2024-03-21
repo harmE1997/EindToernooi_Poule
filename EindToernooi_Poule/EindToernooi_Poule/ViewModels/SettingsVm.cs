@@ -31,6 +31,7 @@ namespace EindToernooi_Poule.ViewModels
         public string AdminFileLocation = "";
         public int NrPoules;
         public bool Bronze;
+        public bool NlPresent;
         public bool Last32;
         public int StartRow;
         public int HomeColumn;
@@ -60,6 +61,7 @@ namespace EindToernooi_Poule.ViewModels
         public string SaveFileName { get => Path.GetFileName(configurables.SaveFileLocation); set { this.RaiseAndSetIfChanged(ref configurables.SaveFileLocation, Path.Combine(SaveFileFolder, value)); ; SaveCommandEnabled = true; } }
         public string NrPoules { get => configurables.NrPoules.ToString(); set { this.RaiseAndSetIfChanged(ref configurables.NrPoules, Convert.ToInt32(value)); SaveCommandEnabled = true; } }
         public bool Bronze { get => configurables.Bronze; set { this.RaiseAndSetIfChanged(ref configurables.Bronze, value); SaveCommandEnabled = true; } }
+        public bool NlPresent { get => configurables.NlPresent; set { this.RaiseAndSetIfChanged(ref configurables.NlPresent, value); SaveCommandEnabled = true; } }
         public bool Last32 { get => configurables.Last32; set { this.RaiseAndSetIfChanged(ref configurables.Last32, value); SaveCommandEnabled = true; } }
 
         //excel settings
@@ -89,8 +91,9 @@ namespace EindToernooi_Poule.ViewModels
                 SaveFileLocation = savefilelocation,
                 AdminFileLocation = adminloc,
                 NrPoules = 6,
-                Last32 = true,
+                Last32 = false,
                 Bronze = false,
+                NlPresent = true,
                 StartRow = 12,
                 HomeColumn = 7,
                 OutColumn = 8,
@@ -158,6 +161,7 @@ namespace EindToernooi_Poule.ViewModels
             GeneralConfiguration.NrPoules = configurables.NrPoules;
             GeneralConfiguration.Last32 = configurables.Last32;
             GeneralConfiguration.Bronze = configurables.Bronze;
+            GeneralConfiguration.NlPresent = configurables.NlPresent;
 
             ExcelConfiguration.HomeColumn = configurables.HomeColumn;
             ExcelConfiguration.HostSheet = configurables.HostSheet;
