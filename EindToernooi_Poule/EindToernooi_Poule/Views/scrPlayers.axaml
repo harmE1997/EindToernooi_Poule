@@ -11,8 +11,8 @@
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="#019F4B"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Black"/>
+			<Setter Property="Foreground" Value="Goldenrod"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Margin" Value="1"/>
 		</Style>	
@@ -24,13 +24,12 @@
 			<Button Content="Load Player" Command="{Binding LoadPlayerCommand}"/>
 			<Button Content="Remove Player" Command="{Binding RemovePlayerCommand}"/>
 		</StackPanel>
-		<ListBox Grid.Column="1" ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}" Width="500" Margin="5" Background="Transparent">
+		<ListBox Grid.Column="1" ItemsSource="{Binding Players}" SelectedItem="{Binding SelectedPlayer}" Width="500" Margin="5">
 			<ListBox.Styles>
 				<!-- Give the ListBoxItems a fixed with of 100 and right-align them -->
 				<Style Selector="ListBoxItem">
 					<Setter Property="Height" Value="40"/>
 					<Setter Property="VerticalContentAlignment" Value="Top"/>
-					<Setter Property="Background" Value="White"/>
 				</Style>
 			</ListBox.Styles>
 		</ListBox>

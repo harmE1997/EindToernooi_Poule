@@ -23,6 +23,12 @@
 
   
   <ItemGroup>
+    <None Remove="Assets\Icons\trophy.ico" />
+    <None Remove="Assets\trophy.jpg" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>9</VersionMinor>

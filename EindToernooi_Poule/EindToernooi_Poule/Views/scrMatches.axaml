@@ -21,25 +21,25 @@
 			<Setter Property="Height" Value="35"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="#019F4B"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Black"/>
+			<Setter Property="Foreground" Value="Goldenrod"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 		</Style>
 	</UserControl.Styles>
 	
 	<Grid RowDefinitions="auto,auto" ColumnDefinitions="auto,auto,auto" Margin="10">
 		<StackPanel Orientation="Horizontal" Grid.Column="0">
-			<TextBlock Text="Week" Margin="10" Foreground="White"/>
+			<TextBlock Text="Week" Margin="10"/>
 			<ComboBox ItemsSource="{Binding Weeks}" SelectedItem="{Binding SelectedWeek}"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Grid.Column="1">
-			<TextBlock Text="Match" Margin="10" Foreground="White"/>
+			<TextBlock Text="Match" Margin="10"/>
 			<ComboBox ItemsSource="{Binding Matches}" SelectedItem="{Binding SelectedMatch}"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Grid.Column="2">
 			<Button Content="Get Predictions" Command="{Binding GetPredictionsCommand}"/>
 		</StackPanel>
 		<DataGrid Grid.Row="1" Grid.Column="0" Height="700" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10" 
-				  AutoGenerateColumns="True" ItemsSource="{Binding Outputs}" Background="Transparent" Foreground="White" IsReadOnly="True"/>
+				  AutoGenerateColumns="True" ItemsSource="{Binding Outputs}" IsReadOnly="True"/>
 	</Grid>
 </UserControl>

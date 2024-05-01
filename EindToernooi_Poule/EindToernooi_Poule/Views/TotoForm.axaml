@@ -6,41 +6,41 @@
         mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
         x:Class="EindToernooi_Poule.Views.TotoForm"
         Title="TotoForm"
-        Width="875"
-		Background="#153DDD">
+        Width="875">
 	<Window.Styles>
 		<Style Selector="TextBox">
 			<Setter Property="Width" Value="150"/>
-		</Style>
-
-		<Style Selector="TextBlock">
-			<Setter Property="Foreground" Value="White"/>
 		</Style>
 		
 		<Style Selector="TabItem">
 			<Setter Property="Height" Value="45"/>
 			<Setter Property="FontSize" Value="20"/>
-			<Setter Property="Background" Value="#019F4B"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Black"/>
+			<Setter Property="Foreground" Value="Goldenrod"/>
 		</Style>
 
 		<Style Selector="Button">
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="#019F4B"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Black"/>
+			<Setter Property="Foreground" Value="Goldenrod"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 		</Style>
 	</Window.Styles>
 	
-	<Grid ColumnDefinitions="auto,auto" RowDefinitions="auto,*">
-		<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="20">
-			<TextBlock Text="Name:" VerticalAlignment="Center" Margin="5"/>
-			<TextBox Width="200" Text="{Binding PlayerName}"/>
-			<TextBlock Text="Town:" VerticalAlignment="Center" Margin="5"/>
-			<TextBox Width="200" Text="{Binding PlayerTown}"/>
-		</StackPanel>
-		<TabControl TabStripPlacement="Bottom" Grid.Row="1" Grid.ColumnSpan="2">
+	<Grid RowDefinitions="auto,*">
+		<Border Background="Gray">
+			<Grid Grid.Row="0" ColumnDefinitions="auto,auto">
+				<StackPanel Orientation="Horizontal" Grid.Column="0" Margin="20">
+					<TextBlock Text="Name:" VerticalAlignment="Center" Margin="5"/>
+					<TextBox Width="200" Text="{Binding PlayerName}"/>
+					<TextBlock Text="Town:" VerticalAlignment="Center" Margin="5"/>
+					<TextBox Width="200" Text="{Binding PlayerTown}"/>
+				</StackPanel>
+				<Button Grid.Column="1" Content="Submit Predictions" Margin="10" Width="300" Height="50" Command="{Binding SubmitCommand}"/>
+			</Grid>
+		</Border>
+		<TabControl TabStripPlacement="Top" Grid.Row="1">
 			<TabItem>
 				<TabItem.Header>
 					<StackPanel Orientation="Vertical">
@@ -225,6 +225,5 @@
 				</Grid>
 			</TabItem>
 	</TabControl>
-	<Button Grid.Row="0" Grid.Column="1" Content="Submit Predictions" Margin="10" Width="300" Height="50" Command="{Binding SubmitCommand}"/>
 	</Grid>
 </Window>

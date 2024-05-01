@@ -13,8 +13,8 @@
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="#019F4B"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Black"/>
+			<Setter Property="Foreground" Value="Goldenrod"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Margin" Value="1"/>
 		</Style>
@@ -31,7 +31,7 @@
 	<Grid RowDefinitions="*,*,*" ColumnDefinitions="auto,auto" Margin="10">
 		<StackPanel Orientation="Vertical" Margin="10" Grid.Column="0">
 			<StackPanel Orientation="Horizontal" Grid.Column="0">
-				<TextBlock Text="Week" Margin="10" Foreground="White"/>
+				<TextBlock Text="Week" Margin="10"/>
 				<ComboBox ItemsSource="{Binding Weeks}" SelectedItem="{Binding SelectedWeek}" Width="50"/>
 			</StackPanel>
 			<Button Content="Calculate new ranking" Command="{Binding CalculateNewRanking}"/>
@@ -42,7 +42,7 @@
 		
 		
         <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" AutoGenerateColumns="True" ItemsSource="{Binding Ranking}" 
-				  ColumnWidth="100" Background="Transparent" Foreground="White" IsReadOnly="True">
+				  ColumnWidth="100" IsReadOnly="True">
 		</DataGrid>
 	</Grid>
 </UserControl>

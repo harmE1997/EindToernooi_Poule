@@ -12,8 +12,8 @@
 			<Setter Property="Height" Value="50"/>
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="Background" Value="#019F4B"/>
-			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Black"/>
+			<Setter Property="Foreground" Value="Goldenrod"/>
 			<Setter Property="BorderBrush" Value="Black"/>
 			<Setter Property="Margin" Value="1"/>
 		</Style>
@@ -32,7 +32,6 @@
 			<Button Content="Nederland" Command="{Binding NederlandCommand}"/>		
 			<Button Content="Bronze" Command="{Binding BronzeCommand}" IsVisible="{Binding BronzeInPlay}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" ColumnWidth="150" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}"
-				  Background="Transparent" Foreground="White" IsReadOnly="True"/>
+		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" ColumnWidth="150" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" IsReadOnly="True"/>
 	</Grid>
 </UserControl>
