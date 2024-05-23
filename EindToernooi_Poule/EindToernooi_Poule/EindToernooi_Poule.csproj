@@ -13,6 +13,7 @@
 	  <Product>EindToernooi_Poule</Product>
 	  <Copyright>© Harm Elfring VoetbalPoules. All rights reserved.</Copyright>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\Icons\trophy.ico</ApplicationIcon>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
