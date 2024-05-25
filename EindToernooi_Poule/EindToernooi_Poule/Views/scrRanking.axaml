@@ -38,11 +38,7 @@
 			<Button Content="Export ranking" Command="{Binding ExportRanking}"/>
 			<Button Content="Get Average Score" Command="{Binding GetAverageScore}"/>
 			<Button Content="Reset host" Command="{Binding ResetHost}"/>
-		</StackPanel>
-		
-		
-        <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" AutoGenerateColumns="True" ItemsSource="{Binding Ranking}" 
-				  ColumnWidth="100" IsReadOnly="True">
-		</DataGrid>
+		</StackPanel>		
+    <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" AutoGenerateColumns="True" ItemsSource="{Binding Ranking}" IsReadOnly="True"/>
 	</Grid>
 </UserControl>

@@ -32,6 +32,6 @@
 			<Button Content="Nederland" Command="{Binding NederlandCommand}"/>		
 			<Button Content="Bronze" Command="{Binding BronzeCommand}" IsVisible="{Binding BronzeInPlay}"/>
 		</StackPanel>
-		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" ColumnWidth="150" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" IsReadOnly="True"/>
+		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" IsReadOnly="True"/>
 	</Grid>
 </UserControl>

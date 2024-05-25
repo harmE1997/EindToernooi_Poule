@@ -57,7 +57,7 @@ namespace EindToernooi_Poule.Code
 
         public void RankPlayers()
         {
-            Players.Sort();
+            Players = Players.OrderBy(p => p.TotalScore).ToList();
             Players.Reverse();
             int ranking = 1;
             int counter = 1;
