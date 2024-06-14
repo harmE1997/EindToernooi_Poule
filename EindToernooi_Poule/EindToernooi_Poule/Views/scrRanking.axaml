@@ -22,21 +22,12 @@
 			<Setter Property="Margin" Value="10"/>
 			<Setter Property="VerticalAlignment" Value="Center"/>
 		</Style>
-
-		<Style Selector="ComboBox">
-			<Setter Property="VerticalAlignment" Value="Center"/>
-		</Style>
 	</UserControl.Styles>
 
 	<Grid RowDefinitions="*,*,*" ColumnDefinitions="auto,auto" Margin="10">
 		<StackPanel Orientation="Vertical" Margin="10" Grid.Column="0">
-			<StackPanel Orientation="Horizontal" Grid.Column="0">
-				<TextBlock Text="Week" Margin="10"/>
-				<ComboBox ItemsSource="{Binding Weeks}" SelectedItem="{Binding SelectedWeek}" Width="50"/>
-			</StackPanel>
 			<Button Content="Calculate new ranking" Command="{Binding CalculateNewRanking}"/>
 			<Button Content="Export ranking" Command="{Binding ExportRanking}"/>
-			<Button Content="Get Average Score" Command="{Binding GetAverageScore}"/>
 			<Button Content="Reset host" Command="{Binding ResetHost}"/>
 		</StackPanel>		
     <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" AutoGenerateColumns="True" ItemsSource="{Binding Ranking}" IsReadOnly="True"/>

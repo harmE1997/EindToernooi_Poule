@@ -29,7 +29,6 @@ namespace EindToernooi_Poule.Code
         {
             Poule hostweek = host.Poules[Poulenr];
             PouleMatchesScore = 0;            
-            Dictionary<int, int> postponementscores = new Dictionary<int, int>();
             for(int counter = 0; counter < Matches.Length; counter++)
             {
                 var hostmatch = hostweek.Matches[counter];

@@ -19,13 +19,12 @@ namespace EindToernooi_Poule.Excel
         private excel._Worksheet xlWorksheet;
         private excel.Range xlRange;
 
-        public void ExportPlayersToExcel(List<Player> Players, int weeknr)
+        public void ExportPlayersToExcel(List<Player> Players)
         {
             InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.RankingSheet);
             int y = 2;
             foreach (Player player in Players)
             {
-                var playerweek = player.Poules[weeknr];
                 xlRange.Cells[y, 1].value2 = player.Ranking;
                 xlRange.Cells[y, 2].value2 = player.Name;
                 xlRange.Cells[y, 3].value2 = player.Town;
@@ -144,7 +143,7 @@ namespace EindToernooi_Poule.Excel
                 return scorers;
             }
 
-            catch
+            catch (Exception e)
             {
                 return scorers;
             }
@@ -179,9 +178,6 @@ namespace EindToernooi_Poule.Excel
                         a = at;
                         b = bt;
                     }
-
-                    a = at;
-                    b = bt;
 
                     Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), 0);
                     Poule[rowschecked] = match;

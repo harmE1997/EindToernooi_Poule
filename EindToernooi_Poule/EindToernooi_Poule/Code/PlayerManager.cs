@@ -106,23 +106,12 @@ namespace EindToernooi_Poule.Code
 
         public void CheckAllPlayers(Host host)
         {
-
             foreach (Player player in Players)
             {
                 player.CheckPlayer(host, host.getTopscorers());
             }
 
             SavePlayers();
-        }
-
-        public int GetAverageScore(int weeknr)
-        {
-            int total = 0;
-            foreach (var p in Players)
-            {
-                total += p.Poules[weeknr].PouleMatchesScore;
-            }
-            return total / Players.Count;
         }
     }
 }
