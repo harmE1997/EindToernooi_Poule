@@ -22,13 +22,33 @@ namespace EindToernooi_Poule.Excel
         public void ExportPlayersToExcel(List<Player> Players)
         {
             InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.RankingSheet);
+            Dictionary<string, int> reads = new Dictionary<string, int>();
+            if (xlRange.Cells[2, 2].value2 == null)
+            {
+                foreach (var player in Players)
+                    reads.Add(player.Name, 0);
+            }
+
+            else
+            {
+                for (int i = 2; i < (Players.Count + 2); i++)
+                {
+                    string name = xlRange.Cells[i, 2].value2;
+                    var oldscore = xlRange.Cells[i, 4].value2;
+                    if (oldscore == null)
+                        reads.Add(name.ToString(), 0);
+                    else
+                        reads.Add(name.ToString(), Convert.ToInt32(oldscore));
+                }
+            }
+
             int y = 2;
             foreach (Player player in Players)
             {
                 xlRange.Cells[y, 1].value2 = player.Ranking;
                 xlRange.Cells[y, 2].value2 = player.Name;
                 xlRange.Cells[y, 3].value2 = player.Town;
-                xlRange.Cells[y, 8].value2 = player.TotalScore - xlRange.Cells[y, 4].value2;
+                xlRange.Cells[y, 8].value2 = player.TotalScore - reads[player.Name];
                 xlRange.Cells[y, 4].value2 = player.TotalScore;
                 xlRange.Cells[y, 5].value2 = player.PoulesScore;
                 xlRange.Cells[y, 6].value2 = player.KnockoutScore;
