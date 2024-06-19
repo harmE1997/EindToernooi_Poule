@@ -37,6 +37,7 @@ namespace EindToernooi_Poule.Code
             {
                 Topscorers = new Dictionary<string, int>();
                 Poules = excelManager.ReadPredictions(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, 0, host: true);
+                KnockoutPhase = excelManager.readKnockout(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, true);
                 Questions = excelManager.ReadBonus();
                 setTopscorers();
                 HostSet = true;

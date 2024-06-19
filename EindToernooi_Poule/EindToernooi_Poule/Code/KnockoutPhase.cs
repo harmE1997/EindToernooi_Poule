@@ -19,7 +19,7 @@ namespace EindToernooi_Poule.Code
     [Serializable]
     public class Stage
     {
-        public int award;
+        public int award { get; set; }
         public List<string> teams { get; set; }
     }
 

@@ -95,7 +95,7 @@ namespace EindToernooi_Poule.Excel
             catch (Exception e) { CleanWorkbook(); return poules; }
         }
 
-        public KnockoutPhase readKnockout(string filename, int sheet)
+        public KnockoutPhase readKnockout(string filename, int sheet, bool host = false)
         {
             InitialiseWorkbook(filename, sheet);
             try
@@ -112,10 +112,18 @@ namespace EindToernooi_Poule.Excel
                         string team = xlRange.Cells[row, phase.Column].value2;
                         if (team == null)
                         {
-                            PopupManager.ShowMessage("Cannot read predictions. Problem at stage " + phase.PhaseKey);
-                            CleanWorkbook();
-                            return null;
+                            if (host)
+                            {
+                                team = "";
+                            }
+
+                            else
+                            {
+                                PopupManager.ShowMessage("Cannot read predictions. Problem at stage " + phase.PhaseKey);
+                                return null;
+                            }
                         }
+
                         ko.Stages[phase.PhaseKey].teams.Add(team.ToLower());
                     }
                 }
