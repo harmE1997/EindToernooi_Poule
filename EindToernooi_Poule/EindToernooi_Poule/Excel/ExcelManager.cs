@@ -58,7 +58,7 @@ namespace EindToernooi_Poule.Excel
             CleanWorkbook();
         }
 
-        public Dictionary<int, Poule> ReadPredictions(string filename, int sheet, int miss, Dictionary<int, Poule> Poules = null, bool host = false)
+        public Dictionary<int, Poule> ReadGroupPhase(string filename, int sheet, int miss, Dictionary<int, Poule> Poules = null, bool host = false)
         {
             var poules = new Dictionary<int, Poule>();
             if (Poules != null)
@@ -134,15 +134,16 @@ namespace EindToernooi_Poule.Excel
         }
 
 
-        public BonusQuestions ReadBonus()
+        public BonusQuestions ReadBonus(string filename, int sheet)
         {
-            InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet);
+            InitialiseWorkbook(filename, sheet);
             try
             {
                 string[] answers = new string[4];
                 for (int i = ExcelConfiguration.BonusStartRow; i < ExcelConfiguration.BonusStartRow; i++)
                 {
-                    answers[i - ExcelConfiguration.BonusStartRow] = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;
+                    string value = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;
+                    answers[i - ExcelConfiguration.BonusStartRow] = value.ToLower();
                 }
 
                 BonusQuestions bonus = new BonusQuestions(answers);

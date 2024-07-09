@@ -160,7 +160,7 @@ namespace EindToernooi_Poule.ViewModels
         public void ReadPredictionsFromExcel()
         {
             Excel.ExcelManager em = new Excel.ExcelManager();
-            var poulephase = em.ReadPredictions(PredictionsFileName, 1, Miss, ActivePlayer.Poules);
+            var poulephase = em.ReadGroupPhase(PredictionsFileName, 1, Miss, ActivePlayer.Poules);
             if (poulephase == null)
                 return;
             ActivePlayer.Poules = poulephase;
@@ -175,6 +175,15 @@ namespace EindToernooi_Poule.ViewModels
             this.RaisePropertyChanged(nameof(Quarter));
             this.RaisePropertyChanged(nameof(Semi));
             this.RaisePropertyChanged(nameof(Final));
+
+            var bonus = em.ReadBonus(PredictionsFileName, 1);
+            if (bonus == null)
+                return;
+            ActivePlayer.Questions = bonus;
+            this.RaisePropertyChanged(nameof(Champion));
+            this.RaisePropertyChanged(nameof(Nederland));
+            this.RaisePropertyChanged(nameof(Topscorer));
+            this.RaisePropertyChanged(nameof(Bronze));
 
             PopupManager.ShowMessage("Predictions read");
         }
