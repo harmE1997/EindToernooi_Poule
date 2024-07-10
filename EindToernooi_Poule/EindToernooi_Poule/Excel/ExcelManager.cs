@@ -140,10 +140,14 @@ namespace EindToernooi_Poule.Excel
             try
             {
                 string[] answers = new string[4];
-                for (int i = ExcelConfiguration.BonusStartRow; i < ExcelConfiguration.BonusStartRow; i++)
+                for (int i = ExcelConfiguration.BonusStartRow; i < (ExcelConfiguration.BonusStartRow + answers.Length); i++)
                 {
                     string value = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;
-                    answers[i - ExcelConfiguration.BonusStartRow] = value.ToLower();
+                    if(string.IsNullOrEmpty(value))
+                        answers[i - ExcelConfiguration.BonusStartRow] = value;
+
+                    else
+                        answers[i - ExcelConfiguration.BonusStartRow] = value.ToLower();
                 }
 
                 BonusQuestions bonus = new BonusQuestions(answers);
