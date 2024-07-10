@@ -38,8 +38,13 @@ namespace EindToernooi_Poule.Code
         {
             if (!string.IsNullOrEmpty(GeneralConfiguration.SaveFileLocation))
             {
-                string output = JsonSerializer.Serialize(Players, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(GeneralConfiguration.SaveFileLocation, output);
+                try
+                {
+                    string output = JsonSerializer.Serialize(Players, new JsonSerializerOptions { WriteIndented = true });
+                    File.WriteAllText(GeneralConfiguration.SaveFileLocation, output);
+                }
+
+                catch { return; }
             }
         }
 

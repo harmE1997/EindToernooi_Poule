@@ -58,7 +58,7 @@ namespace EindToernooi_Poule.Views
             {
                 OpenFolderDialog dialog = new OpenFolderDialog();
                 dialog.Directory = Path.GetDirectoryName(EindToernooi_Poule.Code.GeneralConfiguration.AdminFileLocation);
-                if(string.IsNullOrEmpty(dialog.Directory))
+                if(string.IsNullOrEmpty(dialog.Directory) || !Directory.Exists(dialog.Directory))
                     dialog.Directory = @"C:";
                 return new string[] { await dialog.ShowAsync(new Window()) };
             }
@@ -67,7 +67,7 @@ namespace EindToernooi_Poule.Views
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Directory = Path.GetDirectoryName(EindToernooi_Poule.Code.GeneralConfiguration.AdminFileLocation);
-                if (string.IsNullOrEmpty(dialog.Directory))
+                if (string.IsNullOrEmpty(dialog.Directory) || !Directory.Exists(dialog.Directory))
                     dialog.Directory = @"C:";
                 dialog.AllowMultiple = true;
                 if (!string.IsNullOrEmpty(FileType))
