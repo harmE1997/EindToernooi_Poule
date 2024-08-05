@@ -78,7 +78,7 @@ namespace EindToernooi_Poule.Excel
                     var matches = ReadSinglePoule(i, miss, host);
                     if (matches == null)
                     {
-                        PopupManager.ShowMessage("Cannot read predictions. Problem at week " + (i + 1));
+                        PopupManager.ShowMessage("Cannot read predictions. Problem at poule " + (i + 1));
                         CleanWorkbook();
                         return null;
                     }
