@@ -14,7 +14,8 @@ namespace EindToernooi_Poule.Excel
         public static int StartRow;
         public static int HomeColumn;
         public static int OutColumn;
-        public static int HostSheet;
+        public static int HostGroupSheet;
+        public static int HostKOSheet;
         public static int RankingSheet;
         public static int TopscorersSheet;
         public static int BonusStartRow;

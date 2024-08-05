@@ -60,14 +60,16 @@
 					<TextBlock Text="Excel instellingen"/>
 				</TabItem.Header>
 				<Grid ColumnDefinitions="auto,auto,auto,auto" RowDefinitions="auto,auto" Margin="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent" Height="500">
-					<Grid ColumnDefinitions="auto,auto" RowDefinitions="auto,auto,auto,auto" Grid.Column="0" Grid.Row="0" Margin="15">
+					<Grid ColumnDefinitions="auto,auto" RowDefinitions="auto,auto,auto,auto,auto" Grid.Column="0" Grid.Row="0" Margin="15">
 						<TextBlock Text="Algemeen" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
-						<TextBlock Text="Hostsheet" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding HostSheet}" Grid.Column="1" Grid.Row="1"/>
-						<TextBlock Text="Rankingsheet" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding RankingSheet}" Grid.Column="1" Grid.Row="2"/>
-						<TextBlock Text="Topscorers sheet" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding TopscorersSheet}" Grid.Column="1" Grid.Row="3"/>
+						<TextBlock Text="Host groupsheet" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
+						<TextBox Text="{Binding HostGroupSheet}" Grid.Column="1" Grid.Row="1"/>
+						<TextBlock Text="Host KOsheet" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
+						<TextBox Text="{Binding HostKOSheet}" Grid.Column="1" Grid.Row="2"/>
+						<TextBlock Text="Rankingsheet" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
+						<TextBox Text="{Binding RankingSheet}" Grid.Column="1" Grid.Row="3"/>
+						<TextBlock Text="Topscorers sheet" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+						<TextBox Text="{Binding TopscorersSheet}" Grid.Column="1" Grid.Row="4"/>
 					</Grid>
 				
 					<Grid ColumnDefinitions="auto,auto" RowDefinitions="auto,auto,auto,auto" Grid.Column="1" Grid.Row="0" Margin="15">
@@ -88,15 +90,11 @@
 						<TextBox Text="{Binding BonusStartRow}" Grid.Column="1" Grid.Row="2"/>
 					</Grid>
 
-					<Grid ColumnDefinitions="auto,auto" RowDefinitions="auto,auto,auto,auto,auto" Grid.Column="3" Grid.Row="0" Margin="15" IsVisible="{Binding Last32}">
+					<Grid ColumnDefinitions="auto,auto" RowDefinitions="auto,auto,auto" Grid.Column="3" Grid.Row="0" Margin="15" IsVisible="{Binding Last32}">
 						<TextBlock Text="Laatste 32" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
 						<TextBlock Text="Startrij" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
 						<TextBox Text="{Binding KoSettings[LAST32].StartRow}" Grid.Column="1" Grid.Row="1" Width="50"/>
-						<TextBlock Text="Kolom" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding KoSettings[LAST32].Column}" Grid.Column="1" Grid.Row="2" Width="50"/>
-						<TextBlock Text="Gapsize" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding KoSettings[LAST32].GapSize}" Grid.Column="1" Grid.Row="3"/>
-						<TextBlock Text="Size" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
+						<TextBlock Text="Size" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
 						<TextBox Text="{Binding KoSettings[LAST32].Size}" Grid.Column="1" Grid.Row="4"/>
 					</Grid>
 
@@ -104,10 +102,10 @@
 						<TextBlock Text="Laatste 16" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
 						<TextBlock Text="Startrij" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
 						<TextBox Text="{Binding KoSettings[LAST16].StartRow}" Grid.Column="1" Grid.Row="1" Width="50"/>
-						<TextBlock Text="Kolom" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding KoSettings[LAST16].Column}" Grid.Column="1" Grid.Row="2" Width="50"/>
-						<TextBlock Text="Gapsize" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding KoSettings[LAST16].GapSize}" Grid.Column="1" Grid.Row="3"/>
+						<TextBlock Text="Kolom" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" IsVisible="{Binding Last32}"/>
+						<TextBox Text="{Binding KoSettings[LAST16].Column}" Grid.Column="1" Grid.Row="2" Width="50" IsVisible="{Binding Last32}"/>
+						<TextBlock Text="Gapsize" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" IsVisible="{Binding Last32}"/>
+						<TextBox Text="{Binding KoSettings[LAST16].GapSize}" Grid.Column="1" Grid.Row="3" IsVisible="{Binding Last32}"/>
 						<TextBlock Text="Size" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center"/>
 						<TextBox Text="{Binding KoSettings[LAST16].Size}" Grid.Column="1" Grid.Row="4"/>
 					</Grid>

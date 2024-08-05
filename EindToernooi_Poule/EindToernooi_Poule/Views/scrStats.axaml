@@ -21,15 +21,14 @@
 
 	<Grid RowDefinitions="*,*,*" ColumnDefinitions="auto,auto,auto" Margin="10">
 		<StackPanel Orientation="Vertical" Margin="10" Grid.Row="0" Grid.Column="0">
-			<Button Content="Last 32" Command="{Binding Last32Command}" IsVisible="{Binding Last32InPlay}"/>
-			<Button Content="Last16" Command="{Binding Last16Command}"/>
+			<Button Content="Last16" Command="{Binding Last16Command}" IsVisible="{Binding Last32InPlay}"/>
 			<Button Content="Quarter Finals" Command="{Binding QuarterCommand}"/>
 			<Button Content="Semi Finals" Command="{Binding SemiCommand}"/>
 			<Button Content="Final" Command="{Binding FinalCommand}"/>
 			
 			<Button Content="Champions" Command="{Binding ChampionsCommand}"/>
       <Button Content="Topscorers" Command="{Binding TopscorersCommand}"/>
-			<Button Content="Nederland" Command="{Binding NederlandCommand}"/>		
+			<Button Content="Nederland" Command="{Binding NederlandCommand}" IsVisible="{Binding NlInPlay}"/>		
 			<Button Content="Bronze" Command="{Binding BronzeCommand}" IsVisible="{Binding BronzeInPlay}"/>
 		</StackPanel>
 		<DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Margin="10" AutoGenerateColumns="True" ItemsSource="{Binding StatsFields}" IsReadOnly="True"/>

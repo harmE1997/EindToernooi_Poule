@@ -31,6 +31,9 @@ namespace EindToernooi_Poule.ViewModels
         private bool bronzeinplay;
         public bool BronzeInPlay { get => bronzeinplay; set => this.RaiseAndSetIfChanged(ref bronzeinplay, value); }
 
+        private bool nlinplay;
+        public bool NlInPlay { get => nlinplay; set => this.RaiseAndSetIfChanged(ref nlinplay, value); }
+
         public ReactiveCommand<Unit, Unit> ChampionsCommand { get; set; }
         public ReactiveCommand<Unit, Unit> NederlandCommand { get; set; }
         public ReactiveCommand<Unit, Unit> TopscorersCommand { get; set; }
@@ -91,6 +94,7 @@ namespace EindToernooi_Poule.ViewModels
         {
             BronzeInPlay = GeneralConfiguration.Bronze;
             Last32InPlay = GeneralConfiguration.Last32;
+            NlInPlay = GeneralConfiguration.NlPresent;
         }
 
         private void UpdateStats(string stat, string playername)

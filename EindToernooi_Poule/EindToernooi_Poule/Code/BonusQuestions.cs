@@ -41,7 +41,7 @@ namespace EindToernooi_Poule.Code
         {
             Answers = new Dictionary<BonusKeys, Question>()
             {
-                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 25 } },
+                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 50 } },
                 {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[1] }, Points = 5} },
                 {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[2] }, Points = 25 } },
                 {BonusKeys.Bronze, new Question(){Answer = new string[] {answers[3] }, Points = 25 } },

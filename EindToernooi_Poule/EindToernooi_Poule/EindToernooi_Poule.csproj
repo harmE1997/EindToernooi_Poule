@@ -6,9 +6,9 @@
     <TargetFramework>net6.0</TargetFramework>
 	<Nullable>enable</Nullable>
 	<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
-	  <AssemblyVersion>1.0.0</AssemblyVersion>
-	  <FileVersion>1.0.0</FileVersion>
-	  <InformationalVersion>1.0.0</InformationalVersion>
+	  <AssemblyVersion>1.1.0</AssemblyVersion>
+	  <FileVersion>1.1.0</FileVersion>
+	  <InformationalVersion>1.1.0</InformationalVersion>
 	  <Company>Harm Elfring VoetbalPoules</Company>
 	  <Product>EindToernooi_Poule</Product>
 	  <Copyright>© Harm Elfring VoetbalPoules. All rights reserved.</Copyright>
@@ -20,6 +20,16 @@
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <AvaloniaXaml Remove="Views\UserControl1.axaml" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <Compile Remove="Views\UserControl1.axaml.cs" />
   </ItemGroup>
 
   

@@ -78,7 +78,7 @@ namespace EindToernooi_Poule.Excel
                     var matches = ReadSinglePoule(i, miss, host);
                     if (matches == null)
                     {
-                        PopupManager.ShowMessage("Cannot read predictions. Problem at poule " + (i + 1));
+                        PopupManager.ShowMessage("Cannot read predictions. Problem at week " + (i + 1));
                         CleanWorkbook();
                         return null;
                     }
@@ -95,7 +95,7 @@ namespace EindToernooi_Poule.Excel
             catch (Exception e) { CleanWorkbook(); return poules; }
         }
 
-        public KnockoutPhase readKnockout(string filename, int sheet, bool host = false)
+        public KnockoutPhase readKnockout(string filename, int sheet, int miss, bool host = false)
         {
             InitialiseWorkbook(filename, sheet);
             try
@@ -103,13 +103,26 @@ namespace EindToernooi_Poule.Excel
                 KnockoutPhase ko = new KnockoutPhase();
                 foreach (var phase in ExcelConfiguration.KoSettings)
                 {
-                    if (!GeneralConfiguration.Last32 && phase.PhaseKey == KOKeys.LAST32)
+                    if (phase.PhaseKey == KOKeys.LAST32)
+                    {
+                        ko.Stages[phase.PhaseKey].Matches = ReadKnockOutPoule(miss, phase.Size, phase.StartRow, host);
+                        ko.Stages[phase.PhaseKey].UseMatches = true;
                         continue;
+                    }
+
+                    if (!GeneralConfiguration.Last32 && phase.PhaseKey == KOKeys.LAST16)
+                    {
+                        ko.Stages[phase.PhaseKey].Matches = ReadKnockOutPoule(miss, phase.Size, phase.StartRow, host);
+                        ko.Stages[phase.PhaseKey].UseMatches = true;
+                        continue;
+                    }
+
                     ko.Stages[phase.PhaseKey].teams.Clear();
+                    ko.Stages[phase.PhaseKey].UseMatches = false;
                     for (int i = 0; i < phase.Size; i++)
                     {
                         int row = phase.StartRow + (phase.GapSize * i);
-                        string team = xlRange.Cells[row, phase.Column].value2;
+                        var team = xlRange.Cells[row, phase.Column].value2;
                         if (team == null)
                         {
                             if (host)
@@ -213,6 +226,47 @@ namespace EindToernooi_Poule.Excel
                     }
 
                     Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), 0);
+                    Poule[rowschecked] = match;
+                }
+                return Poule;
+            }
+            catch (Exception e) { return null; }
+        }
+
+        private KOMatch[] ReadKnockOutPoule(int miss, int size, int startrow, bool host = false)
+        {
+            KOMatch[] Poule = new KOMatch[size];
+
+            int Startrow = startrow + miss;
+
+            try
+            {
+                for (int rowschecked = 0; rowschecked < size; rowschecked++)
+                {
+                    double a = 99;
+                    double b = 99;
+                    bool ad = false;
+                    int currentRow = Startrow + rowschecked;
+
+                    var at = xlRange.Cells[currentRow, ExcelConfiguration.HomeColumn].Value2;
+                    var bt = xlRange.Cells[currentRow, ExcelConfiguration.OutColumn].Value2;
+                    string adt = xlRange.Cells[currentRow, ExcelConfiguration.OutColumn + 1].Value2;
+
+                    if (at == null || bt == null || adt == null)
+                    {
+                        if (!host)
+                            return null;
+                    }
+
+                    else
+                    {
+                        a = at;
+                        b = bt;
+                        if (adt.ToLower() == "ja")
+                            ad = true;
+                    }
+
+                    KOMatch match = new KOMatch(Convert.ToInt16(a), Convert.ToInt16(b), ad, 0);
                     Poule[rowschecked] = match;
                 }
                 return Poule;

@@ -54,6 +54,10 @@
 							<TextBlock Text="Miss" VerticalAlignment="Center" Margin="5"/>
 							<TextBox Width="50" Text="{Binding Miss}"/>
 						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<RadioButton Name="cbGroup" GroupName="Phase" IsChecked="{Binding GroupPhaseChecked}" Content="Group Phase"/>
+							<RadioButton Name="cbKO" GroupName="Phase" IsChecked="{Binding KnockOutPhaseChecked}" Content="Knock-out Phase"/>
+						</StackPanel>
 						<Button Content="Load predictions" Width="150" Command="{Binding ReadExcelCommand}" HorizontalAlignment="Left"/>
 					</StackPanel>
 				</Grid>
@@ -64,40 +68,22 @@
 						<TextBlock Text="Manual"/>
 					</StackPanel>
 				</TabItem.Header>				
-				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto,auto" Margin="10">
-					<TextBlock Text="{Binding CurrentPouleText}" Grid.Row="0" Grid.ColumnSpan="3"/>
-						<TextBlock Text="Match 1" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score1A}"/>
-							<TextBox Width="50" Text="{Binding Score1B}"/>
-						</StackPanel>
-						<TextBlock Text="Match 2" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score2A}"/>
-							<TextBox Width="50" Text="{Binding Score2B}"/>
-						</StackPanel>
-							<TextBlock Text="Match 3" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score3A}"/>
-							<TextBox Width="50" Text="{Binding Score3B}"/>
-						</StackPanel>
-							<TextBlock Text="Match 4" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score4A}"/>
-							<TextBox Width="50" Text="{Binding Score4B}"/>
-						</StackPanel>
-							<TextBlock Text="Match 5" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score5A}"/>
-							<TextBox Width="50" Text="{Binding Score5B}"/>
-						</StackPanel>
-							<TextBlock Text="Match 6" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
-						<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
-							<TextBox Width="50" Text="{Binding Score6A}"/>
-							<TextBox Width="50" Text="{Binding Score6B}"/>
-						</StackPanel>
-						<Button Content="Previous Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="0" Command="{Binding PreviousPouleCommand}"/>
-						<Button Content="Next Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="1" Command="{Binding NextPouleCommand}"/>
+				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10">
+					<TextBlock Text="{Binding CurrentPouleText}" Grid.Row="0" Grid.ColumnSpan="2"/>
+					<TextBlock Text="Match 1" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+					<TextBlock Text="Match 2" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+					<TextBlock Text="Match 3" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+					<TextBlock Text="Match 4" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+					<TextBlock Text="Match 5" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+					<TextBlock Text="Match 6" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+					<views:ScoreInput ScoreA="{Binding PouleScore1A}" ScoreB="{Binding PouleScore1B}" Add="false" Grid.Row="1" Grid.Column="1"/>
+					<views:ScoreInput ScoreA="{Binding PouleScore2A}" ScoreB="{Binding PouleScore2B}" Add="false" Grid.Row="2" Grid.Column="1"/>
+					<views:ScoreInput ScoreA="{Binding PouleScore3A}" ScoreB="{Binding PouleScore3B}" Add="false" Grid.Row="3" Grid.Column="1"/>
+					<views:ScoreInput ScoreA="{Binding PouleScore4A}" ScoreB="{Binding PouleScore4B}" Add="false" Grid.Row="4" Grid.Column="1"/>
+					<views:ScoreInput ScoreA="{Binding PouleScore5A}" ScoreB="{Binding PouleScore5B}" Add="false" Grid.Row="5" Grid.Column="1"/>
+					<views:ScoreInput ScoreA="{Binding PouleScore6A}" ScoreB="{Binding PouleScore6B}" Add="false" Grid.Row="6" Grid.Column="1"/>
+					<Button Content="Previous Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="0" Command="{Binding PreviousPouleCommand}"/>
+					<Button Content="Next Poule" Width="150" HorizontalContentAlignment="Center" Grid.Row="10" Grid.Column="1" Command="{Binding NextPouleCommand}"/>
 				</Grid>
 			</TabItem>
 
@@ -108,53 +94,64 @@
 					</StackPanel>
 				</TabItem.Header>
 				<Grid Margin="10" RowDefinitions="auto,auto">
-          <StackPanel Orientation="Vertical" Margin="5" IsVisible="{Binding Last32Active}">
-            <TextBlock Text="Last 32"/>
-						<StackPanel Orientation="Horizontal" >
-							<StackPanel Orientation="Vertical">
-								<TextBox Text="{Binding Last32[0]}"/>
-								<TextBox Text="{Binding Last32[1]}"/>
-								<TextBox Text="{Binding Last32[2]}"/>
-								<TextBox Text="{Binding Last32[3]}"/>
-								<TextBox Text="{Binding Last32[4]}"/>
-								<TextBox Text="{Binding Last32[5]}"/>
-								<TextBox Text="{Binding Last32[6]}"/>
-								<TextBox Text="{Binding Last32[7]}"/>
-							</StackPanel>
-							<StackPanel Orientation="Vertical">
-								<TextBox Text="{Binding Last32[8]}"/>
-								<TextBox Text="{Binding Last32[9]}"/>
-								<TextBox Text="{Binding Last32[10]}"/>
-								<TextBox Text="{Binding Last32[11]}"/>
-								<TextBox Text="{Binding Last32[12]}"/>
-								<TextBox Text="{Binding Last32[13]}"/>
-								<TextBox Text="{Binding Last32[14]}"/>
-								<TextBox Text="{Binding Last32[15]}"/>
-							</StackPanel>
-							<StackPanel Orientation="Vertical">
-								<TextBox Text="{Binding Last32[16]}"/>
-								<TextBox Text="{Binding Last32[17]}"/>
-								<TextBox Text="{Binding Last32[18]}"/>
-								<TextBox Text="{Binding Last32[19]}"/>
-								<TextBox Text="{Binding Last32[20]}"/>
-								<TextBox Text="{Binding Last32[21]}"/>
-								<TextBox Text="{Binding Last32[22]}"/>
-								<TextBox Text="{Binding Last32[23]}"/>
-							</StackPanel>
-							<StackPanel Orientation="Vertical">
-								<TextBox Text="{Binding Last32[24]}"/>
-								<TextBox Text="{Binding Last32[25]}"/>
-								<TextBox Text="{Binding Last32[26]}"/>
-								<TextBox Text="{Binding Last32[27]}"/>
-								<TextBox Text="{Binding Last32[28]}"/>
-								<TextBox Text="{Binding Last32[29]}"/>
-								<TextBox Text="{Binding Last32[30]}"/>
-								<TextBox Text="{Binding Last32[31]}"/>
-							</StackPanel>
-						</StackPanel>
-          </StackPanel>
+				  <StackPanel Orientation="Vertical" Margin="5" IsVisible="{Binding Last32Active}">
+					<TextBlock Text="Last 32"/>
+					<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10">
+						<TextBlock Text="Match 1" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+						<TextBlock Text="Match 2" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+						<TextBlock Text="Match 3" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+						<TextBlock Text="Match 4" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+						<TextBlock Text="Match 5" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+						<TextBlock Text="Match 6" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+						<TextBlock Text="Match 7" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+						<TextBlock Text="Match 8" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0"/>
+						<TextBlock Text="Match 9" VerticalAlignment="Center" Grid.Row="8" Grid.Column="0"/>
+						<TextBlock Text="Match 10" VerticalAlignment="Center" Grid.Row="9" Grid.Column="0"/>
+						<TextBlock Text="Match 11" VerticalAlignment="Center" Grid.Row="10" Grid.Column="0"/>
+						<TextBlock Text="Match 12" VerticalAlignment="Center" Grid.Row="11" Grid.Column="0"/>
+						<TextBlock Text="Match 13" VerticalAlignment="Center" Grid.Row="12" Grid.Column="0"/>
+						<TextBlock Text="Match 14" VerticalAlignment="Center" Grid.Row="13" Grid.Column="0"/>
+						<TextBlock Text="Match 15" VerticalAlignment="Center" Grid.Row="14" Grid.Column="0"/>
+						<TextBlock Text="Match 16" VerticalAlignment="Center" Grid.Row="15" Grid.Column="0"/>
+						<views:ScoreInput ScoreA="{Binding L32Score1A}" ScoreB="{Binding L32Score1B}" Add="{Binding L32AdditionalTime1}" Grid.Row="0" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score2A}" ScoreB="{Binding L32Score2B}" Add="{Binding L32AdditionalTime2}" Grid.Row="1" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score3A}" ScoreB="{Binding L32Score3B}" Add="{Binding L32AdditionalTime3}" Grid.Row="2" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score4A}" ScoreB="{Binding L32Score4B}" Add="{Binding L32AdditionalTime4}" Grid.Row="3" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score5A}" ScoreB="{Binding L32Score5B}" Add="{Binding L32AdditionalTime5}" Grid.Row="4" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score6A}" ScoreB="{Binding L32Score6B}" Add="{Binding L32AdditionalTime6}" Grid.Row="5" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score7A}" ScoreB="{Binding L32Score7B}" Add="{Binding L32AdditionalTime7}" Grid.Row="6" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score8A}" ScoreB="{Binding L32Score8B}" Add="{Binding L32AdditionalTime8}" Grid.Row="7" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score9A}" ScoreB="{Binding L32Score9B}" Add="{Binding L32AdditionalTime9}" Grid.Row="8" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score10A}" ScoreB="{Binding L32Score10B}" Add="{Binding L32AdditionalTime10}" Grid.Row="9" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score11A}" ScoreB="{Binding L32Score11B}" Add="{Binding L32AdditionalTime11}" Grid.Row="10" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score12A}" ScoreB="{Binding L32Score12B}" Add="{Binding L32AdditionalTime12}" Grid.Row="11" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score13A}" ScoreB="{Binding L32Score13B}" Add="{Binding L32AdditionalTime13}" Grid.Row="12" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score14A}" ScoreB="{Binding L32Score14B}" Add="{Binding L32AdditionalTime14}" Grid.Row="13" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score15A}" ScoreB="{Binding L32Score15B}" Add="{Binding L32AdditionalTime15}" Grid.Row="14" Grid.Column="1"/>
+						<views:ScoreInput ScoreA="{Binding L32Score16A}" ScoreB="{Binding L32Score16B}" Add="{Binding L32AdditionalTime16}" Grid.Row="15" Grid.Column="1"/>
+					</Grid>
+				  </StackPanel>
 					<Grid ColumnDefinitions="auto,auto,auto,auto" RowDefinitions="auto,auto" IsVisible="{Binding !Last32Active}" Grid.Row="0">
-						<StackPanel Orientation="Vertical" Grid.Column="0" Grid.RowSpan="2" Margin="5">
+						<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10" IsVisible="{Binding !Last32InPlay}">
+							<TextBlock Text="Last 16" Grid.Row="0" Grid.ColumnSpan="2"/>
+							<TextBlock Text="Match 1" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+							<TextBlock Text="Match 2" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+							<TextBlock Text="Match 3" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+							<TextBlock Text="Match 4" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+							<TextBlock Text="Match 5" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+							<TextBlock Text="Match 6" VerticalAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+							<TextBlock Text="Match 7" VerticalAlignment="Center" Grid.Row="7" Grid.Column="0"/>
+							<TextBlock Text="Match 8" VerticalAlignment="Center" Grid.Row="8" Grid.Column="0"/>
+							<views:ScoreInput ScoreA="{Binding L16Score1A}" ScoreB="{Binding L16Score1B}" Add="{Binding L16AdditionalTime1}" Grid.Row="1" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score2A}" ScoreB="{Binding L16Score2B}" Add="{Binding L16AdditionalTime2}" Grid.Row="2" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score3A}" ScoreB="{Binding L16Score3B}" Add="{Binding L16AdditionalTime3}" Grid.Row="3" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score4A}" ScoreB="{Binding L16Score4B}" Add="{Binding L16AdditionalTime4}" Grid.Row="4" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score5A}" ScoreB="{Binding L16Score5B}" Add="{Binding L16AdditionalTime5}" Grid.Row="5" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score6A}" ScoreB="{Binding L16Score6B}" Add="{Binding L16AdditionalTime6}" Grid.Row="6" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score7A}" ScoreB="{Binding L16Score7B}" Add="{Binding L16AdditionalTime7}" Grid.Row="7" Grid.Column="1"/>
+							<views:ScoreInput ScoreA="{Binding L16Score8A}" ScoreB="{Binding L16Score8B}" Add="{Binding L16AdditionalTime8}" Grid.Row="8" Grid.Column="1"/>
+						</Grid>
+						<StackPanel Orientation="Vertical" Grid.Column="0" Grid.RowSpan="2" Margin="5" IsVisible="{Binding Last32InPlay}">
 							<TextBlock Text="Last 16"/>
 							<StackPanel Orientation="Horizontal" >
 								<StackPanel Orientation="Vertical" >
@@ -203,8 +200,8 @@
 							<TextBox Text="{Binding Final[1]}"/>
 						</StackPanel>
 					</Grid>
-					<Button Content="Toggle Last32" Command="{Binding ToggleLast32Command}" Grid.Row="1" IsVisible="{Binding Last32InPlay}"/>
-				</Grid>
+				<Button Content="Toggle Last32" Command="{Binding ToggleLast32Command}" Grid.Row="1" IsVisible="{Binding Last32InPlay}"/>
+			</Grid>
 			</TabItem>
 						
 			<TabItem>

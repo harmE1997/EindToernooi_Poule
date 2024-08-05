@@ -36,7 +36,8 @@ namespace EindToernooi_Poule.ViewModels
         public int StartRow;
         public int HomeColumn;
         public int OutColumn;
-        public int HostSheet;
+        public int HostGroupSheet;
+        public int HostKOSheet;
         public int RankingSheet;
         public int TopscorersSheet;
         public int BonusAnswerColumn;
@@ -68,7 +69,8 @@ namespace EindToernooi_Poule.ViewModels
         public int StartRow { get => configurables.StartRow; set { this.RaiseAndSetIfChanged(ref configurables.StartRow, value); SaveCommandEnabled = true; } }
         public int HomeColumn { get => configurables.HomeColumn; set { this.RaiseAndSetIfChanged(ref configurables.HomeColumn, value); SaveCommandEnabled = true; } }
         public int OutColumn { get => configurables.OutColumn; set { this.RaiseAndSetIfChanged(ref configurables.OutColumn, value); SaveCommandEnabled = true; } }
-        public int HostSheet { get => configurables.HostSheet; set { this.RaiseAndSetIfChanged(ref configurables.HostSheet, value); SaveCommandEnabled = true; } }
+        public int HostGroupSheet { get => configurables.HostGroupSheet; set { this.RaiseAndSetIfChanged(ref configurables.HostGroupSheet, value); SaveCommandEnabled = true; } }
+        public int HostKOSheet { get => configurables.HostKOSheet; set { this.RaiseAndSetIfChanged(ref configurables.HostKOSheet, value); SaveCommandEnabled = true; } }
         public int RankingSheet { get => configurables.RankingSheet; set { this.RaiseAndSetIfChanged(ref configurables.RankingSheet, value); SaveCommandEnabled = true; } }
         public int TopscorersSheet { get => configurables.TopscorersSheet; set { this.RaiseAndSetIfChanged (ref configurables.TopscorersSheet, value); SaveCommandEnabled = true; } }
         public int BonusAnswerColumn { get => configurables.BonusAnswerColumn; set { this.RaiseAndSetIfChanged(ref configurables.BonusAnswerColumn, value); SaveCommandEnabled = true; } }
@@ -97,13 +99,14 @@ namespace EindToernooi_Poule.ViewModels
                 StartRow = 12,
                 HomeColumn = 7,
                 OutColumn = 8,
-                HostSheet = 6,
+                HostGroupSheet = 6,
+                HostKOSheet = 7,
                 RankingSheet = 2,
                 TopscorersSheet = 8,
                 BonusStartRow = 365,
                 BonusAnswerColumn = 7,
                 KoPhaseSettingsList = new List<KoPhaseSettings>() { 
-                    new KoPhaseSettings(){PhaseKey = KOKeys.LAST32, Column = 4, StartRow = 83, GapSize = 2, Size = 32 },
+                    new KoPhaseSettings(){PhaseKey = KOKeys.LAST32, Column = 4, StartRow = 83, GapSize = 2, Size = 16 },
                     new KoPhaseSettings(){PhaseKey = KOKeys.LAST16, Column = 4, StartRow = 83, GapSize = 2, Size = 16 },
                     new KoPhaseSettings(){PhaseKey = KOKeys.QUARTER, Column = 6, StartRow = 84, GapSize = 4, Size = 8 },
                     new KoPhaseSettings(){PhaseKey = KOKeys.SEMI, Column = 8, StartRow = 86, GapSize = 8, Size = 4 },
@@ -164,7 +167,8 @@ namespace EindToernooi_Poule.ViewModels
             GeneralConfiguration.NlPresent = configurables.NlPresent;
 
             ExcelConfiguration.HomeColumn = configurables.HomeColumn;
-            ExcelConfiguration.HostSheet = configurables.HostSheet;
+            ExcelConfiguration.HostGroupSheet = configurables.HostGroupSheet;
+            ExcelConfiguration.HostKOSheet = configurables.HostKOSheet;
             ExcelConfiguration.OutColumn = configurables.OutColumn;
             ExcelConfiguration.RankingSheet = configurables.RankingSheet;
             ExcelConfiguration.StartRow = configurables.StartRow;

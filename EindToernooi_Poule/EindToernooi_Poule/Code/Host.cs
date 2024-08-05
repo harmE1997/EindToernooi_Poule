@@ -36,9 +36,9 @@ namespace EindToernooi_Poule.Code
             if (!HostSet)
             {
                 Topscorers = new Dictionary<string, int>();
-                Poules = excelManager.ReadGroupPhase(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, 0, host: true);
-                KnockoutPhase = excelManager.readKnockout(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, true);
-                Questions = excelManager.ReadBonus(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet);
+                Poules = excelManager.ReadGroupPhase(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostGroupSheet, 0, host: true);
+                KnockoutPhase = excelManager.readKnockout(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostKOSheet, 0, true);
+                Questions = excelManager.ReadBonus(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostGroupSheet);
                 setTopscorers();
                 HostSet = true;
             }

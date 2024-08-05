@@ -70,7 +70,7 @@ namespace EindToernooi_Poule.Code
             return matchScore;
         }
 
-        public string MatchToString()
+        public virtual string MatchToString()
         { 
             var res = ResultA.ToString() + " - " + ResultB.ToString();
             return res;
