@@ -97,6 +97,8 @@ namespace EindToernooi_Poule.Code
                     score += match.CheckMatch(hostmatch);
                     if (match.AdditionalTime == hostmatch.AdditionalTime)
                         score += 5;
+                    else if(match.Winner == "D" && hostmatch.Winner == "D")
+                        score += 5;
                 }
             }
 
