@@ -89,6 +89,9 @@ namespace EindToernooi_Poule.Code
         private int CheckStage(KOKeys stageKey, Stage stage, KnockoutPhase KO)
         {
             int score = 0;
+            if (!GeneralConfiguration.Last32 && stageKey == KOKeys.LAST32)
+                return score;
+
             if (stage.UseMatches)
             {
                 foreach (var match in stage.Matches)
