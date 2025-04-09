@@ -105,12 +105,15 @@ namespace EindToernooi_Poule.Excel
                 {
                     if (phase.PhaseKey == KOKeys.LAST32)
                     {
-                        ko.Stages[phase.PhaseKey].Matches = ReadKnockOutPoule(miss, phase.Size, phase.StartRow, host);
-                        ko.Stages[phase.PhaseKey].UseMatches = true;
+                        if (GeneralConfiguration.Last32)
+                        {
+                            ko.Stages[phase.PhaseKey].Matches = ReadKnockOutPoule(miss, phase.Size, phase.StartRow, host);
+                            ko.Stages[phase.PhaseKey].UseMatches = true;                          
+                        }
                         continue;
                     }
 
-                    if (!GeneralConfiguration.Last32 && phase.PhaseKey == KOKeys.LAST16)
+                    if (phase.PhaseKey == KOKeys.LAST16 && !GeneralConfiguration.Last32)
                     {
                         ko.Stages[phase.PhaseKey].Matches = ReadKnockOutPoule(miss, phase.Size, phase.StartRow, host);
                         ko.Stages[phase.PhaseKey].UseMatches = true;
