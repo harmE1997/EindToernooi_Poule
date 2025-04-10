@@ -98,10 +98,13 @@ namespace EindToernooi_Poule.Code
                 {
                     var hostmatch = KO.Stages[stageKey].Matches[stage.Matches.IndexOf(match)];
                     score += match.CheckMatch(hostmatch);
-                    if (match.AdditionalTime == hostmatch.AdditionalTime)
-                        score += 5;
-                    else if(match.Winner == "D" && hostmatch.Winner == "D")
-                        score += 5;
+                    if (match.IsMatchValid(hostmatch))
+                    {
+                        if (match.AdditionalTime == hostmatch.AdditionalTime)
+                            score += 5;
+                        else if (match.Winner == "D" && hostmatch.Winner == "D")
+                            score += 5;
+                    }
                 }
             }
 

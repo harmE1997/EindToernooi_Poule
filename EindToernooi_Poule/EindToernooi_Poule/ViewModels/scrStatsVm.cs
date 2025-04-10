@@ -34,6 +34,8 @@ namespace EindToernooi_Poule.ViewModels
         private bool nlinplay;
         public bool NlInPlay { get => nlinplay; set => this.RaiseAndSetIfChanged(ref nlinplay, value); }
 
+        public ReactiveCommand<Unit, Unit> GroupWinnersCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> GroupRunnerupsCommand { get; set; }
         public ReactiveCommand<Unit, Unit> ChampionsCommand { get; set; }
         public ReactiveCommand<Unit, Unit> NederlandCommand { get; set; }
         public ReactiveCommand<Unit, Unit> TopscorersCommand { get; set; }
@@ -49,6 +51,8 @@ namespace EindToernooi_Poule.ViewModels
         {
             stats = new List<Stat>();
             StatsFields = new List<StatsField>();
+            GroupWinnersCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.GroupWinners); });
+            GroupRunnerupsCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.GroupRunnerups); });
             ChampionsCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Kampioen); });
             TopscorersCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Topscorer); });
             NederlandCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Nederland); });          

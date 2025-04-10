@@ -50,7 +50,7 @@ namespace EindToernooi_Poule.Code
         {
             var matchScore = 0;
 
-            if (hostmatch.ResultA != 99 && ResultA != 99)
+            if (IsMatchValid(hostmatch))
             {
                 if (Winner == hostmatch.Winner)
                 {
@@ -68,6 +68,13 @@ namespace EindToernooi_Poule.Code
                 }
             }
             return matchScore;
+        }
+
+        public bool IsMatchValid(Match hostmatch)
+        {
+            if (hostmatch.ResultA != 99 && ResultA != 99)
+                return true;
+            return false;
         }
 
         public virtual string MatchToString()

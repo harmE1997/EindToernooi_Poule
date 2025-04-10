@@ -155,7 +155,7 @@ namespace EindToernooi_Poule.Excel
             InitialiseWorkbook(filename, sheet);
             try
             {
-                string[] answers = new string[4];
+                string[] answers = new string[28];
                 for (int i = ExcelConfiguration.BonusStartRow; i < (ExcelConfiguration.BonusStartRow + answers.Length); i++)
                 {
                     string value = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;

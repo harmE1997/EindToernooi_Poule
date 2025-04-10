@@ -27,42 +27,15 @@ namespace EindToernooi_Poule.Code
 
         public void CheckPoule(Player host)
         {
-            Poule hostweek = host.Poules[Poulenr];
+            Poule hostpoule = host.Poules[Poulenr];
             PouleMatchesScore = 0;            
             for(int counter = 0; counter < Matches.Length; counter++)
             {
-                var hostmatch = hostweek.Matches[counter];
+                var hostmatch = hostpoule.Matches[counter];
                 int matchscore = Matches[counter].CheckMatch(hostmatch);
                 PouleMatchesScore += matchscore;
 
             }
-        }
-
-        public int CheckMatchOnResultOnly(Match[] Host, int matchID)
-        {
-            //MOTW has matchID 0.
-            Match HostMatch = Host[matchID];
-            Match ThisMatch = Matches[matchID];
-
-            if (HostMatch.ResultA != 99 && ThisMatch.ResultA != 99)
-            {
-                if (HostMatch.ResultA == ThisMatch.ResultA && ThisMatch.ResultB == HostMatch.ResultB)
-                {
-                    return 2;
-                }
-
-                else if (ThisMatch.Winner == HostMatch.Winner)
-                {
-                    return 1;
-                }
-
-                else
-                {
-                    return 0;
-                }
-            }
-
-            return -1;
         }
     }
 }
