@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Code
 {
@@ -28,8 +24,8 @@ namespace EindToernooi_Poule.Code
         public void CheckPoule(Player host)
         {
             Poule hostpoule = host.Poules[Poulenr];
-            PouleMatchesScore = 0;            
-            for(int counter = 0; counter < Matches.Length; counter++)
+            PouleMatchesScore = 0;
+            for (int counter = 0; counter < Matches.Length; counter++)
             {
                 var hostmatch = hostpoule.Matches[counter];
                 int matchscore = Matches[counter].CheckMatch(hostmatch);

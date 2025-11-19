@@ -1,9 +1,7 @@
 ﻿using DynamicData;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Code
 {
@@ -19,14 +17,14 @@ namespace EindToernooi_Poule.Code
 
     [Serializable]
     public class KOMatch : Match
-    { 
+    {
         public bool AdditionalTime { get; set; }
 
         //this constructor is needed for deserialization purposes. Dot not actively use it!
         public KOMatch() { }
 
         public KOMatch(int resA, int resB, bool additionaltime, int postponement = 0) : base(resA, resB, postponement = 0)
-        { 
+        {
             AdditionalTime = additionaltime;
         }
 
@@ -56,7 +54,7 @@ namespace EindToernooi_Poule.Code
             Stages = new Dictionary<KOKeys, Stage>()
             {
                 {KOKeys.LAST32, new Stage() { award = 30, Matches = new KOMatch[16]
-                    {new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), 
+                    {new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
                     new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
                     new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
                     new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false)}, UseMatches = true } },

@@ -1,17 +1,10 @@
-﻿using Microsoft.CodeAnalysis.Operations;
-using Avalonia;
+﻿using Avalonia.Controls;
+using EindToernooi_Poule.Code;
 using ReactiveUI;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reactive;
 using System.Reactive.Linq;
-using EindToernooi_Poule.Code;
-using EindToernooi_Poule.Views;
-using Avalonia.Controls;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -20,8 +13,8 @@ namespace EindToernooi_Poule.ViewModels
         public bool PredictionsSubmittedFlag = false;
         private Window totoformWindow;
         private Poule activePoule;
-        private List<string> scoreProperties = new List<string>() { 
-            "PouleScore1A", "PouleScore1B", "PouleScore2A", "PouleScore2B", "PouleScore3A", "PouleScore3B", "PouleScore4A", "PouleScore4B", "PouleScore5A", "PouleScore5B", "PouleScore6A", "PouleScore6B", 
+        private List<string> scoreProperties = new List<string>() {
+            "PouleScore1A", "PouleScore1B", "PouleScore2A", "PouleScore2B", "PouleScore3A", "PouleScore3B", "PouleScore4A", "PouleScore4B", "PouleScore5A", "PouleScore5B", "PouleScore6A", "PouleScore6B",
             "L32Score1A", "L32Score1B", "L32Score2A", "L32Score2B", "L32Score3A", "L32Score3B", "L32Score4A", "L32Score4B",
             "L32Score5A", "L32Score5B", "L32Score6A", "L32Score6B", "L32Score7A", "L32Score7B", "L32Score8A", "L32Score8B",
             "L32Score9A", "L32Score9B", "L32Score10A", "L32Score10B", "L32Score11A", "L32Score11B", "L32Score12A", "L32Score12B",
@@ -35,12 +28,12 @@ namespace EindToernooi_Poule.ViewModels
 
         private int currentPoule;
         public int CurrentPoule { get => currentPoule; set { SetCurrentPoule(value); this.RaisePropertyChanged(); } }
-        
+
         private Player activeplayer;
         public Player ActivePlayer { get => activeplayer; private set { activeplayer = value; CurrentPoule = 1; } }
-        
+
         public string PlayerName { get => activeplayer.Name; set { ActivePlayer.Name = value; this.RaisePropertyChanged(); } }
-        public string PlayerTown { get => ActivePlayer.Town;  set { ActivePlayer.Town = value; this.RaisePropertyChanged(); } }
+        public string PlayerTown { get => ActivePlayer.Town; set { ActivePlayer.Town = value; this.RaisePropertyChanged(); } }
 
         private string currentpouletext;
         public string CurrentPouleText { get => currentpouletext; set => this.RaiseAndSetIfChanged(ref currentpouletext, value); }
@@ -52,7 +45,7 @@ namespace EindToernooi_Poule.ViewModels
         public int Miss { get => miss; set => this.RaiseAndSetIfChanged(ref miss, value); }
 
         private bool groupphasechecked;
-        public bool GroupPhaseChecked { get => groupphasechecked; set => this.RaiseAndSetIfChanged(ref  groupphasechecked, value); }
+        public bool GroupPhaseChecked { get => groupphasechecked; set => this.RaiseAndSetIfChanged(ref groupphasechecked, value); }
 
         private bool knockoutphasechecked;
         public bool KnockOutPhaseChecked { get => knockoutphasechecked; set => this.RaiseAndSetIfChanged(ref knockoutphasechecked, value); }
@@ -64,7 +57,7 @@ namespace EindToernooi_Poule.ViewModels
         public bool Last32InPlay { get => last32inplay; set => this.RaiseAndSetIfChanged(ref last32inplay, value); }
 
         private bool bronzeinplay;
-        public bool BronzeInPlay { get => bronzeinplay; set => this.RaiseAndSetIfChanged(ref  bronzeinplay, value); }
+        public bool BronzeInPlay { get => bronzeinplay; set => this.RaiseAndSetIfChanged(ref bronzeinplay, value); }
 
         private bool nlpresent;
         public bool NlPresent { get => nlpresent; set => this.RaiseAndSetIfChanged(ref nlpresent, value); }
@@ -192,15 +185,15 @@ namespace EindToernooi_Poule.ViewModels
         public string RunnerupGroupK { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[10]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[10] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string WinnerGroupL { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[11]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[11] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string RunnerupGroupL { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[11]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[11] = value.ToLower(); this.RaisePropertyChanged(); } }
-        public string Champion { get => ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0]; set {ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }     
+        public string Champion { get => ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Topscorer { get => ActivePlayer.Questions.Answers[BonusKeys.Topscorer].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Topscorer].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Nederland { get => ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Bronze { get => ActivePlayer.Questions.Answers[BonusKeys.Bronze].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Bronze].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         #endregion
 
-        public ReactiveCommand<Unit,Unit> NextPouleCommand { get; set; }
-        public ReactiveCommand<Unit,Unit> PreviousPouleCommand { get; set; }
-        public ReactiveCommand<Unit,Unit> ReadExcelCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> NextPouleCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> PreviousPouleCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> ReadExcelCommand { get; set; }
 
         public TotoFormVm(Player activeplayer, Window totoformwindow)
         {
@@ -208,11 +201,11 @@ namespace EindToernooi_Poule.ViewModels
                 this.activeplayer = ActivePlayer = CreateDefaultActivePlayer();
             else
                 this.activeplayer = ActivePlayer = activeplayer;
-            CurrentPoule = 1;        
+            CurrentPoule = 1;
 
             var NextWeekCommandCanExecute = this.WhenAnyValue(
                 x => x.CurrentPoule,
-                (a) => { return a < GeneralConfiguration.NrPoules; }).ObserveOn(RxApp.MainThreadScheduler);        
+                (a) => { return a < GeneralConfiguration.NrPoules; }).ObserveOn(RxApp.MainThreadScheduler);
 
             var PreviousWeekCommandCanExecute = this.WhenAnyValue(
                 x => x.CurrentPoule,
@@ -314,7 +307,7 @@ namespace EindToernooi_Poule.ViewModels
 
             if (KnockOutPhaseChecked)
             {
-                var kophase = em.readKnockout(PredictionsFileName,1, Miss, false);
+                var kophase = em.readKnockout(PredictionsFileName, 1, Miss, false);
                 if (kophase == null)
                     return;
                 ActivePlayer.KnockoutPhase = kophase;
@@ -347,15 +340,15 @@ namespace EindToernooi_Poule.ViewModels
         private Player CreateDefaultActivePlayer()
         {
             var weeks = new Dictionary<int, Poule>();
-            for (int i = 1; i<= GeneralConfiguration.NrPoules; i++)
+            for (int i = 1; i <= GeneralConfiguration.NrPoules; i++)
             {
                 var matches = new Match[6];
-                for(int x = 0; x < 6; x++)
+                for (int x = 0; x < 6; x++)
                 {
-                    matches[x] = new Match(99, 99);             
+                    matches[x] = new Match(99, 99);
                 }
 
-                weeks.Add(i,new Poule(i, matches));
+                weeks.Add(i, new Poule(i, matches));
             }
             return new Player("", "", weeks, new KnockoutPhase(), new BonusQuestions(new string[28]));
         }
@@ -364,7 +357,7 @@ namespace EindToernooi_Poule.ViewModels
         {
             string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" };
             currentPoule = value;
-            CurrentPouleText = "Poule " + letters[value-1];
+            CurrentPouleText = "Poule " + letters[value - 1];
             activePoule = ActivePlayer.Poules[value];
             foreach (var prop in scoreProperties)
                 this.RaisePropertyChanged(prop);

@@ -1,12 +1,8 @@
 ﻿using EindToernooi_Poule.Code;
-using EindToernooi_Poule.Excel;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -37,14 +33,14 @@ namespace EindToernooi_Poule.ViewModels
         public string SelectedMatch { get => selectedmatch; set => this.RaiseAndSetIfChanged(ref selectedmatch, value); }
 
         private List<MatchField> outputs;
-        public List<MatchField> Outputs { get => outputs; set => this.RaiseAndSetIfChanged(ref outputs, value); }  
+        public List<MatchField> Outputs { get => outputs; set => this.RaiseAndSetIfChanged(ref outputs, value); }
 
 
         public scrMatchesVm()
         {
-            Matches = new List<string>() {"1","2","3","4","5","6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" };
+            Matches = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" };
             SelectedMatch = Matches[0];
-            Weeks = new List<string>() {"1", "2", "3", "4", "5", "6", "KO"};
+            Weeks = new List<string>() { "1", "2", "3", "4", "5", "6", "KO" };
             SelectedWeek = Weeks[0];
             Outputs = new List<MatchField>();
         }
@@ -63,7 +59,7 @@ namespace EindToernooi_Poule.ViewModels
                 Match match = null;
                 if (r)
                 {
-                    if(matchID <= 6)
+                    if (matchID <= 6)
                         match = p.Poules[week].Matches[matchID];
                 }
                 else
