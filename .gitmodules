@@ -1,0 +1,3 @@
+[submodule "VoetbalPoolsBase"]
+	path = VoetbalPoolsBase
+	url = git@github.com:/harmE1997/VoetbalPoolsBase
