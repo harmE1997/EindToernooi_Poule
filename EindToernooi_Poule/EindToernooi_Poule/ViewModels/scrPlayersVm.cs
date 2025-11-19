@@ -2,9 +2,11 @@
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
-using VoetbalPoolsBase;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -18,13 +20,13 @@ namespace EindToernooi_Poule.ViewModels
         public List<string> Players { get => players; set => this.RaiseAndSetIfChanged(ref players, value); }
 
         private string selectedPlayer;
-        public string SelectedPlayer { get => selectedPlayer; set => this.RaiseAndSetIfChanged(ref selectedPlayer, value); }
+        public string SelectedPlayer { get => selectedPlayer; set => this.RaiseAndSetIfChanged(ref  selectedPlayer, value); }
 
         public ReactiveCommand<Unit, Unit> LoadPlayerCommand { get; private set; }
         public ReactiveCommand<Unit, Unit> RemovePlayerCommand { get; private set; }
 
         public scrPlayersVm()
-        {
+        { 
             PlayerManager = new PlayerManager();
             SettingsVm.SettingsEvent += SettingsChangedEvent;
 
@@ -37,8 +39,8 @@ namespace EindToernooi_Poule.ViewModels
         }
 
         public void NewPlayerCommand()
-        {
-            totoForm = new Views.TotoForm();
+        { 
+            totoForm = new Views.TotoForm();         
             totoForm.Closed += TotoClosedEvent;
             totoForm.Show();
         }
@@ -57,7 +59,7 @@ namespace EindToernooi_Poule.ViewModels
         }
 
         private void cmdLoadPlayer()
-        {
+        {   
             totoForm = new Views.TotoForm(PlayerManager.FindPlayer(SelectedPlayer));
             totoForm.Closed += TotoClosedEvent;
             existingPlayer = true;
@@ -77,7 +79,7 @@ namespace EindToernooi_Poule.ViewModels
                 PopupManager.ShowMessage("Player succesfully Created/Saved");
             }
 
-            else if (res == 1) { PopupManager.ShowMessage("Cannot create/save player. Invalid player"); }
+            else if(res == 1) { PopupManager.ShowMessage("Cannot create/save player. Invalid player"); }
             else
                 PopupManager.ShowMessage("Cannot create/save player. No permission to overwrite");
         }
@@ -89,10 +91,10 @@ namespace EindToernooi_Poule.ViewModels
         }
 
         private void RefreshPlayers()
-        {
+        { 
             List<string> playernames = new List<string>();
-            foreach (var player in PlayerManager.Players)
-            {
+            foreach (var player in PlayerManager.Players) 
+            { 
                 playernames.Add(player.Name);
             }
 

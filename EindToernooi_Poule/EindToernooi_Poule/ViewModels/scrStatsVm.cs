@@ -1,13 +1,16 @@
 ﻿using EindToernooi_Poule.Code;
 using ReactiveUI;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive;
-using VoetbalPoolsBase;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.ViewModels
 {
-    public class StatsField
+    public class StatsField 
     {
         public string Name { get; set; }
         public int Number { get; set; }
@@ -52,7 +55,7 @@ namespace EindToernooi_Poule.ViewModels
             GroupRunnerupsCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.GroupRunnerups); });
             ChampionsCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Kampioen); });
             TopscorersCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Topscorer); });
-            NederlandCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Nederland); });
+            NederlandCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Nederland); });          
             BronzeCommand = ReactiveCommand.Create(() => { this.ActionStats(BonusKeys.Bronze); });
 
             Last32Command = ReactiveCommand.Create(() => { this.ActionStats(koKey: KOKeys.LAST32); });
@@ -131,7 +134,7 @@ namespace EindToernooi_Poule.ViewModels
                 foreach (var name in stat.Names)
                 {
                     field.Names += name;
-                    if (stat.Names.Last() != name)
+                    if(stat.Names.Last() != name)
                         field.Names += "\n";
                 }
                 newoutput.Add(field);

@@ -1,10 +1,13 @@
 ﻿using EindToernooi_Poule.Code;
+using excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using VoetbalPoolsBase;
-using excel = Microsoft.Office.Interop.Excel;
 
 
 namespace EindToernooi_Poule.Excel
@@ -60,7 +63,7 @@ namespace EindToernooi_Poule.Excel
             var poules = new Dictionary<int, Poule>();
             if (Poules != null)
                 poules = Poules;
-
+            
             try
             {
                 if (!File.Exists(filename))
@@ -83,7 +86,7 @@ namespace EindToernooi_Poule.Excel
                     if (poules.ContainsKey(i + 1))
                         poules[i + 1] = new Poule(i + 1, matches);
                     else
-                        poules.Add(i + 1, new Poule((i + 1), matches));
+                    poules.Add(i + 1, new Poule((i + 1), matches));
                 }
                 CleanWorkbook();
                 return poules;
@@ -105,7 +108,7 @@ namespace EindToernooi_Poule.Excel
                         if (GeneralConfiguration.Last32)
                         {
                             ko.Stages[phase.PhaseKey].Matches = ReadKnockOutPoule(miss, phase.Size, phase.StartRow, host);
-                            ko.Stages[phase.PhaseKey].UseMatches = true;
+                            ko.Stages[phase.PhaseKey].UseMatches = true;                          
                         }
                         continue;
                     }
@@ -143,7 +146,7 @@ namespace EindToernooi_Poule.Excel
                 return ko;
             }
             catch (Exception e) { return null; }
-            finally { CleanWorkbook(); }
+            finally { CleanWorkbook(); }            
         }
 
 
@@ -156,7 +159,7 @@ namespace EindToernooi_Poule.Excel
                 for (int i = ExcelConfiguration.BonusStartRow; i < (ExcelConfiguration.BonusStartRow + answers.Length); i++)
                 {
                     string value = xlRange.Cells[i, ExcelConfiguration.BonusAnswerColumn].value2;
-                    if (string.IsNullOrEmpty(value))
+                    if(string.IsNullOrEmpty(value))
                         answers[i - ExcelConfiguration.BonusStartRow] = value;
 
                     else
@@ -204,12 +207,12 @@ namespace EindToernooi_Poule.Excel
 
             try
             {
-                for (int rowschecked = 0; rowschecked < GeneralConfiguration.PouleSize; rowschecked++)
+                for (int rowschecked = 0; rowschecked <GeneralConfiguration.PouleSize; rowschecked++)
                 {
                     double a = 99;
                     double b = 99;
                     int currentRow = startrow + rowschecked;
-
+                
                     var at = xlRange.Cells[currentRow, ExcelConfiguration.HomeColumn].Value2;
                     var bt = xlRange.Cells[currentRow, ExcelConfiguration.OutColumn].Value2;
 
