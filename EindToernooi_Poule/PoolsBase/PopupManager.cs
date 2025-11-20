@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EindToernooi_Poule
+﻿namespace PoolsBase
 {
     public static class PopupManager
     {

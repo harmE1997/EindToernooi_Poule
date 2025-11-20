@@ -1,8 +1,6 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using EindToernooi_Poule.Code;
 using EindToernooi_Poule.ViewModels;
-using System.Xml.Schema;
 
 namespace EindToernooi_Poule.Views
 {

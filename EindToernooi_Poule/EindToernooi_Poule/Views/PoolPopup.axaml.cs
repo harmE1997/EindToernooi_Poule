@@ -1,13 +1,13 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using PoolsBase;
 
 namespace EindToernooi_Poule.Views
 {
-    public partial class isoPopup : Window
+    public partial class PoolPopup : Window
     {
-        public isoPopup()
+        public PoolPopup()
         {
             InitializeComponent();
             Height = 200;

@@ -1,9 +1,7 @@
 ﻿using DynamicData;
+using PoolsBase;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.Code
 {
@@ -19,14 +17,14 @@ namespace EindToernooi_Poule.Code
 
     [Serializable]
     public class KOMatch : Match
-    { 
+    {
         public bool AdditionalTime { get; set; }
 
         //this constructor is needed for deserialization purposes. Dot not actively use it!
         public KOMatch() { }
 
         public KOMatch(int resA, int resB, bool additionaltime, int postponement = 0) : base(resA, resB, postponement = 0)
-        { 
+        {
             AdditionalTime = additionaltime;
         }
 
@@ -56,13 +54,13 @@ namespace EindToernooi_Poule.Code
             Stages = new Dictionary<KOKeys, Stage>()
             {
                 {KOKeys.LAST32, new Stage() { award = 30, Matches = new KOMatch[16]
-                    {new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), 
+                    {new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
                     new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
                     new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
                     new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false)}, UseMatches = true } },
                 {KOKeys.LAST16, new Stage() { award = 30, teams = new List<string>(){ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", }, Matches = new KOMatch[8]
                     {new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false),
-                    new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false)}, UseMatches = !GeneralConfiguration.Last32 } },
+                    new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false), new KOMatch(99,99, false)}, UseMatches = !LocalConfiguration.Last32 } },
                 {KOKeys.QUARTER, new Stage() { award = 55, teams = new List<string>(){ "", "", "", "", "", "", "", "", }, UseMatches = false } },
                 {KOKeys.SEMI, new Stage() { award = 110, teams = new List<string>(){ "", "", "", "", }, UseMatches = false } },
                 {KOKeys.FINAL, new Stage() { award = 220, teams = new List<string>(){ "", "", }, UseMatches = false } }
@@ -89,7 +87,7 @@ namespace EindToernooi_Poule.Code
         private int CheckStage(KOKeys stageKey, Stage stage, KnockoutPhase KO)
         {
             int score = 0;
-            if (!GeneralConfiguration.Last32 && stageKey == KOKeys.LAST32)
+            if (!LocalConfiguration.Last32 && stageKey == KOKeys.LAST32)
                 return score;
 
             if (stage.UseMatches)
@@ -110,9 +108,9 @@ namespace EindToernooi_Poule.Code
 
             else
             {
-                if (GeneralConfiguration.Last32 && stageKey == KOKeys.LAST16)
+                if (LocalConfiguration.Last32 && stageKey == KOKeys.LAST16)
                     return score;
-                if (!GeneralConfiguration.Last32 && stageKey == KOKeys.QUARTER)
+                if (!LocalConfiguration.Last32 && stageKey == KOKeys.QUARTER)
                     return score;
 
                 foreach (var team in stage.teams)

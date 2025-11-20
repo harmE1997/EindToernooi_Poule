@@ -1,12 +1,10 @@
 ﻿using EindToernooi_Poule.Code;
+using PoolsBase;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -18,7 +16,7 @@ namespace EindToernooi_Poule.ViewModels
         public int Matches { get; set; }
         public int Knockout { get; set; }
         public int Bonus { get; set; }
-        
+
     }
     public class scrRankingVm : ViewModelBase
     {
@@ -45,7 +43,7 @@ namespace EindToernooi_Poule.ViewModels
             }
 
             catch (FileNotFoundException) { PopupManager.ShowMessage("Excel file does not exist"); }
-            catch (Exception e){ PopupManager.ShowMessage(e.Message); }
+            catch (Exception e) { PopupManager.ShowMessage(e.Message); }
         }
 
         public void ExportRanking()
@@ -66,15 +64,41 @@ namespace EindToernooi_Poule.ViewModels
         private void RefreshRanking()
         {
             //sort players by score
-            scrPlayersVm.PlayerManager.RankPlayers();
+            RankPlayers();
             List<RankingField> rank = new List<RankingField>();
             foreach (Player player in scrPlayersVm.PlayerManager.Players)
             {
-                rank.Add(new RankingField() { Rank = player.Ranking, Name = player.Name, Total = player.TotalScore, 
-                    Matches = player.PoulesScore, Knockout=player.KnockoutScore, Bonus=player.BonusScore }) ;
+                rank.Add(new RankingField()
+                {
+                    Rank = player.Ranking,
+                    Name = player.Name,
+                    Total = player.TotalScore,
+                    Matches = player.PoulesScore,
+                    Knockout = player.KnockoutScore,
+                    Bonus = player.BonusScore
+                });
             }
 
             Ranking = rank;
+        }
+
+        private void RankPlayers()
+        {
+            scrPlayersVm.PlayerManager.Players.OrderBy(p => p.Name).ToList();
+            scrPlayersVm.PlayerManager.Players.Reverse();
+            int ranking = 1;
+            int counter = 1;
+            int lastplayerscore = -1;
+            foreach (Player player in scrPlayersVm.PlayerManager.Players)
+            {
+                if (player.TotalScore != lastplayerscore)
+                {
+                    ranking = counter;
+                }
+                player.Ranking = ranking;
+                lastplayerscore = player.TotalScore;
+                counter++;
+            }
         }
     }
 }

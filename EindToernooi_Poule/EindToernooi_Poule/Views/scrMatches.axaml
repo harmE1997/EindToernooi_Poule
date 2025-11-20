@@ -30,7 +30,7 @@
 	<Grid RowDefinitions="auto,auto" ColumnDefinitions="auto,auto,auto" Margin="10">
 		<StackPanel Orientation="Horizontal" Grid.Column="0">
 			<TextBlock Text="Group" Margin="10"/>
-			<ComboBox ItemsSource="{Binding Weeks}" SelectedItem="{Binding SelectedWeek}"/>
+			<ComboBox ItemsSource="{Binding Poules}" SelectedItem="{Binding SelectedPoule}"/>
 		</StackPanel>
 		<StackPanel Orientation="Horizontal" Grid.Column="1">
 			<TextBlock Text="Match" Margin="10"/>

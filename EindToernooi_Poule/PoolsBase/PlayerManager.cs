@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using PoolsBase.Interfaces;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.IO;
-using System.Configuration;
 
-namespace EindToernooi_Poule.Code
+namespace PoolsBase
 {
     [Serializable]
-    public class PlayerManager
+    public class PlayerManager<T, U> where T : PlayerBase<U>
     {
-        public List<Player> Players { get; private set; }
+        private JsonSerializerOptions jsonSerializerOptions;
+        public List<T> Players { get; private set; }
 
         public PlayerManager()
         {
-            Players = new List<Player>();
+            jsonSerializerOptions = new JsonSerializerOptions { WriteIndented = true };
+            Players = new List<T>();
         }
 
-        public int AddPlayer(Player player, bool AllowOverwrite)
+        public int AddPlayer(T player, bool AllowOverwrite)
         {
             if (player == null)
                 return 1;
-            
+
             if (FindPlayer(player.Name) != null && !AllowOverwrite)
                 return 2;
 
@@ -31,7 +28,7 @@ namespace EindToernooi_Poule.Code
 
             Players.Add(player);
             SavePlayers();
-            return 0;          
+            return 0;
         }
 
         private void SavePlayers()
@@ -40,7 +37,7 @@ namespace EindToernooi_Poule.Code
             {
                 try
                 {
-                    string output = JsonSerializer.Serialize(Players, new JsonSerializerOptions { WriteIndented = true });
+                    string output = JsonSerializer.Serialize(Players, jsonSerializerOptions);
                     File.WriteAllText(GeneralConfiguration.SaveFileLocation, output);
                 }
 
@@ -57,31 +54,12 @@ namespace EindToernooi_Poule.Code
             }
 
             string input = File.ReadAllText(GeneralConfiguration.SaveFileLocation);
-            Players = JsonSerializer.Deserialize<List<Player>>(input, new JsonSerializerOptions { WriteIndented = true });
+            Players = JsonSerializer.Deserialize<List<T>>(input, jsonSerializerOptions);
         }
 
-        public void RankPlayers()
+        public T FindPlayer(string name)
         {
-            Players = Players.OrderBy(p => p.TotalScore).ToList();
-            Players.Reverse();
-            int ranking = 1;
-            int counter = 1;
-            int lastplayerscore = -1;
-            foreach (Player player in Players)
-            {
-                if (player.TotalScore != lastplayerscore)
-                {
-                    ranking = counter;
-                }
-                player.Ranking = ranking;
-                lastplayerscore = player.TotalScore;
-                counter++;
-            }
-        }
-
-        public Player FindPlayer(string name)
-        {
-            foreach (Player player in Players)
+            foreach (T player in Players)
             {
                 if (player.Name == name)
                 {
@@ -89,12 +67,12 @@ namespace EindToernooi_Poule.Code
                 }
             }
 
-            return null;
+            return default(T);
         }
 
         public int RemovePlayer(string name)
         {
-            Player exitplayer = FindPlayer(name);
+            T exitplayer = FindPlayer(name);
             if (exitplayer != null)
             {
                 Players.Remove(exitplayer);
@@ -109,11 +87,11 @@ namespace EindToernooi_Poule.Code
 
         }
 
-        public void CheckAllPlayers(Host host)
+        public void CheckAllPlayers(IHost host)
         {
-            foreach (Player player in Players)
+            foreach (T player in Players)
             {
-                player.CheckPlayer(host, host.getTopscorers());
+                player.CheckPlayer(host, host.GetTopscorers());
             }
 
             SavePlayers();

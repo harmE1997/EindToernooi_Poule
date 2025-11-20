@@ -1,12 +1,8 @@
 ﻿using EindToernooi_Poule.Code;
-using EindToernooi_Poule.Excel;
+using PoolsBase;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -27,31 +23,31 @@ namespace EindToernooi_Poule.ViewModels
         private List<string> matches;
         public List<string> Matches { get => matches; set => this.RaiseAndSetIfChanged(ref matches, value); }
 
-        private List<string> weeks;
-        public List<string> Weeks { get => weeks; set => this.RaiseAndSetIfChanged(ref weeks, value); }
+        private List<string> poules;
+        public List<string> Poules { get => poules; set => this.RaiseAndSetIfChanged(ref poules, value); }
 
-        private string selectedweek;
-        public string SelectedWeek { get => selectedweek; set => this.RaiseAndSetIfChanged(ref selectedweek, value); }
+        private string selectedpoule;
+        public string SelectedPoule { get => selectedpoule; set => this.RaiseAndSetIfChanged(ref selectedpoule, value); }
 
         private string selectedmatch;
         public string SelectedMatch { get => selectedmatch; set => this.RaiseAndSetIfChanged(ref selectedmatch, value); }
 
         private List<MatchField> outputs;
-        public List<MatchField> Outputs { get => outputs; set => this.RaiseAndSetIfChanged(ref outputs, value); }  
+        public List<MatchField> Outputs { get => outputs; set => this.RaiseAndSetIfChanged(ref outputs, value); }
 
 
         public scrMatchesVm()
         {
-            Matches = new List<string>() {"1","2","3","4","5","6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" };
+            Matches = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" };
             SelectedMatch = Matches[0];
-            Weeks = new List<string>() {"1", "2", "3", "4", "5", "6", "KO"};
-            SelectedWeek = Weeks[0];
+            Poules = new List<string>() { "1", "2", "3", "4", "5", "6", "KO" };
+            SelectedPoule = Poules[0];
             Outputs = new List<MatchField>();
         }
 
         public void GetPredictionsCommand()
         {
-            var r = int.TryParse(SelectedWeek, out int week);
+            var r = int.TryParse(SelectedPoule, out int poule);
             Dictionary<string, MatchField> results = new Dictionary<string, MatchField>();
 
             foreach (Player p in scrPlayersVm.PlayerManager.Players)
@@ -63,13 +59,13 @@ namespace EindToernooi_Poule.ViewModels
                 Match match = null;
                 if (r)
                 {
-                    if(matchID <= 6)
-                        match = p.Poules[week].Matches[matchID];
+                    if (matchID <= 6)
+                        match = p.Poules[poule].Matches[matchID];
                 }
                 else
                 {
                     KOKeys key = KOKeys.LAST32;
-                    if (!GeneralConfiguration.Last32)
+                    if (!LocalConfiguration.Last32)
                         key = KOKeys.LAST16;
                     match = p.KnockoutPhase.Stages[key].Matches[matchID];
                 }

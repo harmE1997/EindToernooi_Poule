@@ -1,13 +1,12 @@
 ﻿using EindToernooi_Poule.Code;
 using EindToernooi_Poule.Excel;
+using PoolsBase;
+using PoolsBase.Excel;
 using ReactiveUI;
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
 
 namespace EindToernooi_Poule.ViewModels
@@ -16,7 +15,7 @@ namespace EindToernooi_Poule.ViewModels
     {
         public KOKeys PhaseKey;
         private int column;
-        public int Column { get => column; set => this.RaiseAndSetIfChanged(ref column, value);}
+        public int Column { get => column; set => this.RaiseAndSetIfChanged(ref column, value); }
         private int startrow;
         public int StartRow { get => startrow; set => this.RaiseAndSetIfChanged(ref startrow, value); }
         private int gapsize;
@@ -72,9 +71,9 @@ namespace EindToernooi_Poule.ViewModels
         public int HostGroupSheet { get => configurables.HostGroupSheet; set { this.RaiseAndSetIfChanged(ref configurables.HostGroupSheet, value); SaveCommandEnabled = true; } }
         public int HostKOSheet { get => configurables.HostKOSheet; set { this.RaiseAndSetIfChanged(ref configurables.HostKOSheet, value); SaveCommandEnabled = true; } }
         public int RankingSheet { get => configurables.RankingSheet; set { this.RaiseAndSetIfChanged(ref configurables.RankingSheet, value); SaveCommandEnabled = true; } }
-        public int TopscorersSheet { get => configurables.TopscorersSheet; set { this.RaiseAndSetIfChanged (ref configurables.TopscorersSheet, value); SaveCommandEnabled = true; } }
+        public int TopscorersSheet { get => configurables.TopscorersSheet; set { this.RaiseAndSetIfChanged(ref configurables.TopscorersSheet, value); SaveCommandEnabled = true; } }
         public int BonusAnswerColumn { get => configurables.BonusAnswerColumn; set { this.RaiseAndSetIfChanged(ref configurables.BonusAnswerColumn, value); SaveCommandEnabled = true; } }
-        public int BonusStartRow { get => configurables.BonusStartRow; set { this.RaiseAndSetIfChanged (ref configurables.BonusStartRow, value); SaveCommandEnabled = true; } }
+        public int BonusStartRow { get => configurables.BonusStartRow; set { this.RaiseAndSetIfChanged(ref configurables.BonusStartRow, value); SaveCommandEnabled = true; } }
 
         private Dictionary<KOKeys, KoPhaseSettings> kosettings;
         public Dictionary<KOKeys, KoPhaseSettings> KoSettings { get => kosettings; set { this.RaiseAndSetIfChanged(ref kosettings, value); SaveCommandEnabled = true; } }
@@ -105,7 +104,7 @@ namespace EindToernooi_Poule.ViewModels
                 TopscorersSheet = 8,
                 BonusStartRow = 365,
                 BonusAnswerColumn = 7,
-                KoPhaseSettingsList = new List<KoPhaseSettings>() { 
+                KoPhaseSettingsList = new List<KoPhaseSettings>() {
                     new KoPhaseSettings(){PhaseKey = KOKeys.LAST32, Column = 4, StartRow = 83, GapSize = 2, Size = 16 },
                     new KoPhaseSettings(){PhaseKey = KOKeys.LAST16, Column = 4, StartRow = 83, GapSize = 2, Size = 16 },
                     new KoPhaseSettings(){PhaseKey = KOKeys.QUARTER, Column = 6, StartRow = 84, GapSize = 4, Size = 8 },
@@ -148,7 +147,7 @@ namespace EindToernooi_Poule.ViewModels
                 WriteConfigToXml();
             }
             string input = File.ReadAllText(configeFileName);
-            configurables = JsonSerializer.Deserialize<Configurables>(input,jsonSerializerOptions);
+            configurables = JsonSerializer.Deserialize<Configurables>(input, jsonSerializerOptions);
 
             var kosettings = new Dictionary<KOKeys, KoPhaseSettings>();
             foreach (var kosetting in configurables.KoPhaseSettingsList)
@@ -161,21 +160,23 @@ namespace EindToernooi_Poule.ViewModels
         {
             GeneralConfiguration.AdminFileLocation = configurables.AdminFileLocation;
             GeneralConfiguration.SaveFileLocation = configurables.SaveFileLocation;
-            GeneralConfiguration.NrPoules = configurables.NrPoules;
-            GeneralConfiguration.Last32 = configurables.Last32;
-            GeneralConfiguration.Bronze = configurables.Bronze;
-            GeneralConfiguration.NlPresent = configurables.NlPresent;
 
-            ExcelConfiguration.HomeColumn = configurables.HomeColumn;
-            ExcelConfiguration.HostGroupSheet = configurables.HostGroupSheet;
-            ExcelConfiguration.HostKOSheet = configurables.HostKOSheet;
-            ExcelConfiguration.OutColumn = configurables.OutColumn;
-            ExcelConfiguration.RankingSheet = configurables.RankingSheet;
-            ExcelConfiguration.StartRow = configurables.StartRow;
-            ExcelConfiguration.TopscorersSheet = configurables.TopscorersSheet;
-            ExcelConfiguration.BonusStartRow = configurables.BonusStartRow;
-            ExcelConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
-            ExcelConfiguration.KoSettings = configurables.KoPhaseSettingsList;
+            LocalConfiguration.NrPoules = configurables.NrPoules;
+            LocalConfiguration.Last32 = configurables.Last32;
+            LocalConfiguration.Bronze = configurables.Bronze;
+            LocalConfiguration.NlPresent = configurables.NlPresent;
+
+            ExcelLocalConfiguration.KoSettings = configurables.KoPhaseSettingsList;
+            ExcelLocalConfiguration.HostGroupSheet = configurables.HostGroupSheet;
+            ExcelLocalConfiguration.HostKOSheet = configurables.HostKOSheet;
+
+            ExcelBaseConfiguration.HomeColumn = configurables.HomeColumn;
+            ExcelBaseConfiguration.OutColumn = configurables.OutColumn;
+            ExcelBaseConfiguration.RankingSheet = configurables.RankingSheet;
+            ExcelBaseConfiguration.StartRow = configurables.StartRow;
+            ExcelBaseConfiguration.TopscorersSheet = configurables.TopscorersSheet;
+            ExcelBaseConfiguration.BonusStartRow = configurables.BonusStartRow;
+            ExcelBaseConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
         }
     }
 }

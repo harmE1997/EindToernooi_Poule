@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EindToernooi_Poule.Code
+﻿namespace PoolsBase
 {
     public class Match
     {
         private int resulta;
-        public int ResultA { get {return resulta ; } set { resulta = value; SetWinner(); } }
+        public int ResultA { get { return resulta; } set { resulta = value; SetWinner(); } }
 
         private int resultb;
         public int ResultB { get { return resultb; } set { resultb = value; SetWinner(); } }
@@ -21,7 +15,7 @@ namespace EindToernooi_Poule.Code
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
 
-        public Match(int resA, int resB, int postponement=0)
+        public Match(int resA, int resB, int postponement = 0)
         {
             ResultA = resA;
             ResultB = resB;
@@ -78,7 +72,7 @@ namespace EindToernooi_Poule.Code
         }
 
         public virtual string MatchToString()
-        { 
+        {
             var res = ResultA.ToString() + " - " + ResultB.ToString();
             return res;
         }
