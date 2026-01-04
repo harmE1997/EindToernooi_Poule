@@ -26,6 +26,8 @@
 			<Button Content="Semi Finals" Command="{Binding SemiCommand}"/>
 			<Button Content="Final" Command="{Binding FinalCommand}"/>
 
+			<Button Content="Group Winners" Command="{Binding GroupWinnersCommand}"/>
+			<Button Content="Group runner ups" Command="{Binding GroupRunnerupsCommand}"/>
 			<Button Content="Champions" Command="{Binding ChampionsCommand}"/>
       <Button Content="Topscorers" Command="{Binding TopscorersCommand}"/>
 			<Button Content="Nederland" Command="{Binding NederlandCommand}" IsVisible="{Binding NlInPlay}"/>		

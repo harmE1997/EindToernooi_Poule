@@ -161,6 +161,30 @@ namespace EindToernooi_Poule.ViewModels
         public List<string> Final { get => ActivePlayer.KnockoutPhase.Stages[KOKeys.FINAL].teams; set { ActivePlayer.KnockoutPhase.Stages[KOKeys.FINAL].teams = value; this.RaisePropertyChanged(); } }
 
         #region Bonus Questions
+        public string WinnerGroupA { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupA { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupB { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[1]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[1] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupB { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[1]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[1] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupC { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[2]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[2] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupC { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[2]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[2] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupD { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[3]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[3] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupD { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[3]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[3] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupE { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[4]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[4] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupE { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[4]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[4] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupF { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[5]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[5] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupF { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[5]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[5] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupG { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[6]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[6] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupG { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[6]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[6] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupH { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[7]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[7] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupH { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[7]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[7] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupI { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[8]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[8] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupI { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[8]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[8] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupJ { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[9]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[9] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupJ { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[9]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[9] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupK { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[10]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[10] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupK { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[10]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[10] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string WinnerGroupL { get => ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[11]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupWinners].Answer[11] = value.ToLower(); this.RaisePropertyChanged(); } }
+        public string RunnerupGroupL { get => ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[11]; set { ActivePlayer.Questions.Answers[BonusKeys.GroupRunnerups].Answer[11] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Champion { get => ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Kampioen].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Topscorer { get => ActivePlayer.Questions.Answers[BonusKeys.Topscorer].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Topscorer].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
         public string Nederland { get => ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0]; set { ActivePlayer.Questions.Answers[BonusKeys.Nederland].Answer[0] = value.ToLower(); this.RaisePropertyChanged(); } }
@@ -251,6 +275,30 @@ namespace EindToernooi_Poule.ViewModels
                 if (bonus == null)
                     return;
                 ActivePlayer.Questions = new(bonus);
+                this.RaisePropertyChanged(nameof(WinnerGroupA));
+                this.RaisePropertyChanged(nameof(RunnerupGroupA));
+                this.RaisePropertyChanged(nameof(WinnerGroupB));
+                this.RaisePropertyChanged(nameof(RunnerupGroupB));
+                this.RaisePropertyChanged(nameof(WinnerGroupC));
+                this.RaisePropertyChanged(nameof(RunnerupGroupC));
+                this.RaisePropertyChanged(nameof(WinnerGroupD));
+                this.RaisePropertyChanged(nameof(RunnerupGroupD));
+                this.RaisePropertyChanged(nameof(WinnerGroupE));
+                this.RaisePropertyChanged(nameof(RunnerupGroupE));
+                this.RaisePropertyChanged(nameof(WinnerGroupF));
+                this.RaisePropertyChanged(nameof(RunnerupGroupF));
+                this.RaisePropertyChanged(nameof(WinnerGroupG));
+                this.RaisePropertyChanged(nameof(RunnerupGroupG));
+                this.RaisePropertyChanged(nameof(WinnerGroupH));
+                this.RaisePropertyChanged(nameof(RunnerupGroupH));
+                this.RaisePropertyChanged(nameof(WinnerGroupI));
+                this.RaisePropertyChanged(nameof(RunnerupGroupI));
+                this.RaisePropertyChanged(nameof(WinnerGroupJ));
+                this.RaisePropertyChanged(nameof(RunnerupGroupJ));
+                this.RaisePropertyChanged(nameof(WinnerGroupK));
+                this.RaisePropertyChanged(nameof(RunnerupGroupK));
+                this.RaisePropertyChanged(nameof(WinnerGroupL));
+                this.RaisePropertyChanged(nameof(RunnerupGroupL));
                 this.RaisePropertyChanged(nameof(Champion));
                 this.RaisePropertyChanged(nameof(Nederland));
                 this.RaisePropertyChanged(nameof(Topscorer));
