@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.Code
 {
@@ -33,10 +30,10 @@ namespace EindToernooi_Poule.Code
             Stages = new Dictionary<KOKeys, Stage>()
             {
                 {KOKeys.LAST32, new Stage() { award = 15, teams = new List<string>(){"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" } } },
-                {KOKeys.LAST16, new Stage() { award = 15, teams = new List<string>(){ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", } } },
-                {KOKeys.QUARTER, new Stage() { award = 15, teams = new List<string>(){ "", "", "", "", "", "", "", "", } } },
-                {KOKeys.SEMI, new Stage() { award = 15, teams = new List<string>(){ "", "", "", "", } } },
-                {KOKeys.FINAL, new Stage() { award = 15, teams = new List<string>(){ "", "", } } }
+                {KOKeys.LAST16, new Stage() { award = 30, teams = new List<string>(){ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", } } },
+                {KOKeys.QUARTER, new Stage() { award = 60, teams = new List<string>(){ "", "", "", "", "", "", "", "", } } },
+                {KOKeys.SEMI, new Stage() { award = 120, teams = new List<string>(){ "", "", "", "", } } },
+                {KOKeys.FINAL, new Stage() { award = 240, teams = new List<string>(){ "", "", } } }
             };
         }
 

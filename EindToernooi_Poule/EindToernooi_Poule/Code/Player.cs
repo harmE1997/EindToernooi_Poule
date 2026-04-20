@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using VoetbalPoolsBase;
+using VoetbalPoolsBase.Interfaces;
 
 namespace EindToernooi_Poule.Code
 {
@@ -26,10 +27,10 @@ namespace EindToernooi_Poule.Code
             Ranking = 0;
         }
 
-        public void CheckPlayer(Player Host, Dictionary<string, int> topscorers)
+        public override void CheckPlayer(IHost Host, Dictionary<string, Topscorer> topscorers)
         {
             PoulesScore = 0;
-            //reset postponement scores
+            var host = Host as Player;
 
             foreach (var poule in Poules)
             {
@@ -39,12 +40,12 @@ namespace EindToernooi_Poule.Code
                 if (poule.Value.Poulenr > LocalConfiguration.NrPoules)
                     break;
 
-                poule.Value.CheckPoule(Host);
+                poule.Value.CheckPoule(host);
                 PoulesScore += poule.Value.PouleMatchesScore;
             }
 
-            KnockoutScore = KnockoutPhase.checkKnockoutPhase(Host.KnockoutPhase);
-            BonusScore = Questions.CheckBonus(Host.Questions, topscorers);
+            KnockoutScore = KnockoutPhase.checkKnockoutPhase(host.KnockoutPhase);
+            BonusScore = Questions.CheckBonus(host.Questions, topscorers);
             TotalScore = PoulesScore + KnockoutScore + BonusScore;
         }
     }

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using VoetbalPoolsBase;
+using VoetbalPoolsBase.Excel;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -39,6 +40,7 @@ namespace EindToernooi_Poule.ViewModels
         public int TopscorersSheet;
         public int BonusAnswerColumn;
         public int BonusStartRow;
+        public int NrBonusQuestions;
         public List<KoPhaseSettings> KoPhaseSettingsList;
     }
     public class SettingsVm : ViewModelBase
@@ -61,6 +63,7 @@ namespace EindToernooi_Poule.ViewModels
         public bool Bronze { get => configurables.Bronze; set { this.RaiseAndSetIfChanged(ref configurables.Bronze, value); SaveCommandEnabled = true; } }
         public bool NlPresent { get => configurables.NlPresent; set { this.RaiseAndSetIfChanged(ref configurables.NlPresent, value); SaveCommandEnabled = true; } }
         public bool Last32 { get => configurables.Last32; set { this.RaiseAndSetIfChanged(ref configurables.Last32, value); SaveCommandEnabled = true; } }
+        public int NrBonusQuestions { get => configurables.NrBonusQuestions; set { this.RaiseAndSetIfChanged(ref configurables.NrBonusQuestions, value); SaveCommandEnabled = true; } }
 
         //excel settings
         public int StartRow { get => configurables.StartRow; set { this.RaiseAndSetIfChanged(ref configurables.StartRow, value); SaveCommandEnabled = true; } }
@@ -161,15 +164,18 @@ namespace EindToernooi_Poule.ViewModels
             LocalConfiguration.Bronze = configurables.Bronze;
             LocalConfiguration.NlPresent = configurables.NlPresent;
 
-            ExcelConfiguration.HomeColumn = configurables.HomeColumn;
-            ExcelConfiguration.HostSheet = configurables.HostSheet;
-            ExcelConfiguration.OutColumn = configurables.OutColumn;
-            ExcelConfiguration.RankingSheet = configurables.RankingSheet;
-            ExcelConfiguration.StartRow = configurables.StartRow;
-            ExcelConfiguration.TopscorersSheet = configurables.TopscorersSheet;
-            ExcelConfiguration.BonusStartRow = configurables.BonusStartRow;
-            ExcelConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
-            ExcelConfiguration.KoSettings = configurables.KoPhaseSettingsList;
+            ExcelLocalConfiguration.HostSheet = configurables.HostSheet;
+            ExcelLocalConfiguration.KoSettings = configurables.KoPhaseSettingsList;
+
+            ExcelBaseConfiguration.HomeColumn = configurables.HomeColumn;
+            ExcelBaseConfiguration.OutColumn = configurables.OutColumn;
+            ExcelBaseConfiguration.RankingSheet = configurables.RankingSheet;
+            ExcelBaseConfiguration.StartRow = configurables.StartRow;
+            ExcelBaseConfiguration.TopscorersSheet = configurables.TopscorersSheet;
+            ExcelBaseConfiguration.BonusStartRow = configurables.BonusStartRow;
+            ExcelBaseConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
+            ExcelBaseConfiguration.NrBonusAnswers = configurables.NrBonusQuestions;
+
         }
     }
 }

@@ -37,7 +37,7 @@
 						<TextBlock Text="Algemene instellingen"/>
 				</TabItem.Header>
 
-				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent">
+				<Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="10" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Transparent">
 					<TextBlock Text="Admin location" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
 					<views:isoFileBrowser BrowserResult="{Binding AdminFileLocation}" Grid.Column="1" Grid.Row="1"/>
 					<TextBlock Text="Save file directory" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"/>
@@ -52,6 +52,8 @@
 					<ToggleSwitch Grid.Column="1" Grid.Row="6" IsChecked="{Binding NlPresent}" Foreground="White"/>
 					<TextBlock Text="Bronze in play" Grid.Column="0" Grid.Row="7" Margin="5" VerticalAlignment="Center"/>
 					<ToggleSwitch Grid.Column="1" Grid.Row="7" IsChecked="{Binding Bronze}" Foreground="White"/>
+					<TextBlock Text="Number of Bonus questions" Grid.Column="0" Grid.Row="8" Margin="5" VerticalAlignment="Center"/>
+					<TextBox Text="{Binding NrBonusQuestions}" Grid.Column="1" Grid.Row="8" />
 				</Grid>
 			</TabItem>
 

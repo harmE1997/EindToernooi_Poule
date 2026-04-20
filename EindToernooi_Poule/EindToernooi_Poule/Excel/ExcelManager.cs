@@ -4,54 +4,54 @@ using System.Collections.Generic;
 using System.IO;
 using VoetbalPoolsBase;
 using VoetbalPoolsBase.Excel;
-using excel = Microsoft.Office.Interop.Excel;
 
 namespace EindToernooi_Poule.Excel
 {
     public class ExcelManager : ExcelBase
     {
-        private excel.Application xlApp;
-        private excel.Workbook xlWorkbook;
-        private excel._Worksheet xlWorksheet;
-        private excel.Range xlRange;
-
         public void ExportPlayersToExcel(List<Player> Players)
         {
-            InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.RankingSheet);
+            InitialiseWorkbook(GeneralConfiguration.AdminFileLocation, ExcelBaseConfiguration.RankingSheet);
             Dictionary<string, int> reads = new Dictionary<string, int>();
-            if (xlRange.Cells[2, 2].value2 == null)
+            try
             {
-                foreach (var player in Players)
-                    reads.Add(player.Name, 0);
-            }
 
-            else
-            {
-                for (int i = 2; i < (Players.Count + 2); i++)
+
+                if (xlRange.Cells[2, 2].value2 == null)
                 {
-                    string name = xlRange.Cells[i, 2].value2;
-                    var oldscore = xlRange.Cells[i, 4].value2;
-                    if (oldscore == null)
-                        reads.Add(name.ToString(), 0);
-                    else
-                        reads.Add(name.ToString(), Convert.ToInt32(oldscore));
+                    foreach (var player in Players)
+                        reads.Add(player.Name, 0);
+                }
+
+                else
+                {
+                    for (int i = 2; i < (Players.Count + 2); i++)
+                    {
+                        string name = xlRange.Cells[i, 2].value2;
+                        var oldscore = xlRange.Cells[i, 4].value2;
+                        if (oldscore == null)
+                            reads.Add(name.ToString(), 0);
+                        else
+                            reads.Add(name.ToString(), Convert.ToInt32(oldscore));
+                    }
+                }
+
+                int y = 2;
+                foreach (Player player in Players)
+                {
+                    xlRange.Cells[y, 1].value2 = player.Ranking;
+                    xlRange.Cells[y, 2].value2 = player.Name;
+                    xlRange.Cells[y, 3].value2 = player.Town;
+                    xlRange.Cells[y, 8].value2 = player.TotalScore - reads[player.Name];
+                    xlRange.Cells[y, 4].value2 = player.TotalScore;
+                    xlRange.Cells[y, 5].value2 = player.PoulesScore;
+                    xlRange.Cells[y, 6].value2 = player.KnockoutScore;
+                    xlRange.Cells[y, 7].value2 = player.BonusScore;
+                    y++;
                 }
             }
 
-            int y = 2;
-            foreach (Player player in Players)
-            {
-                xlRange.Cells[y, 1].value2 = player.Ranking;
-                xlRange.Cells[y, 2].value2 = player.Name;
-                xlRange.Cells[y, 3].value2 = player.Town;
-                xlRange.Cells[y, 8].value2 = player.TotalScore - reads[player.Name];
-                xlRange.Cells[y, 4].value2 = player.TotalScore;
-                xlRange.Cells[y, 5].value2 = player.PoulesScore;
-                xlRange.Cells[y, 6].value2 = player.KnockoutScore;
-                xlRange.Cells[y, 7].value2 = player.BonusScore;
-                y++;
-            }
-            CleanWorkbook();
+            finally { CleanWorkbook(); }
         }
 
         public Dictionary<int, Poule> ReadGroupPhase(string filename, int sheet, int miss, Dictionary<int, Poule> Poules = null, bool host = false)
@@ -97,7 +97,7 @@ namespace EindToernooi_Poule.Excel
             try
             {
                 KnockoutPhase ko = new KnockoutPhase();
-                foreach (var phase in ExcelConfiguration.KoSettings)
+                foreach (var phase in ExcelLocalConfiguration.KoSettings)
                 {
                     if (!LocalConfiguration.Last32 && phase.PhaseKey == KOKeys.LAST32)
                         continue;
@@ -105,7 +105,7 @@ namespace EindToernooi_Poule.Excel
                     for (int i = 0; i < phase.Size; i++)
                     {
                         int row = phase.StartRow + (phase.GapSize * i);
-                        string team = xlRange.Cells[row, phase.Column].value2;
+                        string team = xlRange.Cells[row, phase.Column].Value2;
                         if (team == null)
                         {
                             if (host)
