@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace EindToernooi_Poule.Code
 {
-    public static class GeneralConfiguration
+    public static class LocalConfiguration
     { 
-        public static string SaveFileLocation = "";
-        public static string AdminFileLocation = "";
         public static int PouleSize = 6;
         public static int NrPoules;
         public static bool Bronze;

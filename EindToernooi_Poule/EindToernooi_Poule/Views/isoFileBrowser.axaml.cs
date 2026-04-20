@@ -2,9 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using System;
 using System.IO;
 using System.Threading.Tasks;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Views
 {
@@ -47,7 +47,7 @@ namespace EindToernooi_Poule.Views
             browsebtn.IsEnabled = false;
             paths = await GetPaths();
             var res = filearraytostring(paths);
-            if(res != "")
+            if (res != "")
                 BrowserResult = res;
             browsebtn.IsEnabled = true;
         }
@@ -57,8 +57,8 @@ namespace EindToernooi_Poule.Views
             if (BrowseForDirectory)
             {
                 OpenFolderDialog dialog = new OpenFolderDialog();
-                dialog.Directory = Path.GetDirectoryName(EindToernooi_Poule.Code.GeneralConfiguration.AdminFileLocation);
-                if(string.IsNullOrEmpty(dialog.Directory) || !Directory.Exists(dialog.Directory))
+                dialog.Directory = Path.GetDirectoryName(GeneralConfiguration.AdminFileLocation);
+                if (string.IsNullOrEmpty(dialog.Directory) || !Directory.Exists(dialog.Directory))
                     dialog.Directory = @"C:";
                 return new string[] { await dialog.ShowAsync(new Window()) };
             }
@@ -66,7 +66,7 @@ namespace EindToernooi_Poule.Views
             else
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Directory = Path.GetDirectoryName(EindToernooi_Poule.Code.GeneralConfiguration.AdminFileLocation);
+                dialog.Directory = Path.GetDirectoryName(GeneralConfiguration.AdminFileLocation);
                 if (string.IsNullOrEmpty(dialog.Directory) || !Directory.Exists(dialog.Directory))
                     dialog.Directory = @"C:";
                 dialog.AllowMultiple = true;

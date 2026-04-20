@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Code
 {
@@ -17,34 +15,30 @@ namespace EindToernooi_Poule.Code
         Default
     }
 
-    public class Question
-    {
-        public string[] Answer { get; set; }
-        public int Points { get; set; }
-
-        public Question()
-        {
-            //this parameterless constructor is used for json deserialization. Do not use it for implementations!
-        }
-    }
-
     public class BonusQuestions
     {
-        public Dictionary<BonusKeys, Question> Answers { get; set; }
+        public Dictionary<BonusKeys, BonusQuestion> Answers { get; set; }
 
         public BonusQuestions()
         {
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
 
-        public BonusQuestions(string[] answers)
+        public BonusQuestions(Dictionary<string, int> rawanswers)
         {
-            Answers = new Dictionary<BonusKeys, Question>()
+            var answers = new List<string>();
+            for (int i = 0; i < 4; i++)
+                answers.Add(string.Empty);
+
+            if (rawanswers.Count == 4)
+                answers = rawanswers.Keys.ToList();
+
+            Answers = new Dictionary<BonusKeys, BonusQuestion>()
             {
-                {BonusKeys.Kampioen, new Question(){Answer = new string[] {answers[0] }, Points = 25 } },
-                {BonusKeys.Topscorer, new Question(){Answer = new string[] {answers[1] }, Points = 5} },
-                {BonusKeys.Nederland, new Question(){Answer = new string[] {answers[2] }, Points = 25 } },
-                {BonusKeys.Bronze, new Question(){Answer = new string[] {answers[3] }, Points = 25 } },
+                {BonusKeys.Kampioen, new BonusQuestion(){Answer = new string[] {answers[0] }, Points = 25 } },
+                {BonusKeys.Topscorer, new BonusQuestion(){Answer = new string[] {answers[1] }, Points = 5} },
+                {BonusKeys.Nederland, new BonusQuestion(){Answer = new string[] {answers[2] }, Points = 25 } },
+                {BonusKeys.Bronze, new BonusQuestion(){Answer = new string[] {answers[3] }, Points = 25 } },
             };
         }
 
@@ -60,9 +54,9 @@ namespace EindToernooi_Poule.Code
             foreach (var a in Answers)
             {
                 var ans = HostQuestions.Answers[a.Key];
-                if (a.Key == BonusKeys.Bronze && !GeneralConfiguration.Bronze)
+                if (a.Key == BonusKeys.Bronze && !LocalConfiguration.Bronze)
                     continue;
-                if (a.Key == BonusKeys.Nederland && !GeneralConfiguration.NlPresent)
+                if (a.Key == BonusKeys.Nederland && !LocalConfiguration.NlPresent)
                     continue;
                 for (int i = 0; i < ans.Answer.Length; i++)
                 {
@@ -75,9 +69,9 @@ namespace EindToernooi_Poule.Code
 
             //check the topscorers
             var topscorerkey = Answers[BonusKeys.Topscorer].Answer[0];
-            if(!topscorers.ContainsKey(topscorerkey))
+            if (!topscorers.ContainsKey(topscorerkey))
                 throw new KeyNotFoundException("Topscorer " + topscorerkey + " does not exist.");
-            
+
             Score += topscorers[topscorerkey] * 5;
             return Score;
         }

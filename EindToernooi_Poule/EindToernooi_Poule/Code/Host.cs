@@ -1,25 +1,22 @@
 ﻿using EindToernooi_Poule.Excel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+using VoetbalPoolsBase;
+using VoetbalPoolsBase.Interfaces;
 
 namespace EindToernooi_Poule.Code
 {
-    public class Host : Player
+    public class Host : Player, IHost
     {
-        private Dictionary<string, int> Topscorers;
+        private Dictionary<string, Topscorer> Topscorers;
         public ExcelManager excelManager;
         public bool HostSet = false;
 
         public Host() : base("", "", null, null, null)
-        { 
+        {
             excelManager = new ExcelManager();
         }
 
-        public Dictionary<string, int> getTopscorers()
+        public Dictionary<string, Topscorer> GetTopscorers()
         {
             if (Topscorers.Count == 0)
                 setTopscorers();
@@ -27,7 +24,7 @@ namespace EindToernooi_Poule.Code
         }
 
         public void setTopscorers()
-        { 
+        {
             Topscorers = new ExcelManager().readtopscorers();
         }
 
@@ -35,10 +32,10 @@ namespace EindToernooi_Poule.Code
         {
             if (!HostSet)
             {
-                Topscorers = new Dictionary<string, int>();
+                Topscorers = new Dictionary<string, Topscorer>();
                 Poules = excelManager.ReadGroupPhase(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, 0, host: true);
                 KnockoutPhase = excelManager.readKnockout(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet, true);
-                Questions = excelManager.ReadBonus(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet);
+                Questions = new(excelManager.ReadBonus(GeneralConfiguration.AdminFileLocation, ExcelConfiguration.HostSheet));
                 setTopscorers();
                 HostSet = true;
             }

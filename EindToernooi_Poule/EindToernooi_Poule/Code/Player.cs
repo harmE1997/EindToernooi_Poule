@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Code
 {
-    public class Player
+    public class Player : PlayerBase<BonusQuestions>
     {
-        public string Name { get; set; }
-        public string Town { get; set; }
-        public int TotalScore { get; set; }
         public int PoulesScore { get; set; }
-        public int Ranking { get; set; }
-        public int RankingDifference { get; set; }
         public int KnockoutScore { get; set; }
-        public int BonusScore { get; set; }
-        public Dictionary<int, Poule> Poules{ get; set; }
+        public Dictionary<int, Poule> Poules { get; set; }
         public KnockoutPhase KnockoutPhase { get; set; }
-        public BonusQuestions Questions { get; set; }
 
         public Player()
-        { 
+        {
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
         public Player(string name, string woonplaats, Dictionary<int, Poule> weeks, KnockoutPhase ko, BonusQuestions questions)
@@ -40,17 +30,17 @@ namespace EindToernooi_Poule.Code
         {
             PoulesScore = 0;
             //reset postponement scores
-            
+
             foreach (var poule in Poules)
             {
                 if (poule.Value == null)
                     break;
 
-                if (poule.Value.Poulenr > GeneralConfiguration.NrPoules)
+                if (poule.Value.Poulenr > LocalConfiguration.NrPoules)
                     break;
 
                 poule.Value.CheckPoule(Host);
-                PoulesScore += poule.Value.PouleMatchesScore;                
+                PoulesScore += poule.Value.PouleMatchesScore;
             }
 
             KnockoutScore = KnockoutPhase.checkKnockoutPhase(Host.KnockoutPhase);
