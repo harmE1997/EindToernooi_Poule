@@ -67,7 +67,7 @@ namespace EindToernooi_Poule.Excel
                 InitialiseWorkbook(filename, sheet);
                 for (int i = 0; i < LocalConfiguration.NrPoules; i++)
                 {
-                    var matches = ReadSinglePoule(i, miss, host);
+                    var matches = ReadBlock(i, LocalConfiguration.PouleSize, miss, host);
                     if (matches == null)
                     {
                         PopupManager.ShowMessage("Cannot read predictions. Problem at poule " + (i + 1));
@@ -139,43 +139,6 @@ namespace EindToernooi_Poule.Excel
             }
             catch (Exception e) { return null; }
             finally { CleanWorkbook(); }
-        }
-
-        private Match[] ReadSinglePoule(int poule, int miss, bool host = false)
-        {
-            Match[] Poule = new Match[LocalConfiguration.PouleSize];
-
-            int startrow = ExcelBaseConfiguration.StartRow + (LocalConfiguration.PouleSize + 1) * (poule) + miss;
-
-            try
-            {
-                for (int rowschecked = 0; rowschecked < LocalConfiguration.PouleSize; rowschecked++)
-                {
-                    double a = 99;
-                    double b = 99;
-                    int currentRow = startrow + rowschecked;
-
-                    var at = xlRange.Cells[currentRow, ExcelBaseConfiguration.HomeColumn].Value2;
-                    var bt = xlRange.Cells[currentRow, ExcelBaseConfiguration.OutColumn].Value2;
-
-                    if (at == null || bt == null)
-                    {
-                        if (!host)
-                            return null;
-                    }
-
-                    else
-                    {
-                        a = at;
-                        b = bt;
-                    }
-
-                    Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), 0);
-                    Poule[rowschecked] = match;
-                }
-                return Poule;
-            }
-            catch (Exception e) { return null; }
         }
 
         private KOMatch[] ReadKnockOutPoule(int miss, int size, int startrow, bool host = false)

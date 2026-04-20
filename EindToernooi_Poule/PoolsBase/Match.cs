@@ -66,9 +66,7 @@
 
         public bool IsMatchValid(Match hostmatch)
         {
-            if (hostmatch.ResultA != 99 && ResultA != 99)
-                return true;
-            return false;
+            return hostmatch.ResultA != 99 && ResultA != 99;
         }
 
         public virtual string MatchToString()

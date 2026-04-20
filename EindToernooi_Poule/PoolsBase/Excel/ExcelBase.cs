@@ -102,5 +102,42 @@ namespace PoolsBase.Excel
             catch (Exception e) { return null; }
             finally { CleanWorkbook(); }
         }
+
+        public Match[] ReadBlock(int blocknr, int blocksize, int miss, bool host = false)
+        {
+            Match[] Poule = new Match[blocksize];
+
+            int startrow = ExcelBaseConfiguration.StartRow + (blocksize + 1) * (blocknr) + miss;
+
+            try
+            {
+                for (int rowschecked = 0; rowschecked < blocksize; rowschecked++)
+                {
+                    double a = 99;
+                    double b = 99;
+                    int currentRow = startrow + rowschecked;
+
+                    var at = xlRange.Cells[currentRow, ExcelBaseConfiguration.HomeColumn].Value2;
+                    var bt = xlRange.Cells[currentRow, ExcelBaseConfiguration.OutColumn].Value2;
+
+                    if (at == null || bt == null)
+                    {
+                        if (!host)
+                            return null;
+                    }
+
+                    else
+                    {
+                        a = at;
+                        b = bt;
+                    }
+
+                    Match match = new Match(Convert.ToInt16(a), Convert.ToInt16(b), 0);
+                    Poule[rowschecked] = match;
+                }
+                return Poule;
+            }
+            catch (Exception e) { return null; }
+        }
     }
 }
