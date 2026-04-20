@@ -1,13 +1,13 @@
 ﻿using EindToernooi_Poule.Code;
 using EindToernooi_Poule.Excel;
-using VoetbalPoolsBase;
-using VoetbalPoolsBase.Excel;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using VoetbalPoolsBase;
+using VoetbalPoolsBase.Excel;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -41,6 +41,7 @@ namespace EindToernooi_Poule.ViewModels
         public int TopscorersSheet;
         public int BonusAnswerColumn;
         public int BonusStartRow;
+        public int NrBonusQuestions;
         public List<KoPhaseSettings> KoPhaseSettingsList;
     }
     public class SettingsVm : ViewModelBase
@@ -63,6 +64,7 @@ namespace EindToernooi_Poule.ViewModels
         public bool Bronze { get => configurables.Bronze; set { this.RaiseAndSetIfChanged(ref configurables.Bronze, value); SaveCommandEnabled = true; } }
         public bool NlPresent { get => configurables.NlPresent; set { this.RaiseAndSetIfChanged(ref configurables.NlPresent, value); SaveCommandEnabled = true; } }
         public bool Last32 { get => configurables.Last32; set { this.RaiseAndSetIfChanged(ref configurables.Last32, value); SaveCommandEnabled = true; } }
+        public int NrBonusQuestions { get => configurables.NrBonusQuestions; set { this.RaiseAndSetIfChanged(ref configurables.NrBonusQuestions, value); SaveCommandEnabled = true; } }
 
         //excel settings
         public int StartRow { get => configurables.StartRow; set { this.RaiseAndSetIfChanged(ref configurables.StartRow, value); SaveCommandEnabled = true; } }
@@ -177,6 +179,7 @@ namespace EindToernooi_Poule.ViewModels
             ExcelBaseConfiguration.TopscorersSheet = configurables.TopscorersSheet;
             ExcelBaseConfiguration.BonusStartRow = configurables.BonusStartRow;
             ExcelBaseConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
+            ExcelBaseConfiguration.NrBonusAnswers = configurables.NrBonusQuestions;
         }
     }
 }
