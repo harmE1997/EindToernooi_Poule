@@ -1,6 +1,6 @@
 ﻿using EindToernooi_Poule.Excel;
-using PoolsBase;
-using PoolsBase.Interfaces;
+using VoetbalPoolsBase;
+using VoetbalPoolsBase.Interfaces;
 using System.Collections.Generic;
 
 namespace EindToernooi_Poule.Code

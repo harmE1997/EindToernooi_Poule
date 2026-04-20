@@ -1,7 +1,7 @@
 ﻿using EindToernooi_Poule.Code;
 using EindToernooi_Poule.Excel;
-using PoolsBase;
-using PoolsBase.Excel;
+using VoetbalPoolsBase;
+using VoetbalPoolsBase.Excel;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;

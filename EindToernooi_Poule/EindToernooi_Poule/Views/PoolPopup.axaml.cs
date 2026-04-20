@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using PoolsBase;
+using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Views
 {

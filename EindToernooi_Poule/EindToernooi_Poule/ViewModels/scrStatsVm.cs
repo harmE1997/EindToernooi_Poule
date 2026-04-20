@@ -1,5 +1,5 @@
 ﻿using EindToernooi_Poule.Code;
-using PoolsBase;
+using VoetbalPoolsBase;
 using ReactiveUI;
 using System.Collections.Generic;
 using System.Linq;

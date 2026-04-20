@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using PoolsBase;
+using VoetbalPoolsBase;
 using System.IO;
 using System.Threading.Tasks;
 

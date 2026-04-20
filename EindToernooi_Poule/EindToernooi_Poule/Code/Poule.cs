@@ -1,4 +1,4 @@
-﻿using PoolsBase;
+﻿using VoetbalPoolsBase;
 
 namespace EindToernooi_Poule.Code
 {

@@ -81,7 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\PoolsBase\PoolsBase.csproj" />
+    <ProjectReference Include="..\..\..\VoetbalPoolsBase\VoetbalPoolsBase\VoetbalPoolsBase.csproj" />
   </ItemGroup>
 
   <ItemGroup>
