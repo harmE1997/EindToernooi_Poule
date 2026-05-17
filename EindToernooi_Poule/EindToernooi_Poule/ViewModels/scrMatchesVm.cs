@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VoetbalPoolsBase;
+using VoetbalPoolsBase.Excel;
 
 namespace EindToernooi_Poule.ViewModels
 {
@@ -43,8 +45,8 @@ namespace EindToernooi_Poule.ViewModels
         public scrMatchesVm()
         {
             Matches = new List<string>() {"1","2","3","4","5","6" };
-            SelectedMatch = Matches[0];
-            Weeks = new List<string>() {"1", "2", "3", "4", "5", "6"};
+            SelectedMatch = Matches[0];          
+            Weeks = new List<string>() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
             SelectedWeek = Weeks[0];
             Outputs = new List<MatchField>();
         }
