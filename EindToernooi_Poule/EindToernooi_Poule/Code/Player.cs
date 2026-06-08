@@ -27,7 +27,7 @@ namespace EindToernooi_Poule.Code
             Ranking = 0;
         }
 
-        public override void CheckPlayer(IHost Host, Dictionary<string, Topscorer> topscorers)
+        public override void CheckPlayer(IHost Host, Dictionary<string, Topscorer> topscorers, int startWeek, int endWeek, bool periodCalculation)
         {
             PoulesScore = 0;
             var host = Host as Player;

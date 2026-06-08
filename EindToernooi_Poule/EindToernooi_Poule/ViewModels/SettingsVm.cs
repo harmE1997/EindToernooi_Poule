@@ -169,11 +169,13 @@ namespace EindToernooi_Poule.ViewModels
 
             ExcelBaseConfiguration.HomeColumn = configurables.HomeColumn;
             ExcelBaseConfiguration.OutColumn = configurables.OutColumn;
+            ExcelBaseConfiguration.PostponementColumn = configurables.HomeColumn - 1;
             ExcelBaseConfiguration.RankingSheet = configurables.RankingSheet;
             ExcelBaseConfiguration.StartRow = configurables.StartRow;
             ExcelBaseConfiguration.TopscorersSheet = configurables.TopscorersSheet;
             ExcelBaseConfiguration.BonusStartRow = configurables.BonusStartRow;
             ExcelBaseConfiguration.BonusAnswerColumn = configurables.BonusAnswerColumn;
+            ExcelBaseConfiguration.BonusRoundsColumn = configurables.BonusAnswerColumn + 1;
             ExcelBaseConfiguration.NrBonusAnswers = configurables.NrBonusQuestions;
 
         }

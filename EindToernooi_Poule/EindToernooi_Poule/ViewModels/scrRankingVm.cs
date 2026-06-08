@@ -37,7 +37,7 @@ namespace EindToernooi_Poule.ViewModels
             try
             {
                 host.setHost();
-                scrPlayersVm.PlayerManager.CheckAllPlayers(host);
+                scrPlayersVm.PlayerManager.CheckAllPlayers(host, 0, 0, false);
                 RefreshRanking();
                 PopupManager.ShowMessage("New ranking calculated");
             }
