@@ -84,7 +84,7 @@ namespace EindToernooi_Poule.ViewModels
 
         private void RankPlayers()
         {
-            scrPlayersVm.PlayerManager.Players.OrderBy(p => p.Name).ToList();
+            scrPlayersVm.PlayerManager.Players = scrPlayersVm.PlayerManager.Players.OrderBy(p => p.TotalScore).ToList();
             scrPlayersVm.PlayerManager.Players.Reverse();
             int ranking = 1;
             int counter = 1;
