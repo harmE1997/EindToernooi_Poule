@@ -24,14 +24,18 @@ namespace EindToernooi_Poule.Code
             //this parameterless constructor is used for json deserialization. Do not use it for implementations!
         }
 
-        public BonusQuestions(Dictionary<string, int> rawanswers)
+        public BonusQuestions(List<KeyValuePair<string, int>> rawanswers)
         {
             var answers = new List<string>();
             for (int i = 0; i < 4; i++)
                 answers.Add(string.Empty);
 
             if (rawanswers.Count == 4)
-                answers = rawanswers.Keys.ToList();
+            {
+                answers.Clear();
+                foreach (var pair in rawanswers)
+                    answers.Add(pair.Key);
+            }
 
             Answers = new Dictionary<BonusKeys, BonusQuestion>()
             {

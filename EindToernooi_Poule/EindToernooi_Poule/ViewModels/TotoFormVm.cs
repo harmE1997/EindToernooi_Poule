@@ -208,7 +208,7 @@ namespace EindToernooi_Poule.ViewModels
 
                 weeks.Add(i, new Poule(i, matches));
             }
-            return new Player("", "", weeks, new KnockoutPhase(), new BonusQuestions(new Dictionary<string, int>()));
+            return new Player("", "", weeks, new KnockoutPhase(), new BonusQuestions(new List<KeyValuePair<string, int>>()));
         }
 
         private void SetCurrentPoule(int value)
